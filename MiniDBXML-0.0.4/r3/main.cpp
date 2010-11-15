@@ -143,9 +143,14 @@ int save_database(int u,int wid)
     int d=1,z=1;
     fstream x;
     x.open("plik.xml",ios::in|ios::out|ios::trunc);
-        x<< " ";
-        x<<"<?xml version='1.0' encoding='UTF-8'?>"<<endl;
+
+        x<<"<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"<<endl;
         x<<"<db>"<<endl;
+        time_t rawtime;
+        struct tm * timeinfo;
+        time ( &rawtime );
+        timeinfo = localtime ( &rawtime );
+        x<<"<header>"<<endl<<"<Program>MiniDBXML</Program>"<<endl<<"<Version>0.0.4 - Alpha </Version>"<<endl<<"<Time_Date>"<<asctime (timeinfo)<<"</Time_Date>"<<endl<<"</header>"<<endl;
         x<<"<tag>"<<endl;
         for(int y=1;y<=vid;y++)
         {
@@ -163,7 +168,7 @@ int save_database(int u,int wid)
                 if(dane[m][i].length()!=NULL)
                 {
                     if(wid==m and u==1){ i=vid;} else{
-                    x<<"<entry id='"<<d++<<"'>"<<endl;
+                    x<<"<entry id=\""<<d++<<"\">"<<endl;
                     for(int q=1;q<=vid;q++)
                     {
                         x<<"<"<<dane[0][q]<<">"<<dane[m][q]<<"</"<<dane[0][q]<<">"<<endl;
