@@ -8,32 +8,29 @@ int view_menu();
 string dane[2000][2000];
 int main();
 int vid=1;
-int st=0;
 int counter_e=0;
 int parse_xml_tag(string name_tag_find,int id)
 {
-    counter_e=0;
     vid=id;
-    string mem;
-    string name_tag=name_tag_find;
-    string name_tag_;
+    string*mem=new string;
+    string*name_tag=new string;
+    *name_tag=name_tag_find;
+    string*name_tag_=new string ;
     ifstream file;
-    int lst=1;
-    int buf=0;
     file.open("plik.xml",ios::in);
     while(!file.eof())
     {
-      getline(file,mem);
-      name_tag_="<"+name_tag_find+">";
-      for(int i=0;i<mem.length();i++){
-      if(mem.substr(i,i+name_tag_.length())==name_tag_)
+      getline(file,*mem);
+      *name_tag_="<"+name_tag_find+">";
+      for(int i=0;i<mem->length();i++){
+      if(mem->substr(i,i+name_tag_->length())==*name_tag_)
       {
-        name_tag="</"+name_tag_find+">";
-          for(int m=i+name_tag_.length();m<mem.length();m++){
+        *name_tag="</"+name_tag_find+">";
+          for(int m=i+name_tag_->length();m<mem->length();m++){
 
-              if(mem.substr(m,m+name_tag.length())==name_tag){
+              if(mem->substr(m,m+name_tag->length())==*name_tag){
                   counter_e++;
-                   dane[counter_e][vid]=mem.substr(i+name_tag_.length(),m-name_tag.length()+1) ;
+                   dane[counter_e][vid]=mem->substr(i+name_tag_->length(),m-name_tag->length()+1) ;
 
               }
           }
@@ -44,14 +41,17 @@ int parse_xml_tag(string name_tag_find,int id)
     }
 
     file.close();
+    delete name_tag_,mem,name_tag,id;
 }
 
 int pre_load()
 {
 
-    string mv;
-    int st_=0,ui=0;
+    string* mv = new string;
+    int st_=0;
+    int *ui=new int;
     int l=0;
+
     for(int n=1;n<=counter_e;n++){
 for(int i=1;i<=vid;i++)
     {
@@ -69,16 +69,17 @@ for(int i=1;i<=vid;i++)
     while(!file.eof())
         {
             ui++;
-    getline(file,mv);
-        if(mv=="<tag>" ){  st_=1; } else{
-        if(mv.length()!=NULL){
-            if(mv=="</tag>")
+    getline(file,*mv);
+        if(*mv=="<tag>" ){  st_=1; } else{
+
+        if(mv->length()!=NULL){
+            if(*mv=="</tag>")
             {st_=0; }
             else{
                 if(st_==1){
                     l++;
-                dane[0][l]=mv;
-                parse_xml_tag(mv,l);
+                dane[0][l]=*mv;
+                parse_xml_tag(*mv,l);
 
                 }
         }
@@ -86,6 +87,7 @@ for(int i=1;i<=vid;i++)
         }
         }
         file.close();
+        delete mv;
 
 
 }
@@ -135,7 +137,6 @@ int view_database()
 
     }
 
-
 int save_database(int u,int wid)
 {
 
@@ -179,13 +180,14 @@ int save_database(int u,int wid)
     }
 int find_entry()
 {
-    bool end_l=false;
+    bool *end_l= new bool;
+    *end_l=false;
     system("clear");
-    string v_dataf;
+    string *v_dataf=new string;
     pre_load();
     cout<<"Please enter text search"<<endl;
-    cin>>v_dataf;
-    cout<<"Result for  "<<v_dataf<<endl<<"-----------------------"<<endl;
+    cin>>*v_dataf;
+    cout<<"Result for  "<<*v_dataf<<endl<<"-----------------------"<<endl;
 
     for(int m=1;m<vid;m++)
             {
@@ -202,24 +204,25 @@ int find_entry()
       {
           if(dane[x][i].length()!=NULL)
           {
-              if(v_dataf==dane[x][i])
+              if(*v_dataf==dane[x][i])
               {
                   for(int m=1;m<vid;m++)
                   {
                   cout<<dane[m][i]<<" |";
-                  end_l=true;
+                  *end_l=true;
                   }
               }
 
          }
 
-         if(end_l==true){cout<<endl;end_l=false;}
+         if(*end_l==true){cout<<endl;*end_l=false;}
       }
 
 
     }
 
     cout<<endl;
+    delete v_dataf,end_l;
     return view_menu();
 }
 int edit_col_database()
