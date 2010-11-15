@@ -6,7 +6,7 @@
 using namespace std;
 int view_menu();
 string dane[2000][2000];
-int main();
+int main(int argc, char *argv[]);
 int vid=1;
 int counter_e=0;
 int parse_xml_tag(string name_tag_find,int id)
@@ -342,11 +342,10 @@ switch(wybor)
 return 1;
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-
- system("echo ''>>plik.xml");
- pre_load();
- view_menu();
+    system("echo ''>>plik.xml");
+    pre_load();
+    view_menu();
 }
 
