@@ -16,11 +16,11 @@ int parse_xml_tag(string name_tag_find,int id)
     string*name_tag=new string;
     *name_tag=name_tag_find;
     string*name_tag_=new string ;
-    ifstream file;
-    file.open("plik.xml",ios::in);
-    while(!file.eof())
+    ifstream*file= new ifstream;
+    file->open("plik.xml",ios::in);
+    while(!file->eof())
     {
-      getline(file,*mem);
+      getline(*file,*mem);
       *name_tag_="<"+name_tag_find+">";
       for(int i=0;i<mem->length();i++){
       if(mem->substr(i,i+name_tag_->length())==*name_tag_)
@@ -40,18 +40,18 @@ int parse_xml_tag(string name_tag_find,int id)
 
     }
 
-    file.close();
-    delete name_tag_,mem,name_tag,id;
+    file->close();
+    delete name_tag_,mem,name_tag,id,file;
 }
 
 int pre_load()
 {
 
     string* mv = new string;
-    int st_=0;
+    int*st_= new int;
+    *st_=0;
     int *ui=new int;
     int l=0;
-
     for(int n=1;n<=counter_e;n++){
 for(int i=1;i<=vid;i++)
     {
@@ -64,19 +64,19 @@ for(int i=1;i<=vid;i++)
     }
     counter_e=0;
     vid=1;
-    ifstream file;
-    file.open("plik.xml",ios::in);
-    while(!file.eof())
+    ifstream*file=new ifstream;
+    file->open("plik.xml",ios::in);
+    while(!file->eof())
         {
             ui++;
-    getline(file,*mv);
-        if(*mv=="<tag>" ){  st_=1; } else{
+    getline(*file,*mv);
+        if(*mv=="<tag>" ){  *st_=1; } else{
 
         if(mv->length()!=NULL){
             if(*mv=="</tag>")
-            {st_=0; }
+            {*st_=0; }
             else{
-                if(st_==1){
+                if(*st_==1){
                     l++;
                 dane[0][l]=*mv;
                 parse_xml_tag(*mv,l);
@@ -86,8 +86,8 @@ for(int i=1;i<=vid;i++)
         }
         }
         }
-        file.close();
-        delete mv;
+        file->close();
+        delete mv,file,st_;
 
 
 }
@@ -101,7 +101,6 @@ int view_database()
             cout<<"* |";
             for(int p=1;p<=vid;p++)
             {
-
                 if(dane[0][p].length()!=NULL){
                 cout<<dane[0][p]<<" |";
                 }
@@ -134,7 +133,6 @@ int view_database()
         cout<<endl<<endl;
      if(h==0){cout<<"Empty database!!!"<<endl;return view_menu();}
     return view_menu();
-
     }
 
 int save_database(int u,int wid)
