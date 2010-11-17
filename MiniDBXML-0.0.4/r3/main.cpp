@@ -128,7 +128,6 @@ int view_database()
             }
             h++;
             }
-
         }
         cout<<endl<<endl;
      if(h==0){cout<<"Empty database!!!"<<endl;return view_menu();}
@@ -137,27 +136,25 @@ int view_database()
 
 int save_database(int u,int wid)
 {
-
     int d=1,z=1;
-    fstream x;
-    x.open("plik.xml",ios::in|ios::out|ios::trunc);
-
-        x<<"<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"<<endl;
-        x<<"<db>"<<endl;
+    fstream*x= new fstream;
+    x->open("plik.xml",ios::in|ios::out|ios::trunc);
+        *x<<"<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"<<endl;
+        *x<<"<db>"<<endl;
         time_t rawtime;
         struct tm * timeinfo;
         time ( &rawtime );
         timeinfo = localtime ( &rawtime );
-        x<<"<header>"<<endl<<"<Program>MiniDBXML</Program>"<<endl<<"<Version>0.0.4 - Alpha </Version>"<<endl<<"<Time_Date>"<<asctime (timeinfo)<<"</Time_Date>"<<endl<<"</header>"<<endl;
-        x<<"<tag>"<<endl;
+        *x<<"<header>"<<endl<<"<Program>MiniDBXML</Program>"<<endl<<"<Version>0.0.4 - Alpha </Version>"<<endl<<"<Time_Date>"<<asctime (timeinfo)<<"</Time_Date>"<<endl<<"</header>"<<endl;
+        *x<<"<tag>"<<endl;
         for(int y=1;y<=vid;y++)
         {
             if(dane[0][y].length()!=NULL)
             {
-            x<<dane[0][y]<<endl;
+            *x<<dane[0][y]<<endl;
             }
         }
-        x<<"</tag>"<<endl<<"<body>"<<endl;
+        *x<<"</tag>"<<endl<<"<body>"<<endl;
         if(counter_e==0){counter_e=1;}else{counter_e++;}
         for(int m=1;m<=counter_e;m++)
         {
@@ -166,20 +163,21 @@ int save_database(int u,int wid)
                 if(dane[m][i].length()!=NULL)
                 {
                     if(wid==m and u==1){ i=vid;} else{
-                    x<<"<entry id=\""<<d++<<"\">"<<endl;
+                    *x<<"<entry id=\""<<d++<<"\">"<<endl;
                     for(int q=1;q<=vid;q++)
                     {
-                        x<<"<"<<dane[0][q]<<">"<<dane[m][q]<<"</"<<dane[0][q]<<">"<<endl;
+                        *x<<"<"<<dane[0][q]<<">"<<dane[m][q]<<"</"<<dane[0][q]<<">"<<endl;
                     }
-                    x<<"</entry>"<<endl;
+                    *x<<"</entry>"<<endl;
                     i=vid;
                     }
                 }
             }
 
         }
-    x<<"</body>"<<endl<<"</db>";
-    x.close();
+    *x<<"</body>"<<endl<<"</db>";
+    x->close();
+    delete x;
     }
 int find_entry()
 {
@@ -192,7 +190,7 @@ int find_entry()
     cin>>*v_dataf;
     cout<<"Result for  "<<*v_dataf<<endl<<"-----------------------"<<endl;
 
-    for(int m=1;m<vid;m++)
+    for(int m=1;m<=vid;m++)
             {
 
                 if(dane[0][m].length()!=NULL){
@@ -201,17 +199,18 @@ int find_entry()
 
             }
     cout<<endl<<"________________________"<<endl;
-    for(int i=0;i<counter_e;i++)
+    for(int i=1;i<=counter_e;i++)
     {
-      for(int x=0;x<vid;x++)
+      for(int x=1;x<=vid;x++)
       {
-          if(dane[x][i].length()!=NULL)
+          if(dane[i][x].length()!=NULL)
           {
-              if(*v_dataf==dane[x][i])
+
+              if(*v_dataf==dane[x][i].substr(0,v_dataf->length()))
               {
-                  for(int m=1;m<vid;m++)
+                  for(int m=1;m<=vid;m++)
                   {
-                  cout<<dane[m][i]<<" |";
+                  cout<<dane[i][m]<<" |";
                   *end_l=true;
                   }
               }
