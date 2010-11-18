@@ -17,7 +17,7 @@ int parse_xml_tag(string name_tag_find,int id)
     *name_tag=name_tag_find;
     string*name_tag_=new string ;
     ifstream*file= new ifstream;
-    file->open("plik.xml",ios::in);
+    file->open("./.data/base.xml",ios::in);
     while(!file->eof())
     {
       getline(*file,*mem);
@@ -65,7 +65,7 @@ for(int i=1;i<=vid;i++)
     counter_e=0;
     vid=1;
     ifstream*file=new ifstream;
-    file->open("plik.xml",ios::in);
+    file->open("./.data/base.xml",ios::in);
     while(!file->eof())
         {
             ui++;
@@ -132,7 +132,7 @@ int save_database(int u,int wid)
 {
     int d=1,z=1;
     fstream*x= new fstream;
-    x->open("plik.xml",ios::in|ios::out|ios::trunc);
+    x->open("./.data/base.xml",ios::in|ios::out|ios::trunc);
         *x<<"<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"<<endl;
         *x<<"<db>"<<endl;
         time_t rawtime;
@@ -217,7 +217,7 @@ int edit_col_database()
 {
     pre_load();
     system("clear");
-    int v,i;
+    int v,i,p=0;
     string t;
     cout<<"Choise cols to edit:"<<endl<<endl<<"0 .New col"<<endl;
     for(i=1;i<=vid;i++)
@@ -225,12 +225,15 @@ int edit_col_database()
 
         if(dane[0][i].length()!=NULL)
         {
+          p++;
         cout<<i<<" ."<<dane[0][i]<<endl;
         }
     }
     cout<<endl;
     cin>>v;
-    if(v==0){ cout<<"Enter name cols"<<endl; cin>>t;cout<<endl<<"Adds cols: "<<t<<" at id "<<i<<" to database"; dane[0][i]=t; vid++; } else {
+    p++;
+    if(v==0){cout<<"Enter name cols"<<endl; cin>>t;cout<<endl<<"Adds cols: "<<t<<" at id "<<p<<" to database"; dane[0][p]=t;vid++; save_database(0,0); }
+    else {
      cout<<"1.Rename cols"<<endl<<"2.Delete cols"<<endl;;
      char o;
      cin>>o;
@@ -293,8 +296,10 @@ int edit_database()
    cout<<endl<<"What do you want to edit?"<<endl;
     for(int i=1;i<=vid;i++)
     {
+        if(dane[0][i].length()!=NULL){
         p++;
         cout<<i<<"."<<dane[0][i]<<endl;
+        }
     }
     cout<<p+1<<".Delete entry?"<<endl;
     cin>>c;
@@ -357,7 +362,7 @@ return 1;
 
 int main(int argc, char *argv[])
 {
-    system("echo ''>>plik.xml");
+    system("echo >>./.data/base.xml");
     pre_load();
     view_menu();
 }
