@@ -188,15 +188,12 @@ int find_entry()
     pre_load();
     cout<<"Please enter text search"<<endl;
     cin>>*v_dataf;
-    cout<<"Result for  "<<*v_dataf<<endl<<"-----------------------"<<endl;
-
+    cout<<"Result for  "<<*v_dataf<<endl<<"-----------------------"<<endl<<"*|";
     for(int m=1;m<=vid;m++)
             {
-
                 if(dane[0][m].length()!=NULL){
                 cout<<dane[0][m]<<" |";
                 }
-
             }
     cout<<endl<<"________________________"<<endl;
     for(int i=1;i<=counter_e;i++)
@@ -205,24 +202,19 @@ int find_entry()
       {
           if(dane[i][x].length()!=NULL)
           {
-
-              if(*v_dataf==dane[x][i].substr(0,v_dataf->length()))
+              if(*v_dataf==dane[i][x].substr(0,v_dataf->length()))
               {
+                  cout<<i<<"|";
                   for(int m=1;m<=vid;m++)
                   {
                   cout<<dane[i][m]<<" |";
                   *end_l=true;
                   }
               }
-
          }
-
          if(*end_l==true){cout<<endl;*end_l=false;}
       }
-
-
     }
-
     cout<<endl;
     delete v_dataf,end_l;
     return view_menu();
@@ -233,7 +225,7 @@ int edit_col_database()
     system("clear");
     int v,i;
     string t;
-    cout<<"Choise cols to edit:"<<endl<<endl<<"0 .New"<<endl;
+    cout<<"Choise cols to edit:"<<endl<<endl<<"0 .New col"<<endl;
     for(i=1;i<=vid;i++)
     {
 
@@ -245,10 +237,30 @@ int edit_col_database()
     cout<<endl;
     cin>>v;
     if(v==0){ cout<<"Enter name cols"<<endl; cin>>t;cout<<endl<<"Adds cols: "<<t<<" at id "<<i<<" to database"; dane[0][i]=t; vid++; } else {
-     cout<<"Enter new name cols"<<endl; cin>>t; dane[0][v]=t;
+     cout<<"1.Rename cols"<<endl<<"2.Delete cols"<<endl;;
+     char o;
+     cin>>o;
+     switch(o)
+     {
+        case '1':
+        cout<<"please enter new name cols"<<endl;
+        cin>>t;
+        dane[0][v]=t;
+        save_database(0,0);
+        break;
+        case '2':
+        cout<<"deleted cols id "<<v<<endl;
+        dane[0][v].clear();
+        save_database(0,0);
+        break;
+        default:
+        cout<<"Correct select"<<endl;
+        return view_menu();
+        break;
+     }
      }
     cout<<endl<<endl;
-    save_database(0,i+1);
+
     return view_menu();
 }
 
