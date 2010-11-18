@@ -88,8 +88,6 @@ for(int i=1;i<=vid;i++)
         }
         file->close();
         delete mv,file,st_;
-
-
 }
 
 int view_database()
@@ -104,16 +102,12 @@ int view_database()
                 if(dane[0][p].length()!=NULL){
                 cout<<dane[0][p]<<" |";
                 }
-
             }
             cout<<endl<<"---------------------------"<<endl;
-
         for(int m=1;m<=counter_e+1;m++)
         {
-
             for(int i=1;i<=vid;i++)
             {
-
             if(dane[m][i].length()!=NULL)
             {
             cout<<v++<<".|";
@@ -125,12 +119,12 @@ int view_database()
                  }
             i=vid;
             cout<<endl;
-            }
             h++;
             }
+            }
         }
-        cout<<endl<<endl;
      if(h==0){cout<<"Empty database!!!"<<endl;return view_menu();}
+     cout<<endl<<endl;
     return view_menu();
     }
 
@@ -240,6 +234,7 @@ int edit_col_database()
      cout<<"1.Rename cols"<<endl<<"2.Delete cols"<<endl;;
      char o;
      cin>>o;
+     system("clear");
      switch(o)
      {
         case '1':
@@ -251,6 +246,10 @@ int edit_col_database()
         case '2':
         cout<<"deleted cols id "<<v<<endl;
         dane[0][v].clear();
+        for(int z=1;z<=counter_e;z++)
+        {
+            dane[z][v].clear();
+        }
         save_database(0,0);
         break;
         default:
