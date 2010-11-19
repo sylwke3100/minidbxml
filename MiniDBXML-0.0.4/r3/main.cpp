@@ -12,6 +12,7 @@ int counter_e=0;
 int parse_xml_tag(string name_tag_find,int id)
 {
     vid=id;
+    counter_e=0;
     string*mem=new string;
     string*name_tag=new string;
     *name_tag=name_tag_find;
@@ -31,7 +32,6 @@ int parse_xml_tag(string name_tag_find,int id)
               if(mem->substr(m,m+name_tag->length())==*name_tag){
                   counter_e++;
                    dane[counter_e][vid]=mem->substr(i+name_tag_->length(),m-name_tag->length()+1) ;
-
               }
           }
 
@@ -274,7 +274,6 @@ int edit_database()
    system("clear");
    int id_w=0,c=0,z=0,p=0;
    string value;
-   z=0;
    for(m=1;m<=counter_e;m++)
     {
     if(dane[m][1].length()!=NULL or dane[m][2].length()!=NULL)
@@ -310,19 +309,18 @@ int edit_database()
         for(int a=1;a<=vid;a++)
             {
                 dane[id_w][a]="";
-
             }
-
     }
     else{
         if(c>(vid+1)){ cout<<"Wrong choice"<<endl;}
         else
         {
+            cout<<c<<" "<<id_w<<endl;
             cout<<endl<<"Editing "<<dane[0][c]<<": ";
           getline( cin.ignore(100,'\n'),value);
 
             dane[id_w][c]=value;
-
+            cout<<dane[id_w][c];
         }
     }
     save_database(u,id_w);
@@ -365,5 +363,6 @@ int main(int argc, char *argv[])
     system("echo >>./.data/base.xml");
     pre_load();
     view_menu();
+
 }
 
