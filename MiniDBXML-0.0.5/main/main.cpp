@@ -220,7 +220,7 @@ int edit_col_database()
     system("clear");
     int v,i,p=0;
     string t;
-    cout<<"Choise cols to edit:"<<endl<<endl<<"0 .New col"<<endl;
+    cout<<"Choise column to edit:"<<endl<<endl<<"0 .New column"<<endl;
     for(i=1;i<=vid;i++)
     {
 
@@ -233,22 +233,22 @@ int edit_col_database()
     cout<<endl;
     cin>>v;
     p++;
-    if(v==0){cout<<"Enter name cols"<<endl; cin>>t;cout<<endl<<"Adds cols: "<<t<<" at id "<<p<<" to database"; dane[0][p]=t;vid++; save_database(0,0); }
+    if(v==0){cout<<"Enter name cols"<<endl; cin>>t;cout<<endl<<"Adds column: "<<t<<" at id "<<p<<" to database"; dane[0][p]=t;vid++; save_database(0,0); }
     else {
-     cout<<"1.Rename cols"<<endl<<"2.Delete cols"<<endl;;
+     cout<<"1.Rename column"<<endl<<"2.Delete column"<<endl;;
      char o;
      cin>>o;
      system("clear");
      switch(o)
      {
         case '1':
-        cout<<"please enter new name cols"<<endl;
+        cout<<"please enter new name columns"<<endl;
         cin>>t;
         dane[0][v]=t;
         save_database(0,0);
         break;
         case '2':
-        cout<<"deleted cols id "<<v<<endl;
+        cout<<"deleted colums id "<<v<<endl;
         dane[0][v].clear();
         for(int z=1;z<=counter_e;z++)
         {
@@ -333,7 +333,7 @@ int edit_database()
 int view_menu()
 {
 cout<<"Mini Database for xml 0.0.5"<<endl<<endl<<
-"1.View Database"<<endl<<"2.Find entry."<<endl<<"3.Edit Database"<<endl<<"4.Edit Cols Database"<<endl<<"q.Exit"<<endl;
+"1.View Database"<<endl<<"2.Find entry."<<endl<<"3.Edit Database"<<endl<<"4.Edit Column Database"<<endl<<"q.Exit"<<endl;
 char wybor;
 cin>>wybor;
 switch(wybor)
