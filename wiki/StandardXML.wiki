@@ -2,4 +2,33 @@
 
 1. Default structure XML: 
 
-<code><?xml version="1.0" encoding="UTF-8" ?><db><header></code>
+<code>
+{{{
+<?xml version="1.0" encoding="UTF-8" ?>
+<db>
+ <header>
+
+ </header>
+ <tag>
+
+ </tag>
+ <body>
+
+ </body>
+</db>
+}}}
+</code>
+===1.Header===
+
+It is part of the file that specifies a program that creates (since it is called the header).<br> Its contents can be arbitrary, for example, the program creates MiniDBXML such elements in this part: 
+<code>
+{{{ 
+<header>
+ <Program>MiniDBXML</Program>
+ <Version>0.0.5 - Alpha </Version>
+ <Time_Date>Sun Nov 21 16:27:17 2010
+ </Time_Date>
+</header>
+
+}}} 
+</code>
