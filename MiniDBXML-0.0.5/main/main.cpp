@@ -79,9 +79,8 @@ for(int i=1;i<=vid;i++)
             else{
                 if(*st_==1){
                     l++;
-                dane[0][l]=*mv;
-                parse_xml_tag(*mv,l);
-
+                dane[0][l]=mv->substr(4,mv->length()-9);
+                parse_xml_tag(mv->substr(4,mv->length()-9),l);
                 }
         }
         }
@@ -146,7 +145,7 @@ int save_database(int u,int wid)
         {
             if(dane[0][y].length()!=NULL)
             {
-            *x<<dane[0][y]<<endl;
+            *x<<"<tg>"<<dane[0][y]<<"</tg>"<<endl;
             }
         }
         *x<<"</tag>"<<endl<<"<body>"<<endl;
@@ -292,6 +291,7 @@ int edit_database()
    cout<<"Enter ID entry:";
    cin>>id_w;
    system("clear");
+   if(id_w==z+1 or id_w<=z){
    cout<<"Entry ID:"<<id_w<<"-"<<dane[id_w][1];
    cout<<endl<<"What do you want to edit?"<<endl;
     for(int i=1;i<=vid;i++)
@@ -327,8 +327,9 @@ int edit_database()
         }
     }
     save_database(u,id_w);
-    return view_menu();
-
+   }
+   else {cout<<"Correct id entry"<<endl; }
+   return view_menu();
 }
 int view_menu()
 {
