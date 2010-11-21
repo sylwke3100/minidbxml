@@ -1,4 +1,4 @@
-#labels Featured,Deprecated
+#labels Featured,Deprecated,Phase-Deploy
 =Requirements Minidbxml 0.0.5=
 
 ==Binary package==
