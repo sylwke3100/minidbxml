@@ -1,0 +1,18 @@
+#labels Featured
+=Requirements Minidbxml 0.0.5=
+
+==Binary package==
+
+-System: Linux x86(tested and compiled for Ubuntu 10.10 x86)<br>
+-Ram: 128 MB or more<br>
+-Disk space : 70KB or more <br>
+
+
+==Source Code ==
+
+-System: Linux x86(tested and compiled for Ubuntu 10.10)<br>
+-Packages :<br>
+  - gcc <br>
+  - build-essential <br><br>
+===Optional:===
+  - Package codeblox
