@@ -3,7 +3,7 @@
 
   * [Main About project]<br>
   * [Requirements Requirements]<br>
-  * [Technical Technical Inforation]
+  * [Technical Technical Information]
     * [StandardXML Standard v. 1.0 XML for MiniDBXML]<br>
     * [Bug Bug Magazine] <br>
     * [Howuse How use program]
