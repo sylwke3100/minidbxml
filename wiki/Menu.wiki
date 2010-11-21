@@ -3,7 +3,7 @@
 
   * [Main About project]<br>
   * [Requirements Requirements]<br>
-  * [Bug Bug Magazine] <br>
   * [Technical Technical Inforation]
-    * [StandardXML Standard XML for MiniDBXML]
+    * [StandardXML Standard XML for MiniDBXML]<br>
+    * [Bug Bug Magazine] <br>
     * [Howuse How use program]
