@@ -1,7 +1,8 @@
 =XML file for MiniDBXML=
 
-1. Default structure XML: 
+===1. Default structure XML:===
 
+*Please note: that the entire structure must necessarily begin from the start line<br> without leading spaces, and every so should look like and feel.*
 <code>
 {{{
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -18,17 +19,28 @@
 </db>
 }}}
 </code>
-===1.Header===
+===2.Header===
 
 It is part of the file that specifies a program that creates (since it is called the header).<br> Its contents can be arbitrary, for example, the program creates MiniDBXML such elements in this part: 
 <code>
 {{{ 
 <header>
- <Program>MiniDBXML</Program>
- <Version>0.0.5 - Alpha </Version>
+ <Program>MiniDBXML</Program> 
+ <Version>0.0.5 - Alpha </Version> - 
  <Time_Date>Sun Nov 21 16:27:17 2010
  </Time_Date>
 </header>
 
 }}} 
+</code>
+
+===3.Tag===
+Part of the tag is to write the column names stored so that the program can easily identify.<br> Each entry in the column is to begin and end: <tg> tag on it (everything has to be in one line and another entry in the next release).<br> For example:
+<code>
+{{{
+<tag>
+<tg>Name</tg>
+<tg>Surname</tg>
+</tag>
+}}}
 </code>
