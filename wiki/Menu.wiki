@@ -4,3 +4,4 @@
   * [Main About project]<br>
   * [Requirements Requirements]<br>
   * [Bug Bug Magazine] <br>
+  * [Technical Technical Inforation]
