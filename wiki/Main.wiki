@@ -1,4 +1,4 @@
-#labels Featured,Phase-Deploy
+#labels Featured,Phase-Requirements
             =MiniDBXML=
 
 MiniDBXML project aims to create a database program for Linux. The program will be fully supported by the appropriate console UI. Files in the database is stored XML files. The program is open source and licensed under the GNU General Public License v2 (source code and program). <br><br>
