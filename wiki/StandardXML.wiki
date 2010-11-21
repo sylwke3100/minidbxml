@@ -1,6 +1,7 @@
+#labels Featured
 =XML file for MiniDBXML=
 
-===1. Default structure XML:===
+===1. Default structure XML file:===
 
 *Please note: that the entire structure must necessarily begin from the start line<br> without leading spaces, and every so should look like and feel.*
 <code>
@@ -35,7 +36,7 @@ It is part of the file that specifies a program that creates (since it is called
 </code>
 
 ===3.Tag===
-Part of the tag is to write the column names stored so that the program can easily identify.<br> Each entry in the column is to begin and end: <tg> tag on it (everything has to be in one line and another entry in the next release).<br> For example:
+Part of the tag is to write the column names stored so that the program can easily identify.<br> Each entry in the column is to begin and end: <code><tg>namecolumn</tg></code> *"tg"* tag on it (everything has to be in one line and another entry in the next release).<br> For example:
 <code>
 {{{
 <tag>
@@ -44,3 +45,45 @@ Part of the tag is to write the column names stored so that the program can easi
 </tag>
 }}}
 </code>
+This part is required for proper operation of the database.<br>
+===4.Body===
+This part is important. It is responsible for saving records in the database and sort them. It consists of three elements: 
+- Start entry Tag: 
+<code> <entry id="number id"></code> 
+- The entry in the database: 
+<code><NameColumn>Value</NameColumn></code>
+- Tag end of the entry:
+<code></entry></code>
+===5.Example Base==
+<code>
+{{{
+<?xml version="1.0" encoding="UTF-8" ?>
+<db>
+<header>
+<Program>MiniDBXML</Program>
+<Version>0.0.5 - Alpha </Version>
+<Time_Date>Sun Nov 21 16:27:17 2010
+</Time_Date>
+</header>
+<tag>
+<tg>Name</tg>
+<tg>City</tg>
+</tag>
+</body>
+<entry id="1">
+<Name>Bob</Name>
+<City>Los Angeles</City>
+</entry>
+<entry id="2">
+<Name>Steve</Name>
+<City>New York</City>
+</entry>
+</body>
+</db>
+}}}
+</code>
+This base looks like:
+
+||*||Name||City||
+||1||Bob||Los Angeles||
+||2||Steve||New York||
