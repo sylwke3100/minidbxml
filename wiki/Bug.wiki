@@ -11,3 +11,5 @@
 - Fixed : Remove column (feature will not cleaned after the removal of entries in the database column) <br>
 - Fixed : The search in the database<br>
 - Fixed : Structure XML in file <br>
+- Fixed : bug write id for all entries (if somebody example chose "id" higher than counter_e+1)
+- Fixed : Error Translate EN in Main Menu
