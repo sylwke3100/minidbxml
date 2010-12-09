@@ -252,22 +252,19 @@ int edit_col_database()
     cout<<"Choise column to edit:"<<endl<<endl<<"0 .New column"<<endl;
     for(i=1;i<=vid;i++)
     {
-
         if(dane[0][i].length()!=NULL)
         {
           p++;
         cout<<i<<" ."<<dane[0][i]<<endl;
-        }
-    }
-    cout<<endl;
-    cin>>v;
-    p++;
+        }}
+    cout<<endl; cin>>v; p++;
     if(v==0){cout<<"Enter name cols"<<endl; cin>>t;cout<<endl<<"Adds column: "<<t<<" at id "<<p<<" to database"; dane[0][p]=t;vid++; save_database(0,0); }
     else {
+     if(v<=vid){
      cout<<"1.Rename column"<<endl<<"2.Delete column"<<endl;;
      char o;
      cin>>o;
-    scr.clr();
+     scr.clr();
      switch(o)
      {
         case '1':
@@ -291,8 +288,9 @@ int edit_col_database()
         break;
      }
      }
+     else{scr.clr(); cout<<"Correct number columns "<<endl;}
+     }
     cout<<endl<<endl;
-
     return view_menu();
 }
 
