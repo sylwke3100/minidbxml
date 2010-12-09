@@ -1,6 +1,11 @@
 #labels Featured,Deprecated
 =Bug Magazine =
 
+===9.12.2010 - 02/2010===
+
+- Fixed: Write - maximum numbers column to edit ( if somebody write number column higher than value vid then program save data to empty cols)<br>
+- Fixed : Bug write id for all entries (if somebody example chose "id" higher than counter_e+1)<br>
+- Fixed : Error Translate EN in Main Menu<br>
 
 ===21.11.2010 - 01/2010===
 
@@ -11,6 +16,3 @@
 - Fixed : Remove column (feature will not cleaned after the removal of entries in the database column) <br>
 - Fixed : The search in the database<br>
 - Fixed : Structure XML in file <br>
-<hr>
-- Fixed : bug write id for all entries (if somebody example chose "id" higher than counter_e+1)<br>
-- Fixed : Error Translate EN in Main Menu<br>
