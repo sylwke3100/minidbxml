@@ -378,6 +378,7 @@ for(int z=0;z<=counter_e;z++)
         }
    *x<<endl;
     }
+x->close();
 delete x;
 cout<<"save base.csv in "<<get_current_dir_name()<<"/.data/"<<endl;
 scr._sleep(3);
