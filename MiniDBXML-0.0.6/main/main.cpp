@@ -4,6 +4,7 @@
 #include <fstream>
 #include "./version.h"
 #include <conio.h>
+#include <string.h>
 using namespace std;
 int view_menu();
 int max_e=4000;
@@ -318,7 +319,7 @@ int edit_database()
    cout<<z+1<<".New entry"<<endl;
    cout<<"Enter ID entry:";
    cin>>id_w;
-  scr.clr();
+   scr.clr();
    if(id_w==z+1 or id_w<=z){
    cout<<"Entry ID:"<<id_w<<"-"<<dane[id_w][1];
    cout<<endl<<"What do you want to edit?"<<endl;
@@ -369,10 +370,11 @@ for(int z=0;z<=counter_e;z++)
         for(int i=1;i<=vid;i++)
         {
         *x<<"\""<<dane[z][i];
-        if(vid+1!=i)
+        if(vid!=i)
         {
         *x<<"\",";
         }
+        else { *x<<"\"";  }
         }
    *x<<endl;
     }
@@ -423,6 +425,7 @@ return 1;
 
 int main(int argc, char *argv[])
 {
+
     minidbxml.version=0;
     minidbxml.subversion=0;
     minidbxml.nr_update=6;
@@ -446,35 +449,23 @@ int main(int argc, char *argv[])
     cout<< "correct options"<<endl;
     break;
     case 'e':
-    if(argv[2]!=NULL and argv[3]!=NULL and argv[4]!=NULL)
+    if(argv[2]!=NULL )
        {
         for(int i=0;i<=vid;i++)
         {
          if(argv[2]==dane[0][i])
          {
-
-           if(*argv[3]>=1)
-           {
-               int tmp=0;
-               dane[*argv[3]][i]=argv[4];
-                cout<<"edit entry id '"<<*argv[3]<<"' in'"<<dane[0][i]<<"' "<<endl;
-                 save_database(0,0);
-           }
-           else
-           {
-                counter_e++;
-                cout<<argv[4];
-                dane[counter_e][i]=argv[4];
-                cout<<"save new entry to '"<<dane[0][i]<<"' cols"<<endl;
-                 save_database(0,0);
-           }
-           return 0;
+               counter_e++;
+               dane[counter_e][i]=argv[3];
+               cout<<"save new entry to '"<<dane[0][i]<<"' column"<<endl;
+               save_database(0,0);
+            return 0;
          }
          else
          {
            if(i==vid)
            {
-           cout<<"brak";
+           cout<<"no find column";
            }
          }
         }
@@ -484,7 +475,7 @@ int main(int argc, char *argv[])
     else
     {
 
-    view_menu();
+        view_menu();
 
     }
 
