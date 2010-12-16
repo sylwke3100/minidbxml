@@ -208,7 +208,7 @@ int find_entry()
 {
     bool *end_l= new bool;
     *end_l=false;
-   scr.clr();
+    scr.clr();
     string *v_dataf=new string;
     pre_load();
     cout<<"Please enter text search"<<endl;
@@ -227,15 +227,20 @@ int find_entry()
       {
           if(dane[i][x].length()!=NULL)
           {
-              if(*v_dataf==dane[i][x].substr(0,v_dataf->length()))
+              for(int sd=0;sd<(dane[i][x].length()/v_dataf->length());sd++)
               {
+
+               if(*v_dataf==dane[i][x].substr(sd*v_dataf->length(),(sd*v_dataf->length())+v_dataf->length()))
+               {
+
                   cout<<i<<"|";
                   for(int m=1;m<=vid;m++)
                   {
                   cout<<dane[i][m]<<" |";
                   *end_l=true;
                   }
-              }
+               }
+          }
          }
          if(*end_l==true){cout<<endl;*end_l=false;}
       }
