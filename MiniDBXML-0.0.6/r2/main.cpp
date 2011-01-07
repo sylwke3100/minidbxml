@@ -202,7 +202,7 @@ int save_database(int u,int wid)
     *x<<"</body>"<<endl<<"</db>";
     x->close();
     delete x;
-    scr._sleep(3);
+
     }
 int find_entry()
 {
@@ -386,29 +386,35 @@ for(int z=0;z<=counter_e;z++)
 x->close();
 delete x;
 cout<<"save base.csv in "<<get_current_dir_name()<<"/.data/"<<endl;
-scr._sleep(3);
+scr._sleep(1);
 return view_menu();
 }
 int export_html()
 {
+string*title=new string;
 fstream*x= new fstream;
 x->open("./.data/base.html",ios::in|ios::out|ios::trunc);
 pre_load();
-*x<<"<html>"<<endl<<"<head><title>Database</title></head>"<<endl<<"<body><table >"<<endl;
+cout<<"Please write title file (max 100 char)"<<endl;
+getline( cin.ignore(100,'\n'),*title);
+if(title->length()==NULL){
+    cout<<"Please enter title file"<<endl; x->close();
+    delete x,title; return export_html();}
+*x<<"<html>"<<endl<<"<head><title>"<<*title<<"</title></head>"<<endl<<"<body><table >"<<endl;
 for(int z=0;z<=counter_e;z++)
     {
         *x<<"<tr>";
-        if(z==0) {*x<<"<td>*  </td>";}
+        if(z==0 ) {*x<<"<td>*  </td>";}else{ *x<<"<td>"<<z<<"</td>";}
         for(int i=1;i<=vid;i++)
         {
-            if(vid==1 and z!=0){ *x<<"<td>"<<z<<"</td>";}
         *x<<"<td>"<<dane[z][i]<<"</td>"<<endl;
         }
         *x<<"</tr>";
    *x<<endl;
     }
+    *x<<"</table><body>"<<endl<<"</html>";
 x->close();
-delete x;
+delete x,title;
 cout<<"save base.html in "<<get_current_dir_name()<<"/.data/"<<endl;
 scr._sleep(2);
 return view_menu();
