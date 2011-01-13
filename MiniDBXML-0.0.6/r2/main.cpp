@@ -4,7 +4,7 @@
 #include <fstream>
 #include "./version.h"
 #include <conio.h>
-#include <string.h>
+
 using namespace std;
 int view_menu();
 int max_e=4000;
@@ -12,6 +12,7 @@ string dane[4000][4000];
 int main(int argc, char *argv[]);
 int vid=1;
 int counter_e=0;
+string path,t;
 struct ver
     {
         public:
@@ -393,10 +394,24 @@ int export_html()
 {
 string*title=new string;
 fstream*x= new fstream;
-x->open("./.data/base.html",ios::in|ios::out|ios::trunc);
+if(path.length()==NULL){
+    path=get_current_dir_name();
+    path+="/.data/base.html";
+  x->open(path.c_str(),ios::in|ios::out|ios::trunc);
+}
+else
+{
+    string g_path="echo >> ";
+    g_path+=path;
+    system(g_path.c_str());
+    x->open(path.c_str(),ios::in|ios::out|ios::trunc);
+}
 pre_load();
+*title=t;
+if(title->length()==NULL){
 cout<<"Please write title file (max 100 char)"<<endl;
 getline( cin.ignore(100,'\n'),*title);
+}
 if(title->length()==NULL){
     cout<<"Please enter title file"<<endl; x->close();
     delete x,title; return export_html();}
@@ -415,7 +430,7 @@ for(int z=0;z<=counter_e;z++)
     *x<<"</table><body>"<<endl<<"</html>";
 x->close();
 delete x,title;
-cout<<"save base.html in "<<get_current_dir_name()<<"/.data/"<<endl;
+cout<<"save base.html in "<<path<<endl;
 scr._sleep(2);
 return view_menu();
 }
@@ -450,6 +465,7 @@ switch(wybor)
         export_csv();
         break;
     case '6' :
+
         export_html();
     case 'q':
         return 0;
@@ -509,6 +525,12 @@ int main(int argc, char *argv[])
          }
         }
        }
+       break;
+       case 'x':
+       path=argv[2];
+       t=argv[3];
+       export_html();
+       break;
    }
     }
     else
