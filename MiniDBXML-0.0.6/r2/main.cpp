@@ -437,7 +437,7 @@ return view_menu();
 
 int view_menu()
 {
-cout<<"Mini Database for xml "<<minidbxml.version<<"."<<minidbxml.subversion<<"."<<minidbxml.nr_update<<" - "<<
+cout<<"Mini Database for XML "<<minidbxml.version<<"."<<minidbxml.subversion<<"."<<minidbxml.nr_update<<" - "<<
 minidbxml.get_version_status()<<endl<<
 "1.View Database"<<endl<<
 "2.Find entry."<<endl<<
@@ -514,7 +514,7 @@ int main(int argc, char *argv[])
                dane[counter_e][i]=argv[3];
                cout<<"save new entry to '"<<dane[0][i]<<"' column"<<endl;
                save_database(0,0);
-            return 0;
+               return 0;
          }
          else
          {
@@ -531,6 +531,27 @@ int main(int argc, char *argv[])
        t=argv[3];
        export_html();
        break;
+       case 'v':
+       if(argv[2]!=NULL)
+       {
+           for(int w=0;w<=vid;w++)
+           {
+             if(argv[2]==dane[0][w])
+             {
+                 if(argv[3]!=NULL)
+                 {
+                     cout<<dane[*argv[3]][vid];
+                 }
+                 else
+                 {
+                     for(int aw=1;aw<=counter_e;aw++)
+                     {
+                         cout<<dane[aw][w]<<endl;
+                     }
+                 }
+             }
+           }
+       }
    }
     }
     else
