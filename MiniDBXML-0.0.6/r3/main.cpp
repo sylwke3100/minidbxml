@@ -124,6 +124,7 @@ for(int i=1;i<=vid;i++)
 
 int view_database()
 {
+   ses.Update_session();
    scr.clr();
     pre_load();
     int h=0;
@@ -159,6 +160,7 @@ int view_database()
      cout<<endl<<endl;
     return view_menu();
     }
+
 
 int save_database(int u,int wid)
 {
