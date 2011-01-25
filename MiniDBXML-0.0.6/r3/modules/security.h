@@ -4,17 +4,20 @@
 #include <fstream>
 #include <conio.h>
 #include <sstream>
+#include <cstring>
+#include <sys/prctl.h>
+#include <signal.h>
 using namespace std;
 int*session=new int;
-struct sessions
-{
-    public:
+pid_t chilpid;
+
+
     int Create_session()
     {
         *session=0;
         string data;
         srand(time(0));
-        *session=rand()%2000000;
+        *session=rand()%200000;
         fstream*file= new fstream;
         file->open("./.data/minidbxml.session",ios::in|ios::out|ios::app);
         time_t*ra= new time_t;
@@ -27,6 +30,7 @@ struct sessions
     }
     int End_session()
     {
+
         int counter;
         string session_list[20][20];
         string*data=new string;
@@ -44,14 +48,16 @@ struct sessions
           }
         }
         }
-        ostringstream*v_z=new ostringstream;
-        *v_z << session;
+        ostringstream*v_k=new ostringstream;
+        *v_k << session;
+        string v_z=v_k->str();
         file->close();
         fstream*d=new fstream;
-        for(int z=0;z<counter;z++)
+        for(int zqe=0;zqe<=counter;zqe++)
         {
-          if(session_list[z][1]==v_z->str()){cout<<"ok"; session_list[z][1]="";session_list[z][2]=""; }
+          if(session_list[zqe][1]==v_z){ session_list[zqe][1]="";session_list[zqe][2]=""; }
         }
+
         d->open("./.data/minidbxml.session",ios::in|ios::out|ios::trunc);
         for(int k=0;k<counter;k++)
         {
@@ -61,7 +67,8 @@ struct sessions
             }
         }
         d->close();
-        delete session,d,file,v_z;
+
+        delete d,file,v_k;
     }
     int Update_session()
     {
@@ -81,7 +88,6 @@ struct sessions
           {
               counter++;
               session_list[counter][1]=data->substr(0,i);
-
               session_list[counter][2]=data->substr(i+1,data->length());
           }
         }
@@ -95,10 +101,8 @@ struct sessions
         fstream*d=new fstream;
         for(int z=0;z<=counter;z++)
         {
-            cout<<session_list[z][1];
-            cout<<" "<<v_z<<endl;
 
-          if(session_list[z][1]==v_z){cout<<"ok"; session_list[z][1]=v_z;session_list[z][2]=ks.str(); }
+          if(session_list[z][1]==v_z){ session_list[z][1]=v_z;session_list[z][2]=ks.str(); }
         }
         d->open("./.data/minidbxml.session",ios::in|ios::out|ios::trunc);
         for(int k=0;k<=counter;k++)
@@ -110,7 +114,16 @@ struct sessions
             }
         }
         d->close();
-        delete d,file;
+        delete d,file,ra;
     }
 
-};
+int Manage_session()
+{
+    chilpid=getpid();
+ if(*session>0){Update_session();}
+ if(*session<=0){Create_session();}
+ sleep(1);
+ Manage_session();
+
+
+}

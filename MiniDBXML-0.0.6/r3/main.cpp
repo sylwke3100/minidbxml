@@ -5,6 +5,9 @@
 #include "./version.h"
 #include "./modules/security.h"
 #include <conio.h>
+#include <cstring>
+#include <sys/prctl.h>
+#include <signal.h>
 
 using namespace std;
 int view_menu();
@@ -37,7 +40,7 @@ struct screen
     } ;
 screen scr;
 ver minidbxml;
-sessions ses;
+
 
 int parse_xml_tag(string name_tag_find,int id)
 {
@@ -124,7 +127,7 @@ for(int i=1;i<=vid;i++)
 
 int view_database()
 {
-   ses.Update_session();
+
    scr.clr();
     pre_load();
     int h=0;
@@ -473,7 +476,8 @@ switch(wybor)
 
         export_html();
     case 'q':
-        ses.End_session();
+        End_session();
+        kill(chilpid,SIGKILL);
         return 0;
         break;
     default:
@@ -485,7 +489,17 @@ return 1;
 
 int main(int argc, char *argv[])
 {
-ses.Create_session();
+    switch(fork())
+    {
+        case -1:
+        return 0;
+        case 0:
+        prctl(PR_SET_NAME, "minidbxml-scr", 0, 0, 0);
+        sleep(2);
+        Manage_session();
+        break;
+        default:
+        prctl(PR_SET_NAME, "minidbxml-core", 0, 0, 0);
     minidbxml.version=0;
     minidbxml.subversion=0;
     minidbxml.nr_update=6;
@@ -554,17 +568,19 @@ ses.Create_session();
                      {
                          cout<<dane[aw][w]<<endl;
                      }
-                 }
-             }
-           }
-       }
-   }
-    }
-    else
-    {
+                        }
+                    }
+                }
+            }
+        }
+        }
+        else
+        {
 
         view_menu();
 
+        }
+    break;
     }
 
 }
