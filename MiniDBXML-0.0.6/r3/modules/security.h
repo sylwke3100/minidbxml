@@ -26,12 +26,13 @@ pid_t chilpid;
         time ( ra );
         *file<<*session<<"-"<<time(ra)<<endl;
         file->close();
-        delete ra,file;
+        delete ra;
+        delete file;
     }
     int End_session()
     {
 
-        int counter;
+        int counter=0;
         string session_list[20][20];
         string*data=new string;
         ifstream*file= new ifstream;
@@ -43,32 +44,37 @@ pid_t chilpid;
           if(data->substr(i,1)=="-")
           {
               counter++;
+              cout<<counter<<endl;
               session_list[counter][1]=data->substr(0,i);
              session_list[counter][2]=data->substr(i+1,data->length());
           }
         }
         }
-        ostringstream*v_k=new ostringstream;
-        *v_k << session;
-        string v_z=v_k->str();
+        ostringstream v_k;
+        v_k << session;
+        string v_z=v_k.str();
         file->close();
         fstream*d=new fstream;
+        cout<<counter;
         for(int zqe=0;zqe<=counter;zqe++)
         {
           if(session_list[zqe][1]==v_z){ session_list[zqe][1]="";session_list[zqe][2]=""; }
         }
 
         d->open("./.data/minidbxml.session",ios::in|ios::out|ios::trunc);
-        for(int k=0;k<counter;k++)
+
+        for(int k=0;k<=counter;k++)
         {
             if(session_list[k][1].length()!=NULL)
             {
+
                 *d<<session_list[k][1]<<"-"<<session_list[k][2]<<endl;
             }
         }
         d->close();
 
-        delete d,file,v_k;
+        delete d;
+        delete file;
     }
     int Update_session()
     {
@@ -114,7 +120,9 @@ pid_t chilpid;
             }
         }
         d->close();
-        delete d,file,ra;
+        delete d;
+        delete file;
+        delete ra;
     }
 
 int Manage_session()

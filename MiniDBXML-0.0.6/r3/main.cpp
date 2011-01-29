@@ -78,7 +78,9 @@ int parse_xml_tag(string name_tag_find,int id)
     }
 
     file->close();
-    delete name_tag_,mem,name_tag,id,file;
+    delete file;
+    delete mem;
+    delete name_tag_;
 }
 
 int pre_load()
@@ -122,7 +124,9 @@ for(int i=1;i<=vid;i++)
         }
         }
         file->close();
-        delete mv,file,st_;
+        delete mv;
+        delete file;
+        delete st_;
 }
 
 int view_database()
@@ -255,7 +259,8 @@ int find_entry()
       }
     }
     cout<<endl;
-    delete v_dataf,end_l;
+    delete v_dataf;
+    delete end_l;
     return view_menu();
 }
 int edit_col_database()
@@ -437,7 +442,8 @@ for(int z=0;z<=counter_e;z++)
     }
     *x<<"</table><body>"<<endl<<"</html>";
 x->close();
-delete x,title;
+delete x;
+delete title;
 cout<<"save base.html in "<<path<<endl;
 scr._sleep(2);
 return view_menu();
@@ -476,8 +482,9 @@ switch(wybor)
 
         export_html();
     case 'q':
+
         End_session();
-        kill(chilpid,SIGKILL);
+kill(chilpid,SIGKILL);
         return 0;
         break;
     default:
