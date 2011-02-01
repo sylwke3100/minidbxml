@@ -89,7 +89,6 @@ int pre_load()
     string* mv = new string;
     int*st_= new int;
     *st_=0;
-    int *ui=new int;
     int l=0;
     for(int n=1;n<=counter_e;n++){
 for(int i=1;i<=vid;i++)
@@ -106,7 +105,7 @@ for(int i=1;i<=vid;i++)
     file->open("./.data/base.xml",ios::in);
     while(!file->eof())
         {
-            ui++;
+
     getline(*file,*mv);
         if(*mv=="<tag>" ){  *st_=1; } else{
 
@@ -123,6 +122,7 @@ for(int i=1;i<=vid;i++)
         }
         }
         }
+
         file->close();
         delete mv;
         delete file;
@@ -134,8 +134,10 @@ int view_database()
 
    scr.clr();
     pre_load();
-    int h=0;
-    int d=0,wynik=0,v=1;
+    int*h=new int;
+    int*v=new int;
+    *h=0;
+    *v=0;
             cout<<"* |";
             for(int p=1;p<=vid;p++)
             {
@@ -150,22 +152,25 @@ int view_database()
             {
             if(dane[m][i].length()!=NULL)
             {
-            cout<<v++<<".|";
+                *v=*v+1;
+            cout<<*v<<".|";
             for (int w=1;w<=vid;w++)
                 {
                  cout<<dane[m][w];
-                 if(dane[m][w].length()<=dane[0][w].length()){ int z=dane[m][w].length()-dane[0][w].length(); for(int k=0;k<=w;k++){cout<<" ";} }
+                 if(dane[m][w].length()<=dane[0][w].length()){for(int k=0;k<=w;k++){cout<<" ";} }
                  cout<<"|";
                  }
             i=vid;
             cout<<endl;
-            h++;
+            *h++;
             }
             }
         }
-     if(h==0){cout<<"Empty database!!!"<<endl;return view_menu();}
+     if(*h==0){cout<<"Empty database!!!"<<endl;return view_menu();}
      cout<<endl<<endl;
     return view_menu();
+    delete h;
+    delete v;
     }
 
 
@@ -452,7 +457,7 @@ return view_menu();
 int view_menu()
 {
 cout<<"Mini Database for XML "<<minidbxml.version<<"."<<minidbxml.subversion<<"."<<minidbxml.nr_update<<" - "<<
-minidbxml.get_version_status()<<endl<<
+minidbxml.get_version_status()<<endl<<endl<<"Main Menu:"<<endl<<
 "1.View Database"<<endl<<
 "2.Find entry."<<endl<<
 "3.Edit Database"<<endl<<
@@ -484,7 +489,7 @@ switch(wybor)
     case 'q':
 
         End_session();
-kill(chilpid,SIGKILL);
+        kill(chilpid,SIGTERM);
         return 0;
         break;
     default:
@@ -507,6 +512,7 @@ int main(int argc, char *argv[])
         break;
         default:
         prctl(PR_SET_NAME, "minidbxml-core", 0, 0, 0);
+        pid=getpid();
     minidbxml.version=0;
     minidbxml.subversion=0;
     minidbxml.nr_update=6;

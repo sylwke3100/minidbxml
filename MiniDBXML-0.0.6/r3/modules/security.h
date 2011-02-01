@@ -9,7 +9,7 @@
 #include <signal.h>
 using namespace std;
 int*session=new int;
-pid_t chilpid;
+pid_t chilpid,pid;
 
 
     int Create_session()
@@ -78,6 +78,8 @@ pid_t chilpid;
     }
     int Update_session()
     {
+        int*is_session=new int;
+        *is_session=0;
         time_t*ra= new time_t;
         struct tm * timeinfo;
         time ( ra );
@@ -108,9 +110,11 @@ pid_t chilpid;
         for(int z=0;z<=counter;z++)
         {
 
-          if(session_list[z][1]==v_z){ session_list[z][1]=v_z;session_list[z][2]=ks.str(); }
+          if(session_list[z][1]==v_z){ session_list[z][1]=v_z;session_list[z][2]=ks.str(); *is_session=1; }
         }
+        if(*is_session==0){cout<<"Error Session... Program Closed"<<endl;sleep(2);kill(pid,SIGKILL);}
         d->open("./.data/minidbxml.session",ios::in|ios::out|ios::trunc);
+
         for(int k=0;k<=counter;k++)
         {
             if(session_list[k][1].length()!=NULL)
@@ -123,7 +127,9 @@ pid_t chilpid;
         delete d;
         delete file;
         delete ra;
+        delete is_session;
     }
+
 
 int Manage_session()
 {
