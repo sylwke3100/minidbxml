@@ -1,6 +1,16 @@
 #labels Featured,Deprecated
 =Bug Magazine =
 
+===2.02.2010 - 01/2011===
+
+- Fixed: Path for export html <br>
+- Fixed: Add new process control<br>
+- Fixed: Segmentation fault<br>
+- Fixed: Bug with search<br>
+- Fixed: Close File in Function export_cvs()<br>	
+- Fixed: Export to CVS <br>
+- Fixed: Add new entry with command line<br>
+
 ===9.12.2010 - 02/2010===
 
 - Fixed: Write - maximum numbers column to edit ( if somebody write number column higher than value vid then program save data to empty cols)<br>
