@@ -1,18 +1,24 @@
 #labels Featured,Deprecated,Phase-Deploy
-=Requirements Minidbxml 0.0.5=
+=Requirements Minidbxml 0.0.7=
 
-==Binary package==
+== Binary package ==
 
--System: Linux x86(tested and compiled for Ubuntu 10.10 x86)<br>
--Ram: 128 MB or more<br>
--Disk space : 70KB or more <br>
+- System: Linux x86(tested and compiled for Ubuntu 10.10 x86)<br>
+- Ram: 128 MB or more<br>
+- Disk space : 125 KB or more <br>
 
 
-==Source Code ==
+== Source Code ==
 
--System: Linux x86(tested and compiled for Ubuntu 10.10)<br>
--Packages :<br>
+- System: Linux x86(tested and compiled for Ubuntu 10.10)<br>
+- Packages :<br>
   - gcc <br>
   - build-essential <br><br>
-===Optional:===
+==== Optional: =====
   - Package codeblox
+
+===Debian Package===
+
+- Default System : Debian, Ubuntu, Mint, Knoppix etc.<br>
+- Packages: <br>
+   - dkpg
