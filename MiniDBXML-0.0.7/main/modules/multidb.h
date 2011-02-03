@@ -47,8 +47,7 @@ path_db=paths+list_db[*chose];
 
 extern int view_menu();
 system("clear");
-view_menu();
-
+return 1;
 }
 else {
     if(*chose==0){return 0;}

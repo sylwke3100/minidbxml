@@ -525,21 +525,22 @@ int main(int argc, char *argv[])
     minidbxml.nr_update=7;
     cout<<"Mini Database for XML "<<minidbxml.version<<"."<<minidbxml.subversion<<"."<<minidbxml.nr_update<<" - "<<
     minidbxml.get_version_status()<<endl;
-    prctl(PR_SET_NAME, "minidbxml-core", 0, 0, 0);
+
     if(get_db_list("./.data/")==true)
     {
     switch(fork())
     {
         case -1:
-        return 0;
+        cout<<"Błąd"<<endl;
+        break;
         case 0:
-        prctl(PR_SET_NAME, "minidbxml-scre", 0, 0, 0);
+        prctl(PR_SET_NAME, "minidbxml-scr", 0, 0, 0);
         sleep(2);
         Manage_session();
         break;
         default:
         pid=getpid();
-
+    prctl(PR_SET_NAME, "minidbxml-core", 0, 0, 0);
     pre_load();
 
     if(argv[1]!=NULL)
