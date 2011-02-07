@@ -121,7 +121,7 @@ pid_t chilpid,pid;
 
           if(session_list[z][1]==v_z){ session_list[z][1]=v_z;session_list[z][2]=ks.str(); *is_session=1; }
         }
-        if(*is_session==0){cout<<"Error Session... Program Closed"<<endl;sleep(2);kill(pid,SIGKILL);}
+        if(*is_session==0){cout<<"Error Session ... Program Closed"<<endl;sleep(2);kill(pid,SIGKILL);}
         d->open(p_session->c_str(),ios::in|ios::out|ios::trunc);
 
         for(int k=0;k<=counter;k++)
@@ -139,7 +139,63 @@ pid_t chilpid,pid;
         delete is_session;
         delete p_session;
     }
+    int Kill_session(int id)
+    {
+        system("clear");
+        fstream*d=new fstream;
+        int*k_se=new int;
+        int counter=0;
+        string*p_session=new string;
+        *p_session=path_db+".session";
+        int*is_session=new int;
+        *is_session=0;
+        string session_list[20][20];
+        string*data=new string;
+        ifstream*file= new ifstream;
+        file->open(p_session->c_str(),ios::in|ios::out);
+        cout<<" List sesssion:"<<endl<<endl;
+        while(!file->eof()){
+        getline(*file,*data);
+        for(int i=0;i<data->length();i++)
+        {
+          if(data->substr(i,1)=="-")
+          {
+              counter++;
+              session_list[counter][1]=data->substr(0,i);
+              session_list[counter][2]=data->substr(i+1,data->length());
+              cout<<counter<<"."<<session_list[counter][1]<<endl;
+          }
+        }
+        }
+        file->close();
+        if(id==NULL){
+       cout<<endl<<"Enter number session to kill"<<endl;
+        cin>>*k_se;
+        }
+        else
+        {
+        *k_se=id;
+        }
+         if(*k_se>0 and *k_se<=counter){
+        session_list[*k_se][1]="";
+        d->open(p_session->c_str(),ios::in|ios::out|ios::trunc);
+        for(int k=0;k<=counter;k++)
+        {
+            if(session_list[k][1].length()!=NULL)
+            {
 
+                *d<<session_list[k][1]<<"-"<<session_list[k][2]<<endl;
+            }
+        }
+         }
+        d->close();
+        delete k_se;
+        delete d;
+        delete file;
+        delete is_session;
+        delete p_session;
+        return 0;
+    }
 
 int Manage_session()
 {

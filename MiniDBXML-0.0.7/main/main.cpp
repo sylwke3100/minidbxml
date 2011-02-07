@@ -475,7 +475,9 @@ minidbxml.get_version_status()<<endl<<endl<<"Active DB: "<<path_db<<".xml"<<endl
 "2.Find entry."<<endl<<
 "3.Edit Database"<<endl<<
 "4.Edit Column Database"<<endl<<
-"5.Export to CSV"<<endl<<"6.Export to html "<<endl<<"7.Change Database"<<endl<<"q.Exit"<<endl;
+"5.Export to CSV"<<endl<<"6.Export to html "<<endl<<"7.Change Database"<<endl<<
+"8.Session Killer"<<endl<<
+"q.Exit"<<endl;
 char wybor;
 cin>>wybor;
 switch(wybor)
@@ -505,6 +507,10 @@ switch(wybor)
         {
             view_menu();
         }
+        break;
+    case '8':
+        Kill_session(NULL);
+        view_menu();
         break;
     case 'q':
         End_session();
