@@ -1,0 +1,6 @@
+-Fixed: create html file 
+-Optymalize: code program
+-Add: Implemented multidb in command line
+-Add: Rewrite command line (new column ,delete column, rename column)
+-Add: Unlimited entry number
+-Fixed: Error if no found folder ./.data in program run path
