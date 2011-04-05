@@ -1,66 +1,34 @@
-#include <iostream>
-#include <cstdlib>
-#include <string>
-#include <fstream>
-#include "./version.h"
-#include <conio.h>
-#include <cstring>
-#include <sys/prctl.h>
-#include <signal.h>
-#include <dirent.h>
-#include <errno.h>
-#include <vector>
-//Install Modules
-#include "./modules/security.h"
-#include "./modules/multidb.h"
+/*
+MiniDBXML - Core (core.cpp)
+
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of
+ * the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+ */
+#include "core-include.h"
 using namespace std;
-int view_menu();
 vector <vector <string> >dane;
-int main(int argc, char *argv[]);
 int vid=1;
 int counter_e=0;
 string path,t;
-struct ver
+extern string path_db;
+namespace Core
 {
-public:
-    int version;
-    int subversion;
-    int nr_update;
-    string get_version_status()
-    {
-        string stat;
-        if(nr_update<=8)
-        {
-            stat="Alpha";
-        }
-        if(nr_update<=15 and nr_update>8)
-        {
-            stat="Beta";
-        }
-        if(nr_update==0)
-        {
-            stat="Stable";
-        }
-        return stat;
-    }
-};
-struct screen
+int view_menu();
+vector <string> buff;
+void parse_xml_tag(string name_tag_find,int id)
 {
-public:
-    int _sleep(int time)
-    {
-        sleep(time);
-        system("clear");
-    }
-    int clr()
-    {
-        system("clear");
-    }
-} ;
-screen scr;
-ver minidbxml;
-int parse_xml_tag(string name_tag_find,int id)
-{
+    int buff_poz=0;
     vid=id;
     counter_e=0;
     string*mem=new string;
@@ -68,12 +36,30 @@ int parse_xml_tag(string name_tag_find,int id)
     *name_tag=name_tag_find;
     string*name_tag_=new string ;
     ifstream*file= new ifstream;
-    string*dw=new string;
-    *dw=path_db+".xml";
-    file->open(dw->c_str(),ios::in);
-    while(!file->eof())
+    string dw=path_db+".xml";
+    if(buff.size()==0 )
     {
-        getline(*file,*mem);
+        file->open(dw.c_str(),ios::in);
+    }
+    while(!file->eof() or ( buff_poz<(buff.size()-1) and !file->is_open()))
+    {
+        if(file->is_open())
+        {
+            getline(*file,*mem);
+            buff.push_back(*mem);
+        }
+        else
+        {
+            if(buff_poz<(buff.size()-1))
+            {
+                *mem=buff[buff_poz];
+                buff_poz++;
+            }
+            else
+            {
+                break;
+            }
+        }
         *name_tag_="<"+name_tag_find+">";
         for(int i=0; i<mem->length(); i++)
         {
@@ -98,34 +84,38 @@ int parse_xml_tag(string name_tag_find,int id)
                 }
             }
         }
+
     }
-    file->close();
-    delete dw;
+    if(file->is_open())
+    {
+        file->close();
+    }
     delete file;
     delete mem;
     delete name_tag_;
 }
-int pre_load()
+void pre_load()
 {
+    if(buff.size()!=0)
+    {
+        buff.clear();
+    }
     string* mv = new string;
-    int*st_= new int;
-    *st_=0;
+    bool st_=false ;
     int l=0;
     dane.clear();
     dane.resize(1);
     dane[0].push_back("");
-    counter_e=0;
     vid=1;
     ifstream*file=new ifstream;
-    string*ow=new string;
-    *ow=path_db+".xml";
-    file->open(ow->c_str(),ios::in);
+    string ow=path_db+".xml";
+    file->open(ow.c_str(),ios::in);
     while(!file->eof())
     {
         getline(*file,*mv);
         if(*mv=="<tag>" )
         {
-            *st_=1;
+            st_=true;
         }
         else
         {
@@ -133,27 +123,22 @@ int pre_load()
             {
                 if(*mv=="</tag>")
                 {
-                    *st_=0;
+                    st_=false;
                 }
                 else
                 {
-                    if(*st_==1)
+                    if(st_==true)
                     {
-                        l++;
                         dane[0].push_back(mv->substr(4,mv->length()-9));
-                        parse_xml_tag(mv->substr(4,mv->length()-9),l);
-                        scr.clr();
+                        parse_xml_tag(mv->substr(4,mv->length()-9),l++);
                     }
                 }
             }
         }
     }
-    system("clear");
     file->close();
     delete mv;
     delete file;
-    delete st_;
-    delete ow;
 }
 string rel(string t,int x,int y)
 {
@@ -180,7 +165,6 @@ string rel(string t,int x,int y)
                             istringstream bb(v.substr(p+1,(v.length()-p)));
                             aa >> a;
                             bb >> b;
-
                             if((a<dane.size() and a!=0 ) and (b<dane[a].size() and b!=0))
                             {
                                 if(x==a and y==b)
@@ -192,7 +176,6 @@ string rel(string t,int x,int y)
                                 }
                             }
                             i=m+1;
-
                         }
                     }
                 }
@@ -207,7 +190,7 @@ string rel(string t,int x,int y)
 }
 int view_database()
 {
-    scr.clr();
+    system("clear");
     pre_load();
     int h=0;
     cout<<"* |";
@@ -258,8 +241,8 @@ int save_database(int u,int wid)
     struct tm * timeinfo;
     time ( &rawtime );
     timeinfo = localtime ( &rawtime );
-    *x<<"<header>"<<endl<<"<Program>MiniDBXML</Program>"<<endl<<"<Version>"<<minidbxml.version<<"."<<minidbxml.subversion<<"."<<
-    minidbxml.nr_update<<" - "<<minidbxml.get_version_status()<<
+    *x<<"<header>"<<endl<<"<Program>MiniDBXML</Program>"<<endl<<"<Version>"<<AutoVersion::_MAJOR<<"."<<AutoVersion::_MINOR<<"."<<
+    AutoVersion::_REVISION<<" - "<<AutoVersion::_STATUS<<
     "</Version>"<<endl<<"<Time_Date>"<<asctime (timeinfo)<<"</Time_Date>"<<endl<<"</header>"<<endl;
     *x<<"<tag>"<<endl;
     for(int y=1; y<dane[0].size(); y++)
@@ -308,7 +291,7 @@ int save_database(int u,int wid)
 }
 int find_entry()
 {
-    scr.clr();
+    system("clear");
     string *v_dataf=new string;
     pre_load();
     cout<<"Please enter text search"<<endl;
@@ -339,6 +322,7 @@ int find_entry()
                             cout<<rel(dane[i][m],i,m)<<" |";
                         }
                         cout<<endl;
+                        x=dane[i].size();
                     }
                     c=c+v_dataf->length();
                 }
@@ -352,7 +336,7 @@ int find_entry()
 int edit_col_database()
 {
     pre_load();
-    scr.clr();
+    system("clear");
     int v,i,p=0;
     string t;
     cout<<"Choise column to edit:"<<endl<<endl<<"0 .New column"<<endl;
@@ -379,12 +363,12 @@ int edit_col_database()
     {
         if(v<dane[0].size())
         {
-            scr.clr();
+            system("clear");
             cout<<"Edit - '"<<dane[0][v]<<"' "<<endl<<endl;
             cout<<"1.Rename column"<<endl<<"2.Delete column"<<endl;;
             char o;
             cin>>o;
-            scr.clr();
+            system("clear");
             switch(o)
             {
             case '1':
@@ -413,7 +397,7 @@ int edit_col_database()
         }
         else
         {
-            scr.clr();
+            system("clear");
             cout<<"Correct number columns "<<endl;
         }
     }
@@ -425,7 +409,7 @@ int edit_database()
     int u=0;
     int m=0;
     pre_load();
-    scr.clr();
+    system("clear");
     int id_w=0,c=0,z=0,p=0;
     string value;
     for(m=1; m<dane.size(); m++)
@@ -446,10 +430,11 @@ int edit_database()
         }
     }
     cout<<z+1<<".New entry"<<endl;
+    cout<<z+2<<".Main Menu"<<endl;
     cout<<"Enter ID entry:";
     cin>>id_w;
-    scr.clr();
-    if(!(id_w==z+1) or id_w<=z)
+    system("clear");
+    if(!(id_w==z+1) and id_w<=z and !(id_w==z+2))
     {
         cout<<"Entry ID:"<<id_w<<"-"<<dane[id_w][1];
         cout<<endl<<"What do you want to edit?"<<endl;
@@ -516,7 +501,14 @@ int edit_database()
         }
         else
         {
-            cout<<"Correct id entry"<<endl;
+            if(id_w==z+2)
+            {
+                return view_menu();
+            }
+            else
+            {
+                cout<<"Correct id entry"<<endl;
+            }
         }
     }
     return view_menu();
@@ -532,14 +524,14 @@ int export_csv()
     {
         for(int i=1; i<dane[z].size(); i++)
         {
-            *x<<"\""<<dane[z][i];
+            *x<<"\""<<rel(dane[z][i],z,i);
             if(vid!=i)
             {
                 *x<<"\",";
             }
             else
             {
-                *x<<"\"";
+                *x<<"\",";
             }
         }
         *x<<endl;
@@ -547,7 +539,7 @@ int export_csv()
     x->close();
     delete x;
     cout<<"save csv"<<endl;
-    scr._sleep(1);
+    sleep(1);
     return view_menu();
 }
 int export_html()
@@ -580,7 +572,7 @@ int export_html()
         delete x,title;
         return export_html();
     }
-    *x<<"<html>"<<endl<<"<head><title>"<<*title<<"</title></head>"<<endl<<"<body><table >"<<endl;
+    *x<<"<html>"<<endl<<"<head><title>"<<*title<<"</title></head>"<<endl<<"<body><table>"<<endl;
     for(int z=0; z<dane.size(); z++)
     {
         *x<<"<tr>";
@@ -596,10 +588,10 @@ int export_html()
         {
             if(z==0)
             {
-                *x<<"<th>"<<dane[z][i]<<"</th>"<<endl;
+                *x<<"<th>"<<rel(dane[z][i],z,i)<<"</th>"<<endl;
             }
             else
-                *x<<"<td>"<<dane[z][i]<<"</td>"<<endl;
+                *x<<"<td>"<<rel(dane[z][i],z,i)<<"</td>"<<endl;
         }
         *x<<"</tr>";
         *x<<endl;
@@ -609,13 +601,13 @@ int export_html()
     delete x;
     delete title;
     cout<<"save base.html in "<<path<<endl;
-    scr._sleep(2);
+    sleep(2);
     return view_menu();
 }
 int view_menu()
 {
-    cout<<"Mini Database for XML "<<minidbxml.version<<"."<<minidbxml.subversion<<"."<<minidbxml.nr_update<<" - "<<
-        minidbxml.get_version_status()<<endl<<endl<<"Active DB: "<<path_db<<".xml"<<endl<<endl<<
+    cout<<"Mini Database for XML "<<AutoVersion::_MAJOR<<"."<<AutoVersion::_MINOR<<"."<<AutoVersion::_REVISION<<" - "<<
+        AutoVersion::_STATUS<<" build "<<AutoVersion::_BUILDS_COUNT<<endl<<endl<<"Active DB: "<<path_db<<".xml"<<endl<<endl<<
         "Main Menu:"<<endl<<
         "1.View Database"<<endl<<
         "2.Find entry."<<endl<<
@@ -624,6 +616,7 @@ int view_menu()
         "5.Export DB"<<endl<<"6.Change Database"<<endl<<
         "7.Session Killer"<<endl<<
         "q.Exit"<<endl;
+
     char wybor;
     cin>>wybor;
     switch(wybor)
@@ -642,7 +635,7 @@ int view_menu()
         break;
     case '5':
         int cd;
-        scr.clr();
+        system("clear");
         cout<<" Chose format to Export"<<endl<<endl<<"1. CSV"<<endl<<"2. HTML"
             <<endl<<"3. Return to Main Menu"<<endl;
         cin>>cd;
@@ -655,39 +648,39 @@ int view_menu()
             export_html();
             break;
         case 3:
-            scr.clr();
+            system("clear");
             view_menu();
-            break;
-        default:
-            scr.clr();
-            return view_menu();
             break;
         }
         break;
     case '6' :
-        scr.clr();
-        if(get_db_list("./.data/")==true)
+        system("clear");
+        if(MultiDB::Get_db_list("./.data/",0)==true)
         {
             view_menu();
         }
         break;
     case '7':
-        Kill_session(NULL);
+        Security::Kill_session(NULL);
         view_menu();
         break;
     case 'q':
-        End_session();
+        Security::End_session();
         kill(chilpid,SIGTERM);
         return 0;
         break;
     default:
-        cout<<"Please enter correct number !!!";
+        cout<<"Please enter correct number !!!"<<endl;
+        system("clear");
+        return view_menu();
         break;
     }
-    return 1;
+
+}
 }
 int main(int argc, char *argv[])
 {
+    int st_p=0;
     int cd=0;
     prctl(PR_SET_NAME, "minidbxml-core", 0, 0, 0);
     if(argc>=3)
@@ -699,7 +692,7 @@ int main(int argc, char *argv[])
     {
         cd==1;
     }
-    if(get_db_list("./.data/")==true)
+    if(MultiDB::Get_db_list("./.data/",st_p)==true)
     {
         switch(fork())
         {
@@ -710,17 +703,14 @@ int main(int argc, char *argv[])
             if(cd==0)
             {
                 prctl(PR_SET_NAME, "minidbxml-scr", 0, 0, 0);
-                sleep(2);
-                Manage_session();
+                sleep(1);
+                Security::Manage_session();
             }
             break;
         default:
             pid=getpid();
             st_p=1;
-            minidbxml.version=0;
-            minidbxml.subversion=0;
-            minidbxml.nr_update=7;
-            pre_load();
+            Core::pre_load();
             if(argc>3)
             {
                 switch(*argv[1])
@@ -730,7 +720,7 @@ int main(int argc, char *argv[])
                     {
                         for(int a=1; a<dane[t].size(); a++)
                         {
-                            cout<<rel(dane[t][a],t,a);
+                            cout<<Core::rel(dane[t][a],t,a);
                             if(a==dane[t].size()-1)
                             {
                                 cout<<"|>|";
@@ -764,18 +754,19 @@ int main(int argc, char *argv[])
                         dane[*argv[3]][*argv[4]]=cdd;
                         cout<<dane[*argv[3]][*argv[4]]<<endl;
                     }
-                    save_database(0,0);
+                    Core::save_database(0,0);
                     break;
                 default:
-                    view_menu();
+                    Core::view_menu();
                     break;
                 }
             }
             else
             {
-                view_menu();
+                Core::view_menu();
             }
             break;
         }
     }
 }
+

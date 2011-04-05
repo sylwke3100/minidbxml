@@ -1,16 +1,27 @@
-#include <iostream>
-#include <cstdlib>
-#include <string>
-#include <fstream>
-#include <conio.h>
-#include <sstream>
-#include <cstring>
-#include <sys/prctl.h>
-#include <signal.h>
+/*
+MiniDBXML - Security and Session Module (sercurity.h)
+
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of
+ * the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+ */
 using namespace std;
+
 int*session=new int;
 extern string path_db;
 pid_t chilpid,pid;
+namespace Security
+{
 int Create_session()
 {
     string*p_session=new string;
@@ -35,7 +46,7 @@ int End_session()
     string*p_session=new string;
     *p_session=path_db+".session";
     int counter=0;
-    string session_list[20][20];
+    string session_list[30][30];
     string*data=new string;
     ifstream*file= new ifstream;
     file->open(p_session->c_str(),ios::in|ios::out);
@@ -91,7 +102,7 @@ int Update_session()
     struct tm * timeinfo;
     time ( ra );
     int counter=0;
-    string session_list[20][20];
+    string session_list[30][30];
     string*data=new string;
     ifstream*file= new ifstream;
     file->open(p_session->c_str(),ios::in|ios::out);
@@ -179,6 +190,7 @@ int Kill_session(int id)
         }
     }
     file->close();
+    cout<<counter+1<<".Return to Main menu"<<endl;
     if(id==NULL)
     {
         cout<<endl<<"Enter number session to kill"<<endl;
@@ -200,6 +212,11 @@ int Kill_session(int id)
             }
         }
     }
+    if(*k_se==counter+1)
+    {
+        system("clear");
+        return 0;
+    }
     d->close();
     delete k_se;
     delete d;
@@ -220,5 +237,7 @@ int Manage_session()
         Create_session();
     }
     sleep(1);
+    chilpid=0;
     Manage_session();
+}
 }
