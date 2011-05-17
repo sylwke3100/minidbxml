@@ -1,0 +1,12 @@
+-Add: Implemented multidb in command line
+-Add: Rewrite command line (new column ,delete column, rename column)
+-Add: Unlimited entry number (tested 30k entries)
+-Add: Configuration file *
+-Fixed: Error if no found folder ./.data in program run path
+-Fixed: Create html file 
+-Fixed: Search function (copy 2x founded entry) *
+-Fixed: Implemented rel() in export_cvs() , export_html() , and find_entry() 
+-Fixed: Create cvs file (if index vid-1==i addied empty char [ normal char is "," ] ) 
+-Fixed: If is write other number or char in main menu program auto ended 
+-Fixed: Bug in multidb module (auto exit program and no create session)
+-Optymalize: Code program
