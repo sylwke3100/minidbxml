@@ -1,4 +1,3 @@
-<<<<<<< .mine
 /*
 MiniDBXML - Core (core.cpp)
 
