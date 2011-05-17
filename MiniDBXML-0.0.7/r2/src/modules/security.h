@@ -1,4 +1,3 @@
-<<<<<<< .mine
 /*
 MiniDBXML - Security and Session Module (sercurity.h)
 

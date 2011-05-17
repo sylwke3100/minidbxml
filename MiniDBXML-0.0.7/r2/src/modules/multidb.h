@@ -1,4 +1,3 @@
-<<<<<<< .mine
 /*
 MiniDBXML - Multi Database Module (multidb.h)
 
