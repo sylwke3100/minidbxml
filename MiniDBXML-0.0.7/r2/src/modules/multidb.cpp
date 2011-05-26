@@ -38,7 +38,7 @@ class MultiDB
 public:
     int Get_db_list(string paths,int st_p)
     {
-        if(path_db.length()==NULL)
+        if(path_db.length()==NULL and st_p==0)
         {
             string*lists=new string;
             vector <string> list_db;
@@ -77,7 +77,7 @@ public:
                 {
                     if(chose==0)
                     {
-                         return 0;
+                        return 0;
                     }
                     if(chose==list_db.size())
                     {
@@ -101,6 +101,10 @@ public:
             {
                 path_db="";
                 return Get_db_list(paths,st_p);
+            }
+            if(path_db.length()==NULL and st_p==2)
+            {
+                return 1;
             }
             return 1;
         }

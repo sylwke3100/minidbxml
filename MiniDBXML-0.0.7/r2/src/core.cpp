@@ -386,7 +386,6 @@ int edit_database()
 {
     int u=0;
     int m=0;
-
     system("clear");
     int id_w=0,c=0,z=0,p=0;
     string value;
@@ -642,7 +641,8 @@ int view_menu()
         break;
     case '6' :
         system("clear");
-        if(Multi.Get_db_list(Prefers->get_pref("path_base"),1)==true)
+        path_db="";
+        if(Multi.Get_db_list(Prefers->get_pref("path_base"),0)==true)
         {
             view_menu();
         }
@@ -666,95 +666,88 @@ int view_menu()
 
 }
 }
+string interprate(string text)
+{
+    for(int i=0; i<text.length(); i++)
+    {
+        if(text.substr(i,7)=="db_list")
+        {
+            string p;
+            string*lists=new string;
+            DIR *Dir;
+            struct dirent *DirEntry;
+            p=Prefers->get_pref("path_base");
+            if(Dir = opendir(p.c_str()))
+            {
+                while(DirEntry=readdir(Dir))
+                {
+                    *lists=DirEntry->d_name;
+                    if(lists->length()>=4)
+                    {
+                        if(lists->substr(lists->length()-3,3)=="xml")
+                        {
+                            *lists+="|";
+                            return *lists;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return "No found command";
+}
 int core_init(int argc, char *argv[])
 {
     int st_p=0;
     int cd=0;
     prctl(PR_SET_NAME, "minidbxml-core", 0, 0, 0);
-    if(argc>=3)
+    if(argv[1]=="c")
     {
-        st_p=0;
-        path_db=argv[2];
-    }
-    else
-    {
-        cd==1;
-    }
-    if(Multi.Get_db_list(Prefers->get_pref("path_base"),st_p)==true)
-    {
-        switch(fork())
+        string tmp;
+        cout<<"Mini Database for XML "<<AutoVersion::_MAJOR<<"."<<AutoVersion::_MINOR<<"."<<AutoVersion::_REVISION<<" - "<<
+            AutoVersion::_STATUS<<" build "<<AutoVersion::_BUILDS_COUNT<<" - Console mode\r\n# ";
+        while(getline(cin,tmp))
         {
-        case -1:
-            cout<<"Error"<<endl;
-            return 0;
-        case 0:
-            if(cd==0)
+            if(tmp=="exit")
             {
-                prctl(PR_SET_NAME, "minidbxml-scr", 0, 0, 0);
-                sleep(1);
-                if(Prefers->get_pref("sessions")=="true")
-                    Security::Manage_session();
-            }
-            break;
-        default:
-            pid=getpid();
-            st_p=1;
-            Core::pre_load();
-            if(argc>3)
-            {
-                switch(*argv[1])
-                {
-                case 'v':
-                    for(int t=0; t<dane.size(); t++)
-                    {
-                        for(int a=1; a<dane[t].size(); a++)
-                        {
-                            cout<<Core::rel(dane[t][a],t,a);
-                            if(a==dane[t].size()-1)
-                            {
-                                cout<<"|>|";
-                            }
-                            else
-                            {
-                                cout<<" ||";
-                            }
-                        }
-                    }
-                    break;
-                case 'e' :
-                    if(*argv[4]>=(dane[*argv[3]].size()+1))
-                    {
-                        cout<<"Wrong choose"<<endl;
-                    }
-                    else
-                    {
-                        if(*argv[4]>dane[*argv[3]].size())
-                        {
-                            cout<<"ok";
-                            for(int xcc=0; xcc<=(dane[0].size()-dane[*argv[3]].size()); xcc++)
-                            {
-                                dane[*argv[3]].push_back(" ");
-                            }
-                        }
-                        stringstream bf;
-                        string cdd;
-                        bf << argv[5];
-                        bf >> cdd;
-                        dane[*argv[3]][*argv[4]]=cdd;
-                        cout<<dane[*argv[3]][*argv[4]]<<endl;
-                    }
-                    Core::save_database(0,0);
-                    break;
-                default:
-                    Core::view_menu();
-                    break;
-                }
+                break;
             }
             else
             {
-                Core::view_menu();
+                cout<<interprate(tmp);
+                cout<<"\r\n";
             }
-            break;
+            cout<<"# ";
         }
+    }
+    else
+    {
+        if(Multi.Get_db_list(Prefers->get_pref("path_base"),st_p)==true)
+        {
+            switch(fork())
+            {
+            case -1:
+                cout<<"Error"<<endl;
+                return 0;
+            case 0:
+                if(cd==0)
+                {
+                    prctl(PR_SET_NAME, "minidbxml-scr", 0, 0, 0);
+                    sleep(1);
+                    if(Prefers->get_pref("sessions")=="true")
+                        Security::Manage_session();
+                }
+                break;
+            default:
+                pid=getpid();
+                st_p=0;
+                Core::pre_load();
+                Core::view_menu();
+                break;
+            }
+        }
+        Core::pre_load();
+        Core::view_menu();
+
     }
 }
