@@ -49,7 +49,7 @@ This part is required for proper operation of the database.<br>
 ===4.Body===
 This part is important. It is responsible for saving records in the database and sort them. It consists of three elements: 
 - Start entry Tag: 
-<code> <entry ></code> 
+<code> <entry></code> 
 - The entry in the database: 
 <code><NameColumn>Value</NameColumn></code>
 - Tag end of the entry:
