@@ -21,7 +21,7 @@ DB::DB(string PathDb)
             }
             Ttmp.clear();
         }
-        MaxX = Tmp.size()+1;
+        MaxX = Tmp.size();
         MaxY = Db[0].size();
     }
 }
@@ -32,9 +32,7 @@ string DB::GetEntryById(int x, int y)
 void DB::SetEntryById(int x,int y,string Value)
 {
     if(MaxX>=x and MaxY>=y)
-    {
         Db[x][y]=Value;
-    }
 }
 int DB::GetMaxX()
 {
@@ -43,6 +41,19 @@ int DB::GetMaxX()
 int DB::GetMaxY()
 {
     return MaxY;
+}
+void DB::CreateEntriesRow()
+{
+    Db.resize(Db.size()+1);
+    MaxX++;
+    for(int i=0; i<MaxY+1; i++)
+    {
+        Db[MaxX].push_back(" ");
+    }
+}
+void DB::DeleteEntry(int x)
+{
+    Db[x].clear();
 }
 
 
