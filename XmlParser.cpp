@@ -38,15 +38,32 @@ vector<string> XMLParser::GetTagValues(string Name)
     }
     return Values;
 }
-void XMLParser::SaveFile(string Values)
+void XMLParser::SaveFile()
 {
     file_w.open(NameFile.c_str(),ios::out|ios::in|ios::trunc);
-    file_w << Values;
+    file_w << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+    file_w<< BuffSave;
     file_w.close();
+    BuffSave.clear();
 }
+void XMLParser::SaveTag(string NameTag,string NameValue,int Level)
+{
+    string P;
+    for(int i=0;i<Level;i++){P+=" ";}
+    if(NameValue!="!OPEN" and NameValue!="!CLOSE")
+        BuffSave+=P+"<"+NameTag+">"+NameValue+"</"+NameTag+">\n";
+    else
+    {
+        if(NameValue=="!OPEN")
+            BuffSave+=P+"<"+NameTag+">\n";
+        if(NameValue=="!CLOSE")
+            BuffSave+=P+"</"+NameTag+">\n";
+    }
+}
+
 int XMLParser::IsLoadFile()
 {
     if(BuffFile.length()>0) return 1;
     else return 0;
 }
-		
+

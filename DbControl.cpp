@@ -1,6 +1,6 @@
 #include "DbControl.h"
 
-void DB::CreateDatabase(string PathDb)
+DB::DB(string PathDb)
 {
     Dbase = new XMLParser;
     Dbase -> LoadFile(PathDb);
@@ -21,13 +21,29 @@ void DB::CreateDatabase(string PathDb)
             }
             Ttmp.clear();
         }
+        MaxX = Tmp.size()+1;
+        MaxY = Db[0].size();
     }
 }
 string DB::GetEntryById(int x, int y)
 {
     return Db[x][y];
 }
-
+void DB::SetEntryById(int x,int y,string Value)
+{
+    if(MaxX>=x and MaxY>=y)
+    {
+        Db[x][y]=Value;
+    }
+}
+int DB::GetMaxX()
+{
+    return MaxX;
+}
+int DB::GetMaxY()
+{
+    return MaxY;
+}
 
 
 
