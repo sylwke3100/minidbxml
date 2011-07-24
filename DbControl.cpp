@@ -51,9 +51,9 @@ void DB::CreateEntriesRow()
         Db[MaxX].push_back(" ");
     }
 }
-void DB::DeleteEntry(int x)
+void DB::DeleteEntry(int x,int y)
 {
-    Db[x].clear();
+    Db[x][y].clear();
 }
 
 
