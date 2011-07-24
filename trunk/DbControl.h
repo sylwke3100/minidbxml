@@ -14,6 +14,7 @@ private:
 public:
     DB(string PathDb);
     string GetEntryById(int x, int y);
+    void SetEntryById(int x,int y,string Value);
     int GetMaxX();
     int GetMaxY();
 };
