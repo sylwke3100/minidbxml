@@ -9,8 +9,12 @@ class DB
 private:
     XMLParser *Dbase;
     vector<vector <string> >Db;
+    int MaxX;
+    int MaxY;
 public:
-    void CreateDatabase(string PathDb);
+    DB(string PathDb);
     string GetEntryById(int x, int y);
+    int GetMaxX();
+    int GetMaxY();
 };
 #endif
