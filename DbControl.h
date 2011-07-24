@@ -15,6 +15,8 @@ public:
     DB(string PathDb);
     string GetEntryById(int x, int y);
     void SetEntryById(int x,int y,string Value);
+    void CreateEntriesRow();
+    void DeleteEntry(int x);
     int GetMaxX();
     int GetMaxY();
 };

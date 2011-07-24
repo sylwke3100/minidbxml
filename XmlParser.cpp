@@ -49,7 +49,10 @@ void XMLParser::SaveFile()
 void XMLParser::SaveTag(string NameTag,string NameValue,int Level)
 {
     string P;
-    for(int i=0;i<Level;i++){P+=" ";}
+    for(int i=0; i<Level; i++)
+    {
+        P+=" ";
+    }
     if(NameValue!="!OPEN" and NameValue!="!CLOSE")
         BuffSave+=P+"<"+NameTag+">"+NameValue+"</"+NameTag+">\n";
     else
