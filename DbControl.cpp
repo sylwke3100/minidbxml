@@ -55,6 +55,13 @@ void DB::DeleteEntry(int x,int y)
 {
     Db[x][y].clear();
 }
+void DB::DeleteEntriesRow(int X)
+{
+for(int i=0;i<MaxY;i++)
+{
+    Db[X][i].clear();
+}
+}
 
 
 
