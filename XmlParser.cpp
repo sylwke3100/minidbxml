@@ -3,15 +3,15 @@
 using namespace std;
 void XMLParser::LoadFile(string FileName)
 {
-    file_o.open(FileName.c_str(),ios::out);
+    File_o.open(FileName.c_str(),ios::out);
     NameFile = FileName;
-    while(!file_o.eof())
+    while(!File_o.eof())
     {
         string tmp;
-        getline(file_o,tmp);
+        getline(File_o,tmp);
         BuffFile+=tmp;
     }
-    file_o.close();
+    File_o.close();
 }
 string XMLParser::GetBuffer()
 {
@@ -40,10 +40,10 @@ vector<string> XMLParser::GetTagValues(string Name)
 }
 void XMLParser::SaveFile()
 {
-    file_w.open(NameFile.c_str(),ios::out|ios::in|ios::trunc);
-    file_w << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-    file_w<< BuffSave;
-    file_w.close();
+    File_w.open(NameFile.c_str(),ios::out|ios::in|ios::trunc);
+    File_w << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+    File_w<< BuffSave;
+    File_w.close();
     BuffSave.clear();
 }
 void XMLParser::SaveTag(string NameTag,string NameValue,int Level)

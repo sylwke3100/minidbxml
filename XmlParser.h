@@ -9,8 +9,8 @@ using namespace std;
 class XMLParser
 {
 private:
-    ifstream file_o;
-    fstream file_w;
+    ifstream File_o;
+    fstream File_w;
     string BuffFile;
     string BuffSave;
     string NameFile;
