@@ -1,4 +1,5 @@
 #include "DbControl.h"
+#include "version.h"
 
 DB::DB(string PathDb)
 {
@@ -71,6 +72,34 @@ void DB::CreateRow(string NameRow)
     }
     MaxY++;
 }
+void DB::SaveDb()
+{
+    Dbase -> SaveTag("db","!OPEN",0);
+    Dbase -> SaveTag("header","!OPEN",1);
+    Dbase -> SaveTag("Program","MiniDBXML",2);
+    Dbase -> SaveTag("Version",AutoVersion::_FULLVERSION_STRING,2);
+    Dbase -> SaveTag("header","!CLOSE",1);
+    Dbase -> SaveTag("tag","!OPEN",1);
+    for(int i=0; i<MaxY;i++)
+    {
+        Dbase -> SaveTag("tg",Db[0][i],2);
+    }
+    Dbase -> SaveTag("tag","!CLOSE",1);
+    Dbase -> SaveTag("body","!OPEN",1);
+    for(int a=1;a<MaxX+1;a++)
+    {
+        Dbase -> SaveTag("entry","!OPEN",2);
+        for(int c=0;c<MaxY;c++)
+        {
+            Dbase -> SaveTag(Db[0][c],Db[a][c],3);
+        }
+        Dbase -> SaveTag("entry","!CLOSE",2);
 
+    }
+    Dbase -> SaveTag("body","!CLOSE",1);
+    Dbase -> SaveTag("db","!CLOSE",0);
+    Dbase ->SaveFile();
+
+}
 
 

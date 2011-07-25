@@ -19,6 +19,7 @@ public:
     void CreateRow(string NameRow);
     void DeleteEntry(int X,int y);
     void DeleteEntriesRow(int X);
+    void SaveDb();
     int GetMaxX();
     int GetMaxY();
 };
