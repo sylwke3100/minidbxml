@@ -13,10 +13,10 @@ private:
     int MaxY;
 public:
     DB(string PathDb);
-    string GetEntryById(int x, int y);
-    void SetEntryById(int x,int y,string Value);
+    string GetEntryById(int X, int Y);
+    void SetEntryById(int X,int Y,string Value);
     void CreateEntriesRow();
-    void DeleteEntry(int x,int y);
+    void DeleteEntry(int X,int y);
     void DeleteEntriesRow(int X);
     int GetMaxX();
     int GetMaxY();
