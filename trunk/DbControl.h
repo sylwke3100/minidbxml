@@ -16,6 +16,7 @@ public:
     string GetEntryById(int X, int Y);
     void SetEntryById(int X,int Y,string Value);
     void CreateEntriesRow();
+    void CreateRow(string NameRow);
     void DeleteEntry(int X,int y);
     void DeleteEntriesRow(int X);
     int GetMaxX();
