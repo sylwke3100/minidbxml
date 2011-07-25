@@ -57,14 +57,20 @@ void DB::DeleteEntry(int X,int Y)
 }
 void DB::DeleteEntriesRow(int X)
 {
-for(int i=0;i<MaxY;i++)
+    for(int i=0; i<MaxY; i++)
+    {
+        Db[X][i].clear();
+    }
+}
+void DB::CreateRow(string NameRow)
 {
-    Db[X][i].clear();
+    Db[0].push_back(NameRow);
+    for(int i=1;i<MaxX+1;i++)
+    {
+        Db[i].push_back(" ");
+    }
+    MaxY++;
 }
-}
-
-
-
 
 
 
