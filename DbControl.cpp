@@ -66,7 +66,7 @@ void DB::DeleteEntriesRow(int X)
 void DB::CreateRow(string NameRow)
 {
     Db[0].push_back(NameRow);
-    for(int i=1;i<MaxX+1;i++)
+    for(int i=1; i<MaxX+1; i++)
     {
         Db[i].push_back(" ");
     }
@@ -80,16 +80,16 @@ void DB::SaveDb()
     Dbase -> SaveTag("Version",AutoVersion::_FULLVERSION_STRING,2);
     Dbase -> SaveTag("header","!CLOSE",1);
     Dbase -> SaveTag("tag","!OPEN",1);
-    for(int i=0; i<MaxY;i++)
+    for(int i=0; i<MaxY; i++)
     {
         Dbase -> SaveTag("tg",Db[0][i],2);
     }
     Dbase -> SaveTag("tag","!CLOSE",1);
     Dbase -> SaveTag("body","!OPEN",1);
-    for(int a=1;a<MaxX+1;a++)
+    for(int a=1; a<MaxX+1; a++)
     {
         Dbase -> SaveTag("entry","!OPEN",2);
-        for(int c=0;c<MaxY;c++)
+        for(int c=0; c<MaxY; c++)
         {
             Dbase -> SaveTag(Db[0][c],Db[a][c],3);
         }
