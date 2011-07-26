@@ -8,14 +8,16 @@ DB::DB(string PathDb)
     if(Dbase->IsLoadFile()==true)
     {
         Db.resize(1);
-        Db[0] = Dbase -> GetTagValues("tg");
+        vector <string> G;
         vector <string> Tmp;
+        Dbase -> GetTagValues("tg",G);
+        Db[0] = G;
         vector <string>Ttmp;
-        Tmp = Dbase -> GetTagValues("entry");
+        Dbase -> GetTagValues("entry",Tmp);
         Db.resize(Tmp.size()+1);
         for(int z=0; z<Db[0].size(); z++)
         {
-            Ttmp = Dbase->GetTagValues(Db[0][z]);
+            Dbase->GetTagValues(Db[0][z],Ttmp);
             for(int i=1; i<Tmp.size()+1; i++)
             {
                 Db[i].push_back(Ttmp[i-1]);
