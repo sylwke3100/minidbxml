@@ -16,7 +16,7 @@ private:
     string NameFile;
 public:
     string GetBuffer();
-    vector<string> GetTagValues(string Name);
+    void GetTagValues(string Name,vector<string> &Values);
     void LoadFile(string FileName);
     void SaveFile();
     void SaveTag(string NameTag,string NameValue,int Level);

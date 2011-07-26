@@ -17,9 +17,8 @@ string XMLParser::GetBuffer()
 {
     return BuffFile;
 }
-vector<string> XMLParser::GetTagValues(string Name)
+void XMLParser::GetTagValues(string Name,vector<string> &Values)
 {
-    vector<string> Values;
     int Istag = 0;
     for(int i=0; i<BuffFile.length(); i++)
     {
@@ -36,7 +35,6 @@ vector<string> XMLParser::GetTagValues(string Name)
         }
 
     }
-    return Values;
 }
 void XMLParser::SaveFile()
 {
