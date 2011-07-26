@@ -1,14 +1,14 @@
 #include "DbSearch.h"
 
 
-void DbSearch::SearchInDb(DB* Base,string NameValue, vector<string>& Summary)
+void DbSearch::SearchInDb(DB* Base, vector<string>& Summary)
 {
-    for(int x=1;x<Base->GetMaxX()+1;x++)
+    for(int x=1; x<Base->GetMaxX()+1; x++)
     {
-        for(int y=0;y<Base->GetMaxY();y++)
+        for(int y=0; y<Base->GetMaxY(); y++)
         {
             string Value = Base ->GetEntryById(x,y);
-            for(int i=0;i<Value.length();i++)
+            for(int i=0; i<Value.length(); i++)
             {
                 if(Value.substr(i,NameValue.length())==NameValue)
                 {
@@ -18,4 +18,8 @@ void DbSearch::SearchInDb(DB* Base,string NameValue, vector<string>& Summary)
             }
         }
     }
+}
+void DbSearch::SetSearchValue(string NameValue)
+{
+    this->NameValue= NameValue;
 }

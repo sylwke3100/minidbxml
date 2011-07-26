@@ -30,7 +30,8 @@ DB::DB(string PathDb)
 }
 string DB::GetEntryById(int X, int Y)
 {
-    return Db[X][Y];
+    if(MaxX>=X and MaxY>=Y)
+        return Db[X][Y];
 }
 void DB::SetEntryById(int X,int Y,string Value)
 {
