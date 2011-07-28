@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include "XmlParserDebug.h"
 
 using namespace std;
 class XMLParser
@@ -14,12 +15,14 @@ private:
     string BuffFile;
     string BuffSave;
     string NameFile;
+    XMLParserDebug Errors;
 public:
     string GetBuffer();
     void GetTagValues(string Name,vector<string> &Values);
     void LoadFile(string FileName);
     void SaveFile();
     void SaveTag(string NameTag,string NameValue,int Level);
+    void GetErrors(string& Error);
     int IsLoadFile();
 
 };

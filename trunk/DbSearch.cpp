@@ -8,10 +8,10 @@ void DbSearch::SearchInDb(DB* Base, vector<string>& Summary)
         for(int y=0; y<Base->GetMaxY(); y++)
         {
             string Value = Base ->GetEntryById(x,y);
-                if((int)Value.find(NameValue)>-1)
-                {
-                    Summary.push_back(Value);
-                }
+            if((int)Value.find(NameValue)>-1)
+            {
+                Summary.push_back(Value);
+            }
         }
     }
 }

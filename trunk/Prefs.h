@@ -11,9 +11,9 @@ private:
     string Buff;
     string Path;
 public:
-Prefs(string Path);
-void Load();
-void Set_pref(string Name,string Value);
-string Get_pref(string Name);
+    Prefs(string Path);
+    void Load();
+    void Set_pref(string Name,string Value);
+    string Get_pref(string Name);
 };
 #endif

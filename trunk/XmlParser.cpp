@@ -3,15 +3,23 @@
 using namespace std;
 void XMLParser::LoadFile(string FileName)
 {
-    File_o.open(FileName.c_str(),ios::out);
-    NameFile = FileName;
-    while(!File_o.eof())
+    File_o.open(FileName.c_str(),ios::in);
+    if(File_o.is_open())
     {
-        string tmp;
-        getline(File_o,tmp);
-        BuffFile+=tmp;
+
+        NameFile = FileName;
+        while(!File_o.eof())
+        {
+            string tmp;
+            getline(File_o,tmp);
+            BuffFile+=tmp;
+        }
+        File_o.close();
     }
-    File_o.close();
+    else
+    {
+        Errors.SetSignalToDebug(1,FileName);
+    }
 }
 string XMLParser::GetBuffer()
 {
@@ -19,21 +27,28 @@ string XMLParser::GetBuffer()
 }
 void XMLParser::GetTagValues(string Name,vector<string> &Values)
 {
-    int Istag = 0;
-    for(int i=0; i<BuffFile.length(); i++)
+    if(BuffFile.length()<=0)
     {
-        if(BuffFile.substr(i,Name.length()+3)=="</"+Name+">" && Istag>=0)
+        Errors.SetSignalToDebug(2,NameFile);
+    }
+    else
+    {
+        int Istag = 0;
+        for(int i=0; i<BuffFile.length(); i++)
         {
-            Values.push_back(BuffFile.substr(Istag,(i-Istag)));
-            i+=Name.length()+3;
-            Istag = -1;
+            if(BuffFile.substr(i,Name.length()+3)=="</"+Name+">" && Istag>=0)
+            {
+                Values.push_back(BuffFile.substr(Istag,(i-Istag)));
+                i+=Name.length()+3;
+                Istag = -1;
+            }
+            if(BuffFile.substr(i,Name.length()+2)=="<"+Name+">")
+            {
+                i+=Name.length()+2;
+                Istag = i;
+            }
+        if(Values.size()<0) Errors.SetSignalToDebug(3,Name);
         }
-        if(BuffFile.substr(i,Name.length()+2)=="<"+Name+">")
-        {
-            i+=Name.length()+2;
-            Istag = i;
-        }
-
     }
 }
 void XMLParser::SaveFile()
@@ -67,4 +82,7 @@ int XMLParser::IsLoadFile()
     if(BuffFile.length()>0) return 1;
     else return 0;
 }
-
+void XMLParser::GetErrors(string& Error)
+{
+     Errors.GetSignalDebug(Error);
+}

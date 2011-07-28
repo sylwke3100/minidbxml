@@ -26,6 +26,7 @@ DB::DB(string PathDb)
         }
         MaxX = Tmp.size();
         MaxY = Db[0].size();
+
     }
 }
 string DB::GetEntryById(int X, int Y)
