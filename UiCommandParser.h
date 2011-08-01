@@ -9,6 +9,7 @@ class UiCommandParser
 {
 private:
     DB * base;
+    int IsConnect;
 public:
     void ParseCommand(string Command,int& Signal);
 

@@ -17,9 +17,10 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 base = new DB(Command.substr(i,(poz-(i))));
                 cout<<"Connected to base: "<<Command.substr(i,(poz-(i)))<<endl;
                 i= poz;
+                IsConnect = 1;
             }
         }
-        if(Command.substr(i,8)=="GetById(")
+        if(Command.substr(i,8)=="GetById(" && IsConnect==true)
         {
             i+=8;
             if((int)Command.find(",",i)>0 && (int)Command.find(");",i)>0)
@@ -33,7 +34,7 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 i=x;
             }
         }
-        if(Command.substr(i,8)=="SetById(")
+        if(Command.substr(i,8)=="SetById(" && IsConnect==true)
         {
             i+=8;
             if((int)Command.find(",",i)>0 && (int)Command.find("');",i)>0 && (int)Command.find(",'",i)>0)
@@ -48,7 +49,7 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 i=y;
             }
         }
-        if(Command.substr(i,7)=="Save();")
+        if(Command.substr(i,7)=="Save();" && IsConnect==true)
         {
             base ->SaveDb();
             i+=7;
