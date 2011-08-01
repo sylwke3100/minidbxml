@@ -7,10 +7,10 @@
 using namespace std;
 class UiCommandParser
 {
-    private:
+private:
     DB * base;
-    public:
-        void ParseCommand(string Command);
+public:
+    void ParseCommand(string Command,int& Signal);
 
 };
 

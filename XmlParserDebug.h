@@ -5,10 +5,10 @@ using namespace std;
 
 class XMLParserDebug
 {
-    private:
+private:
     string ErrorString;
     int Count;
-    public:
+public:
     void SetSignalToDebug(int Id,string text);
     void GetSignalDebug(string& Value);
 };

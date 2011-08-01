@@ -47,7 +47,7 @@ void XMLParser::GetTagValues(string Name,vector<string> &Values)
                 i+=Name.length()+2;
                 Istag = i;
             }
-        if(Values.size()<0) Errors.SetSignalToDebug(3,Name);
+            if(Values.size()<0) Errors.SetSignalToDebug(3,Name);
         }
     }
 }
@@ -84,5 +84,5 @@ int XMLParser::IsLoadFile()
 }
 void XMLParser::GetErrors(string& Error)
 {
-     Errors.GetSignalDebug(Error);
+    Errors.GetSignalDebug(Error);
 }
