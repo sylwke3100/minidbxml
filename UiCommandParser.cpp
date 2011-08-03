@@ -1,6 +1,9 @@
 #include "UiCommandParser.h"
-
-void UiCommandParser::ParseCommand(string Command,int& Signal)
+void UiCommandParser::Info()
+{
+    cout<<"Command Parser for MiniDBXML \n\n>>";
+}
+void UiCommandParser::ParseCommand(string Command,int& Signal) /**< Parse Command  */
 {
     for(int i=0; i<Command.length(); i++)
     {

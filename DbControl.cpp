@@ -33,11 +33,22 @@ string DB::GetEntryById(int X, int Y)
 {
     if(MaxX>=X and MaxY>=Y)
         return Db[X][Y];
+
 }
 void DB::SetEntryById(int X,int Y,string Value)
 {
     if(MaxX>=X and MaxY>=Y)
         Db[X][Y]=Value;
+    else
+    {
+        if(MaxX<X)
+        {
+            int r = (X-MaxX);
+            for(int i=0; i<r; i++)
+                CreateEntriesRow();
+            Db[X][Y]=Value;
+        }
+    }
 }
 int DB::GetMaxX()
 {

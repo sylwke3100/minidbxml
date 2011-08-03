@@ -13,6 +13,7 @@ int main()
 {
     UiCommandParser Text;
     string str;
+    Text.Info();
     while(getline(cin,str))
     {
         int Signal;
@@ -21,5 +22,6 @@ int main()
         {
             break;
         }
+        cout<<">>";
     }
 }
