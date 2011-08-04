@@ -11,13 +11,13 @@ using namespace std;
 
 int main()
 {
-    UiCommandParser Text;
+    UiCommandParser* Text = new UiCommandParser();
     string str;
-    Text.Info();
+    Text->Info();
     while(getline(cin,str))
     {
         int Signal;
-        Text.ParseCommand(str,Signal);
+        Text->ParseCommand(str,Signal);
         if(Signal==1)
         {
             break;

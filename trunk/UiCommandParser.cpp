@@ -1,4 +1,9 @@
 #include "UiCommandParser.h"
+UiCommandParser::UiCommandParser()
+{
+    IsConnect = 0;
+}
+
 void UiCommandParser::Info()
 {
     cout<<"Command Parser for MiniDBXML \n\n>>";
@@ -17,11 +22,18 @@ void UiCommandParser::ParseCommand(string Command,int& Signal) /**< Parse Comman
             i+=8;
             if((int)Command.find(");",i)>0)
             {
-                int poz = (int)Command.find(");",i);
-                base = new DB(Command.substr(i,(poz-(i))));
-                cout<<"Connected to base: "<<Command.substr(i,(poz-(i)))<<endl;
-                i= poz;
-                IsConnect = 1;
+                if (IsConnect==false)
+                {
+                    int poz = (int)Command.find(");",i);
+                    base = new DB(Command.substr(i,(poz-(i))));
+                    cout<<"Connected to base: "<<Command.substr(i,(poz-(i)))<<endl;
+                    i= poz;
+                    IsConnect = 1;
+                }
+                else
+                {
+                    cout<<"Please first disconnect\n";
+                }
             }
         }
         if(Command.substr(i,8)=="GetById(" && IsConnect==true)
@@ -58,7 +70,7 @@ void UiCommandParser::ParseCommand(string Command,int& Signal) /**< Parse Comman
             base ->SaveDb();
             i+=7;
         }
-        if(Command.substr(i,13)=="Disconnect();")
+        if(Command.substr(i,13)=="Disconnect();" && IsConnect==true)
         {
             cout<<"Disconnect from database"<<endl;
             delete base;
