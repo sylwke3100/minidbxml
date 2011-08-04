@@ -9,6 +9,7 @@ void UiCommandParser::ParseCommand(string Command,int& Signal) /**< Parse Comman
     {
         if(Command.substr(i,7)=="Exit();")
         {
+            delete base;
             Signal = 1;
         }
         if(Command.substr(i,8)=="Connect(")
@@ -61,6 +62,7 @@ void UiCommandParser::ParseCommand(string Command,int& Signal) /**< Parse Comman
         {
             cout<<"Disconnect from database"<<endl;
             delete base;
+            IsConnect = 0;
         }
 
     }
