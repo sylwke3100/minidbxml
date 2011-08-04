@@ -13,6 +13,7 @@ private:
 public:
     void ParseCommand(string Command,int& Signal);
     void Info();
+    UiCommandParser();
 
 };
 
