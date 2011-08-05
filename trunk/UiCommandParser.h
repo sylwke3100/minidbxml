@@ -12,6 +12,7 @@ private:
     int IsConnect;
 public:
     void ParseCommand(string Command,int& Signal);
+    void Print(string Text);
     void Info();
     UiCommandParser();
 
