@@ -6,7 +6,7 @@ UiCommandParser::UiCommandParser()
 
 void UiCommandParser::Info()
 {
-   Print("Shell Command for MiniDBXML\n\n>>");
+    Print("Shell Command for MiniDBXML\n\n>>");
 }
 void UiCommandParser::ParseCommand(string Command,int& Signal)
 {
@@ -26,9 +26,9 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 {
                     int poz = (int)Command.find(");",i);
                     base = new DB(Command.substr(i,(poz-(i))));
-                   Print("Connected to base: ");
-                   Print(Command.substr(i,(poz-(i))));
-                   Print("\n");
+                    Print("Connected to base: ");
+                    Print(Command.substr(i,(poz-(i))));
+                    Print("\n");
                     i= poz;
                     IsConnect = 1;
                 }

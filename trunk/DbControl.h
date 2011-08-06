@@ -12,6 +12,8 @@ private:
     int MaxX;
     int MaxY;
 public:
+    int PosX;
+    int PosY;
     DB(string PathDb);
     string GetEntryById(int X, int Y);
     void SetEntryById(int X,int Y,string Value);

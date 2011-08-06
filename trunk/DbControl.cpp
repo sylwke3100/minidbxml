@@ -1,4 +1,5 @@
 #include "DbControl.h"
+#include "DbConnections.h"
 #include "version.h"
 
 DB::DB(string PathDb)
@@ -32,8 +33,12 @@ DB::DB(string PathDb)
 string DB::GetEntryById(int X, int Y)
 {
     if(MaxX>=X and MaxY>=Y)
-        return Db[X][Y];
-
+    {
+        PosX =X;
+        PosY =Y;
+        DbConnections C;
+        return C.SearchConnection(Db[X][Y],*this);
+    }
 }
 void DB::SetEntryById(int X,int Y,string Value)
 {
