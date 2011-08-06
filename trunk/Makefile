@@ -11,7 +11,7 @@ WINDRES=
 
 # Target: Debug
 
-OBJS_DEBUG=./DbControl.o ./DbSearch.o ./Prefs.o ./UiCommandParser.o ./XmlParser.o ./XmlParserDebug.o ./main.o
+OBJS_DEBUG=./DbControl.o ./DbConnections.o ./DbSearch.o ./Prefs.o ./UiCommandParser.o ./XmlParser.o ./XmlParserDebug.o ./main.o
 
 Debug: minidbxml
 
@@ -23,6 +23,10 @@ minidbxml: $(OBJS_DEBUG)
 	echo Compiling: ./DbControl.cpp
 	g++ -O3 -O2 -O1 -Wall  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./DbControl.cpp -o ./DbControl.o
 
+./DbConnections.o: ./DbConnections.cpp
+	echo Compiling: ./DbConnections.cpp
+	g++ -O3 -O2 -O1 -Wall  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./DbConnections.cpp -o ./DbConnections.o
+	
 ./DbSearch.o: ./DbSearch.cpp
 	echo Compiling: ./DbSearch.cpp
 	g++ -O3 -O2 -O1 -Wall  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./DbSearch.cpp -o ./DbSearch.o
