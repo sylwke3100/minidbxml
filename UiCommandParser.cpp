@@ -52,6 +52,20 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 i=x;
             }
         }
+        if(Command.substr(i,8)=="DelById(" && IsConnect==true)
+        {
+            i+=8;
+            if((int)Command.find(",",i)>0 && (int)Command.find(");",i)>0)
+            {
+                int poz=(int)Command.find(",",i),x=(int)Command.find(");",i),c,d;
+                istringstream a (Command.substr(i,(poz-i)));
+                istringstream b(Command.substr(x+1,poz+1-x));
+                a >>c;
+                b >>d;
+                base ->DeleteEntry(c,d);
+                i=x;
+            }
+        }
         if(Command.substr(i,8)=="SetById(" && IsConnect==true)
         {
             i+=8;
