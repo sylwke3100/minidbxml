@@ -15,5 +15,6 @@ private:
 public:
     string SearchConnection(string DbValue,DB& B);
     string GetNormalConnect(int X, int Y,DB B);
+    string BetweenConnect(string Path,int X,int Y, DB B);
 };
 #endif
