@@ -7,6 +7,7 @@
 class DB
 {
 private:
+    string PathName;
     XMLParser *Dbase;
     vector<vector <string> >Db;
     int MaxX;
@@ -15,6 +16,7 @@ public:
     int PosX;
     int PosY;
     DB(string PathDb);
+    string GetPathName();
     string GetEntryById(int X, int Y);
     void SetEntryById(int X,int Y,string Value);
     void CreateEntriesRow();
