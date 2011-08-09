@@ -66,6 +66,22 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 i=x;
             }
         }
+        if (Command.substr(i,8)=="Search('"&& IsConnect==true)
+        {
+            i+=8;
+            if((int)Command.find("');")>0)
+            {
+                DbSearch S;
+                vector <string> Values;
+                S.SetSearchValue(Command.substr(i,(int)Command.find("');")-i));
+                S.SearchInDb(base,Values);
+                for(int i=0;i<Values.size();i++)
+                {
+                Print(Values[i]);
+                Print("\n");
+                }
+            }
+        }
         if(Command.substr(i,8)=="SetById(" && IsConnect==true)
         {
             i+=8;
