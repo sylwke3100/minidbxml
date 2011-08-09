@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include "DbControl.h"
+#include "DbSearch.h"
 using namespace std;
 class UiCommandParser
 {
