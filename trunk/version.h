@@ -19,10 +19,6 @@ namespace AutoVersion{
 	#define  _RC_FILEVERSION_STRING "0, 0, 8, 0\0"
 	static const char  _FULLVERSION_STRING[] = "0.0.8.0";
 	
-	//SVN Version
-	static const char  _SVN_REVISION[] = "187";
-	static const char  _SVN_DATE[] = "2011-08-04T21:28:32.138634Z";
-	
 	//These values are to keep track of your versioning state, don't modify them.
 	static const long  _BUILD_HISTORY = 1;
 	

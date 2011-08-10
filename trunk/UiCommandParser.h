@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <fstream>
 #include "DbControl.h"
 #include "DbSearch.h"
 using namespace std;
@@ -14,6 +15,7 @@ private:
 public:
     void ParseCommand(string Command,int& Signal);
     void Print(string Text);
+    void ReadCommandFromFile(string Path);
     void Info();
     UiCommandParser();
 
