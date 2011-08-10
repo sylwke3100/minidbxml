@@ -80,7 +80,9 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 Print(Values[i]);
                 Print("\n");
                 }
+                i=(int)Command.find("');")+3;
             }
+
         }
         if(Command.substr(i,8)=="SetById(" && IsConnect==true)
         {
@@ -107,6 +109,7 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
             Print("Disconnect from database\n");
             delete base;
             IsConnect = 0;
+            i=i+13;
         }
 
     }
