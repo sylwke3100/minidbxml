@@ -9,10 +9,6 @@
 using namespace std;
 class DbConnections
 {
-private:
-    int X;
-    int Y;
-    string PathName;
 public:
     int StateConnect ;
     string SearchConnection(string DbValue,DB& B,int Type,string Value);

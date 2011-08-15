@@ -16,7 +16,6 @@ string DbConnections::SearchConnection(string DbValue,DB& B,int Type,string Valu
                 return GetNormalConnect(d,e,B);
             else
                 SetNormalConEntry(Value,B,d,e);
-
         }
         if((int)DbValue.find("#(")>=0 &&  (int)DbValue.find(",",i)>=0 && (int)DbValue.find(",|",i)>=0 && (int)DbValue.find("|)",i)>=0)
         {
@@ -36,7 +35,7 @@ string DbConnections::SearchConnection(string DbValue,DB& B,int Type,string Valu
 }
 string DbConnections::GetNormalConnect(int X, int Y,DB B)
 {
-    if(B.GetMaxX()>=X and B.GetMaxY()>=Y and (B.PosX!=X and B.PosY!=Y))
+    if(B.GetMaxX()>=X and B.GetMaxY()>=Y and (B.PosX!=X or B.PosY!=Y))
     {
         return B.GetEntryById(X,Y);
     }
@@ -49,7 +48,6 @@ string DbConnections::BetweenConnect(string Path,int X,int Y, DB B)
     {
         return x.GetEntryById(X,Y);
     }
-
     else return " ";
 }
 void DbConnections::SetNormalConEntry(string Value,DB& B,int X,int Y)
