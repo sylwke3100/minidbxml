@@ -3,7 +3,6 @@
 
 #include <vector>
 #include "XmlParser.h"
-
 class DB
 {
 private:
@@ -19,6 +18,7 @@ public:
     string GetPathName();
     string GetEntryById(int X, int Y);
     void SetEntryById(int X,int Y,string Value);
+    void SetById(int X,int Y,string Value);
     void CreateEntriesRow();
     void CreateRow(string NameRow);
     void DeleteEntry(int X,int y);

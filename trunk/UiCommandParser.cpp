@@ -91,7 +91,7 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 a >>c;
                 b >>d;
                 string t = Command.substr(x+2,y-(x+1)-1);
-                base->SetEntryById(c,d,t);
+                base->SetById(c,d,t);
                 i=y;
             }
         }
@@ -126,7 +126,7 @@ void UiCommandParser::ReadCommandFromFile(string Path)
             getline(File,mem);
             ParseCommand(mem,Signal);
             if (Signal == 1)break;
-            }
+        }
         File.close();
     }
     else Print("File no found \n");
