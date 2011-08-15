@@ -10,11 +10,15 @@ using namespace std;
 class DbConnections
 {
 private:
-
-
+    int X;
+    int Y;
+    string PathName;
 public:
-    string SearchConnection(string DbValue,DB& B);
+    int StateConnect ;
+    string SearchConnection(string DbValue,DB& B,int Type,string Value);
     string GetNormalConnect(int X, int Y,DB B);
     string BetweenConnect(string Path,int X,int Y, DB B);
+    void SetNormalConEntry(string Value,DB& B,int X,int Y);
+    void SetBettwenConEntry(string Value,int X,int Y,string Path);
 };
 #endif
