@@ -1,5 +1,7 @@
 #labels Featured
-=Standard ver 1.0 XML file for MiniDBXML=
+=Standard ver 1.1 XML file for MiniDBXML =
+
+*Attention: This version standard is available for MiniDBXML 0.0.8 or later*
 
 ===1. Default structure XML file:===
 
