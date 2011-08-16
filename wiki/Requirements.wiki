@@ -1,21 +1,21 @@
 #labels Featured,Deprecated,Phase-Deploy
-=Requirements Minidbxml 0.0.7=
+=Requirements Minidbxml 0.0.8=
 
-== Binary package ==
+== Binary package for 0.0.7==
 
 - System: Linux x86(tested and compiled for Ubuntu 10.10 x86)<br>
 - Ram: 128 MB or more<br>
 - Disk space : 125 KB or more <br>
 
 
-== Source Code ==
+== Source Code for 0.0.8 or later==
 
 - System: Linux x86(tested and compiled for Ubuntu 10.10)<br>
 - Packages :<br>
   - gcc <br>
-  - build-essential <br><br>
-==== Optional: =====
-  - Package codeblox
+  - build-essential <br>
+  - svn client <br>
+  - make <br><br>
 
 ===Debian Package===
 
