@@ -6,6 +6,7 @@
 #include <fstream>
 #include "DbControl.h"
 #include "DbSearch.h"
+#include "DbExport.h"
 using namespace std;
 class UiCommandParser
 {
