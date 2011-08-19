@@ -7,7 +7,7 @@
 using namespace std;
 class DbExport
 {
-    private:
+private:
     string Path;
     fstream File;
     int IsOpen;

@@ -80,14 +80,14 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 i=(int)Command.find("');")+3;
             }
         }
-         if (Command.substr(i,11)=="ExportCSV('"&& IsConnect==true)
+        if (Command.substr(i,11)=="ExportCSV('"&& IsConnect==true)
         {
             i+=11;
             if((int)Command.find("');")>0)
             {
 
-               DbExport E(Command.substr(i,(int)Command.find("');")-i));
-               E.ExportToCsv(*base);
+                DbExport E(Command.substr(i,(int)Command.find("');")-i));
+                E.ExportToCsv(*base);
             }
         }
         if(Command.substr(i,8)=="SetById(" && IsConnect==true)
