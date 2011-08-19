@@ -19,17 +19,11 @@ void DbExport::ExportToCsv(DB &B)
             {
                 File<<"\""<<B.GetEntryById(z,i);
                 if(B.GetMaxY()!=i)
-                {
                     File<<"\",";
-                }
                 else
-                {
-                    File<<"\"";
-                }
+                    File<<"\"\n";
             }
-            File<<endl;
         }
         File.close();
-
     }
 }
