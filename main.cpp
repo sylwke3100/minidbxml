@@ -9,26 +9,19 @@ using namespace std;
 
 
 
-int main(int argc,char *argv[])
+int main()
 {
     UiCommandParser* Text = new UiCommandParser();
-    if(argc>1)
+    string str;
+    Text->Info();
+    while(getline(cin,str))
     {
-        Text->ReadCommandFromFile(argv[1]);
-    }
-    else
-    {
-        string str;
-        Text->Info();
-        while(getline(cin,str))
+        int Signal;
+        Text->ParseCommand(str,Signal);
+        if(Signal==1)
         {
-            int Signal;
-            Text->ParseCommand(str,Signal);
-            if(Signal==1)
-            {
-                break;
-            }
-            cout<<">>";
+            break;
         }
+        cout<<">>";
     }
 }

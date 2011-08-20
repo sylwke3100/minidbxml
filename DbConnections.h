@@ -9,12 +9,12 @@
 using namespace std;
 class DbConnections
 {
+private:
+
+
 public:
-    int StateConnect ;
-    string SearchConnection(string DbValue,DB& B,int Type,string Value);
+    string SearchConnection(string DbValue,DB& B);
     string GetNormalConnect(int X, int Y,DB B);
     string BetweenConnect(string Path,int X,int Y, DB B);
-    void SetNormalConEntry(string Value,DB& B,int X,int Y);
-    void SetBettwenConEntry(string Value,int X,int Y,string Path);
 };
 #endif

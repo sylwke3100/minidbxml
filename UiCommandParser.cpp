@@ -32,7 +32,10 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                     i= poz;
                     IsConnect = 1;
                 }
-                else Print("Please first disconnect\n");
+                else
+                {
+                    Print("Please first disconnect\n");
+                }
             }
         }
         if(Command.substr(i,8)=="GetById(" && IsConnect==true)
@@ -72,22 +75,11 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 vector <string> Values;
                 S.SetSearchValue(Command.substr(i,(int)Command.find("');")-i));
                 S.SearchInDb(base,Values);
-                for(int i=0; i<Values.size(); i++)
+                for(int i=0;i<Values.size();i++)
                 {
-                    Print(Values[i]);
-                    Print("\n");
+                Print(Values[i]);
+                Print("\n");
                 }
-                i=(int)Command.find("');")+3;
-            }
-        }
-        if (Command.substr(i,11)=="ExportCSV('"&& IsConnect==true)
-        {
-            i+=11;
-            if((int)Command.find("');")>0)
-            {
-
-                DbExport E(Command.substr(i,(int)Command.find("');")-i));
-                E.ExportToCsv(*base);
             }
         }
         if(Command.substr(i,8)=="SetById(" && IsConnect==true)
@@ -101,7 +93,7 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 a >>c;
                 b >>d;
                 string t = Command.substr(x+2,y-(x+1)-1);
-                base->SetById(c,d,t);
+                base->SetEntryById(c,d,t);
                 i=y;
             }
         }
@@ -115,7 +107,6 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
             Print("Disconnect from database\n");
             delete base;
             IsConnect = 0;
-            i=i+13;
         }
 
     }
@@ -123,21 +114,4 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
 void UiCommandParser::Print(string Text)
 {
     cout<<Text;
-}
-void UiCommandParser::ReadCommandFromFile(string Path)
-{
-    fstream File(Path.c_str(),ios::out|ios::in);
-    string mem;
-    int Signal=0;
-    if(File.is_open()==true)
-    {
-        while (!File.eof())
-        {
-            getline(File,mem);
-            ParseCommand(mem,Signal);
-            if (Signal == 1)break;
-        }
-        File.close();
-    }
-    else Print("File no found \n");
 }
