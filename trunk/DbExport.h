@@ -14,7 +14,7 @@ private:
 public:
     DbExport(string FileName);
     void ExportToCsv(DB &B);
-
+    void ExportToHTML(DB &B,string Title);
 };
 
 

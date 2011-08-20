@@ -49,6 +49,18 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 i=x;
             }
         }
+         if(Command.substr(i,12)=="ExportHTML('" && IsConnect==true)
+        {
+            i+=12;
+            if((int)Command.find("','",i)>0 && (int)Command.find("');",i)>0)
+            {
+                int poz=(int)Command.find("','",i),x=(int)Command.find("');",i);
+                string Path = Command.substr(i,(poz-i));
+                string Title= Command.substr(poz+3,x-(poz+3));
+                DbExport E(Path);
+                E.ExportToHTML(*base,Title);
+            }
+        }
         if(Command.substr(i,8)=="DelById(" && IsConnect==true)
         {
             i+=8;
