@@ -27,3 +27,34 @@ void DbExport::ExportToCsv(DB &B)
         File.close();
     }
 }
+void DbExport::ExportToHTML(DB &B,string Title)
+{
+    if(IsOpen==true)
+    {
+        File<<"<html>\n<head>\n<title>"<<Title<<"</title></head>\n<body>\n<table>\n";
+        for(int z=0; z<B.GetMaxX(); z++)
+        {
+            File<<"<tr>";
+            if(z==0 )
+            {
+                File<<"<td>*  </td>\n";
+            }
+            else
+            {
+                File<<"<td>"<<z<<"</td>\n";
+            }
+            for(int i=0; i<B.GetMaxY(); i++)
+            {
+                if(z==0)
+                {
+                    File<<"<th>"<<B.GetEntryById(z,i)<<"</th>\n";
+                }
+                else
+                    File<<"<td>"<<B.GetEntryById(z,i)<<"</td>\n";
+            }
+            File<<"</tr>\n";
+        }
+        File<<"</table><body>\n</html>";
+        File.close();
+    }
+}
