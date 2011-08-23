@@ -1,5 +1,5 @@
 #include "XmlParser.h"
-
+#include <iostream>
 using namespace std;
 void XMLParser::LoadFile(string FileName)
 {
@@ -15,6 +15,12 @@ void XMLParser::LoadFile(string FileName)
             BuffFile+=tmp;
         }
         File_o.close();
+        vector <string> ap;
+        GetTagValues("Version",ap);
+        if(ap[0] == "0.0.7 - Alpha")
+        {
+            ConvertStandard();
+        }
     }
     else
     {
@@ -85,4 +91,19 @@ int XMLParser::IsLoadFile()
 void XMLParser::GetErrors(string& Error)
 {
     Errors.GetSignalDebug(Error);
+}
+void XMLParser::ConvertStandard()
+{
+    string Tmp;
+    for(int i=0;i<BuffFile.length();i++)
+    {
+        if(BuffFile.substr(i,6)=="<entry")
+        {
+            i=i+6;
+            Tmp +="<entry>";
+            i = (int)BuffFile.find(">",i);
+        }
+        else Tmp+=BuffFile.substr(i,1);
+    }
+    BuffFile = Tmp;
 }
