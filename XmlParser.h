@@ -20,6 +20,7 @@ public:
     string GetBuffer();
     void GetTagValues(string Name,vector<string> &Values);
     void LoadFile(string FileName);
+    void ConvertStandard();
     void SaveFile();
     void SaveTag(string NameTag,string NameValue,int Level);
     void GetErrors(string& Error);
