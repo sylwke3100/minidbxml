@@ -49,7 +49,7 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 i=x;
             }
         }
-         if(Command.substr(i,12)=="ExportHTML('" && IsConnect==true)
+        if(Command.substr(i,12)=="ExportHTML('" && IsConnect==true)
         {
             i+=12;
             if((int)Command.find("','",i)>0 && (int)Command.find("');",i)>0)

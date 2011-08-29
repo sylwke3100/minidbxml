@@ -37,7 +37,9 @@ string DB::GetEntryById(int X, int Y)
         PosX =X;
         PosY =Y;
         DbConnections C;
-        return C.SearchConnection(Db[X][Y],*this,1,"");
+        string tmp =C.SearchConnection(Db[X][Y],*this,1,"");
+        Dbase->ActiveChangeChar(tmp,1);
+        return tmp;
     }
 }
 void DB::SetById(int X,int Y,string Value)
@@ -58,8 +60,10 @@ void DB::SetById(int X,int Y,string Value)
 }
 void DB::SetEntryById(int X,int Y,string Value)
 {
-    if(MaxX>=X and MaxY>=Y)
+    if(MaxX>=X and MaxY>=Y){
+         Dbase->ActiveChangeChar(Value,0);
         Db[X][Y]=Value;
+    }
     else
     {
         if(MaxX<X)
@@ -67,6 +71,7 @@ void DB::SetEntryById(int X,int Y,string Value)
             int r = (X-MaxX);
             for(int i=0; i<r; i++)
                 CreateEntriesRow();
+                Dbase->ActiveChangeChar(Value,0);
             Db[X][Y]=Value;
         }
     }
