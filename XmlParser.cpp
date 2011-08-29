@@ -72,6 +72,7 @@ void XMLParser::SaveTag(string NameTag,string NameValue,int Level)
     {
         P+=" ";
     }
+
     if(NameValue!="!OPEN" and NameValue!="!CLOSE")
         BuffSave+=P+"<"+NameTag+">"+NameValue+"</"+NameTag+">\n";
     else
@@ -82,7 +83,49 @@ void XMLParser::SaveTag(string NameTag,string NameValue,int Level)
             BuffSave+=P+"</"+NameTag+">\n";
     }
 }
-
+void XMLParser::ActiveChangeChar(string& Value,int Type)
+{
+    string tmp;
+    for(int i =0; i<Value.length(); i++)
+    {
+        if (Type==0)
+        {
+            string t = Value.substr(i,1);
+            char ts = t[0];
+            switch(ts)
+            {
+            case '>':
+                tmp+="&gt;";
+                break;
+            case '<':
+                tmp+="&lt;";
+                break;
+            default:
+                tmp+=Value.substr(i,1);
+                break;
+            }
+        }
+        else
+        {
+            if(Value.substr(i,4)=="&gt;")
+            {
+                i+=4;
+                tmp+=">";
+            }
+            else
+            {
+                if (Value.substr(i,4)=="&lt;")
+                {
+                    i+=4;
+                    tmp+="<";
+                }
+                else
+                    tmp+=Value.substr(i,1);
+            }
+        }
+    }
+    Value = tmp;
+}
 int XMLParser::IsLoadFile()
 {
     if(BuffFile.length()>0) return 1;
@@ -95,7 +138,7 @@ void XMLParser::GetErrors(string& Error)
 void XMLParser::ConvertStandard()
 {
     string Tmp;
-    for(int i=0;i<BuffFile.length();i++)
+    for(int i=0; i<BuffFile.length(); i++)
     {
         if(BuffFile.substr(i,6)=="<entry")
         {
