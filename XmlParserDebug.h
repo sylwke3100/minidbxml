@@ -9,7 +9,7 @@ private:
     string ErrorString;
     int Count;
 public:
-    void SetSignalToDebug(int Id,string text);
+    void SetSignalToDebug(int Id,string Text);
     void GetSignalDebug(string& Value);
 };
 

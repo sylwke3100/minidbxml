@@ -52,6 +52,7 @@ void XMLParser::GetTagValues(string Name,vector<string> &Values)
             {
                 i+=Name.length()+2;
                 Istag = i;
+                Errors.SetSignalToDebug(4,Name);
             }
             if(Values.size()<0) Errors.SetSignalToDebug(3,Name);
         }
