@@ -5,9 +5,10 @@
 #include "XmlParser.h"
 #include "DbSearch.h"
 #include "UiCommandParser.h"
+#include "Prefs.h"
 using namespace std;
 
-
+Prefs *P = new Prefs("main.conf");
 
 int main(int argc,char *argv[])
 {
@@ -20,6 +21,8 @@ int main(int argc,char *argv[])
     {
         string str;
         Text->Info();
+        cout<<P->GetPrefs("Program");
+        P->SetPrefs("Program","33");
         while(getline(cin,str))
         {
             int Signal;

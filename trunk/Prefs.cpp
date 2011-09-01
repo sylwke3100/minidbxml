@@ -1,69 +1,60 @@
 #include "Prefs.h"
+
 Prefs::Prefs(string Path)
 {
-    this->Path=Path;
-}
-void Prefs::Load()
-{
-    Buff.clear();
-    ifstream*file= new ifstream;
-    file->open(Path.c_str(),ios::in|ios::out);
-    if(file->is_open())
+    string Buff;
+    this->Path = Path;
+    fstream File (Path.c_str(),ios::out|ios::in);
+    int count =0;
+    if(File.is_open()==true)
     {
-        while(!file->eof())
+        while (!File.eof())
         {
-            string tmp;
-            getline(*file,tmp);
-            Buff+=tmp;
+            getline(File,Buff);
+            for (int i=0; i<Buff.length(); i++)
+            {
+                if(Buff.substr(i,1)=="=")
+                {
+                    if((int)Buff.find(";",i)>0)
+                    {
+                        StoragePrefs.resize(StoragePrefs.size()+1);
+                        StoragePrefs[count].push_back(Buff.substr(0,i));
+                        StoragePrefs[count].push_back(Buff.substr((int)Buff.find("=",i)+1,(int)Buff.find(";",i)-((int)Buff.find("=",i)+1)));
+                        cout<<StoragePrefs[count][0];
+                        count++;
+                    }
+                }
+            }
+            File.close();
         }
     }
-    file->close();
+    else cout<<"Error: File isn't exits ";
 }
-void Prefs::Set_pref(string Name,string Value)
+string Prefs::GetPrefs(string Name)
 {
-    Load();
-    fstream*file= new fstream;
-    file->open(Path.c_str(),ios::in|ios::out|ios::trunc);
-    int poz_s=0,poz_k=0,j=0,zn=0;
-    string wynik;
-    for(int i=0; i<Buff.length(); i++)
+    for(int i=0; i<StoragePrefs.size(); i++)
     {
-        if(Buff.substr(i,Name.length()+1)==Name+"=")
-        {
-            poz_s=i+Name.length()+1;
-            j=1;
-        }
-        if(Buff.substr(i,1)==";" and j==1)
-        {
-            poz_k=i-1;
-            wynik+=Name+"="+Value+";\r\n";
-            j=0;
-            zn=1;
-        }
-        if(j==0)
-            wynik+=Buff.substr(i,1);
+        if(StoragePrefs[i][0]==Name)
+            return StoragePrefs[i][1];
     }
-    if(zn==0)
-        *file<<Name<<"="<<Value<<";"<<endl;
-    *file<<wynik;
-    file->close();
-    delete file;
+    return " ";
 }
-string Prefs::Get_pref(string Name)
+void  Prefs::SetPrefs(string Name,string Value)
 {
-    Load();
-    int poz_s=0,poz_k=0,j=0;
-    for(int i=0; i<Buff.length(); i++)
+    for(int a = 0; a<StoragePrefs.size(); a++)
     {
-        if(Buff.substr(i,Name.length()+1)==Name+"=")
+        if(StoragePrefs[a][0]==Name)
+            StoragePrefs[a][1]=Value;
+    }
+    string T;
+    fstream File (Path.c_str(),ios::out|ios::in|ios::trunc);
+    if(File.is_open()==true)
+    {
+        for(int i=0; i<StoragePrefs.size(); i++)
         {
-            poz_s=i+Name.length()+1;
-            j=1;
+            T += StoragePrefs[i][0]+"="+StoragePrefs[i][1]+";";
         }
-        if(Buff.substr(i,1)==";" and j==1)
-        {
-            poz_k=i;
-            return Buff.substr(poz_s,(poz_k-poz_s));
-        }
+        File<<T;
+        File.close();
     }
 }
