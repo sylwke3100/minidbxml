@@ -3,6 +3,8 @@
 
 void DbSearch::SearchInDb(DB* Base, vector<string>& Summary)
 {
+  if(NameValue.length()>0)
+  {
     for(int x=1; x<Base->GetMaxX()+1; x++)
     {
         for(int y=0; y<Base->GetMaxY(); y++)
@@ -14,6 +16,7 @@ void DbSearch::SearchInDb(DB* Base, vector<string>& Summary)
             }
         }
     }
+  }
 }
 void DbSearch::SetSearchValue(string NameValue)
 {
