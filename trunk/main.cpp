@@ -8,7 +8,9 @@
 #include "Prefs.h"
 using namespace std;
 
+
 Prefs *P = new Prefs("main.conf");
+
 
 int main(int argc,char *argv[])
 {
