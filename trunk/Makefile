@@ -16,43 +16,43 @@ OBJS_DEBUG=./DbControl.o ./DbConnections.o ./DbSearch.o ./Prefs.o ./DbExport.o .
 Debug: minidbxml
 
 minidbxml: $(OBJS_DEBUG)
-	echo Building console executable ./minidbxml
+	echo [100%] Building console executable ./minidbxml
 	g++  -o ./minidbxml $(OBJS_DEBUG)   
 
 ./DbControl.o: ./DbControl.cpp
-	echo Compiling: ./DbControl.cpp
-	g++ -O3 -O2 -O1 -Wall  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./DbControl.cpp -o ./DbControl.o
+	echo [10%] Compiling: ./DbControl.cpp
+	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./DbControl.cpp -o ./DbControl.o
 
 ./DbConnections.o: ./DbConnections.cpp
-	echo Compiling: ./DbConnections.cpp
-	g++ -O3 -O2 -O1 -Wall  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./DbConnections.cpp -o ./DbConnections.o
+	echo [20%] Compiling: ./DbConnections.cpp
+	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./DbConnections.cpp -o ./DbConnections.o
 	
 ./DbSearch.o: ./DbSearch.cpp
-	echo Compiling: ./DbSearch.cpp
-	g++ -O3 -O2 -O1 -Wall  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./DbSearch.cpp -o ./DbSearch.o
+	echo [30%] Compiling: ./DbSearch.cpp
+	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./DbSearch.cpp -o ./DbSearch.o
 
 ./Prefs.o: ./Prefs.cpp
-	echo Compiling: ./Prefs.cpp
-	g++ -O3 -O2 -O1 -Wall  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./Prefs.cpp -o ./Prefs.o
+	echo [40%] Compiling: ./Prefs.cpp
+	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./Prefs.cpp -o ./Prefs.o
 
 ./DbExport.o: ./DbExport.cpp
-	echo Compiling: ./DbControl.cpp
-	g++ -O3 -O2 -O1 -Wall  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./DbExport.cpp -o ./DbExport.o
+	echo [50%] Compiling: ./DbControl.cpp
+	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./DbExport.cpp -o ./DbExport.o
 ./UiCommandParser.o: ./UiCommandParser.cpp
-	echo Compiling: ./UiCommandParser.cpp
-	g++ -O3 -O2 -O1 -Wall  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./UiCommandParser.cpp -o ./UiCommandParser.o
+	echo [60%] Compiling: ./UiCommandParser.cpp
+	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./UiCommandParser.cpp -o ./UiCommandParser.o
 
 ./XmlParser.o: ./XmlParser.cpp
-	echo Compiling: ./XmlParser.cpp
-	g++ -O3 -O2 -O1 -Wall  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./XmlParser.cpp -o ./XmlParser.o
+	echo [70%] Compiling: ./XmlParser.cpp
+	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./XmlParser.cpp -o ./XmlParser.o
 
 ./XmlParserDebug.o: ./XmlParserDebug.cpp
-	echo Compiling: ./XmlParserDebug.cpp
-	g++ -O3 -O2 -O1 -Wall  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./XmlParserDebug.cpp -o ./XmlParserDebug.o
+	echo [80%] Compiling: ./XmlParserDebug.cpp
+	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./XmlParserDebug.cpp -o ./XmlParserDebug.o
 
 ./main.o: ./main.cpp
-	echo Compiling: ./main.cpp
-	g++ -O3 -O2 -O1 -Wall  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./main.cpp -o ./main.o
+	echo [90%] Compiling: ./main.cpp
+	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./main.cpp -o ./main.o
 
 ./DbControl.cpp: DbControl.h version.h DbControl.h
 
