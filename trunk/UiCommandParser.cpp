@@ -6,7 +6,9 @@ UiCommandParser::UiCommandParser()
 
 void UiCommandParser::Info()
 {
-    Print("Shell Command for MiniDBXML\n\n>>");
+    Print("Shell Command for MiniDBXML ");
+    Print(AutoVersion::_FULLVERSION_STRING);
+    Print(" \n\n>>");
 }
 void UiCommandParser::ParseCommand(string Command,int& Signal)
 {
