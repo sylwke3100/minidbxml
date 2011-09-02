@@ -60,8 +60,9 @@ void DB::SetById(int X,int Y,string Value)
 }
 void DB::SetEntryById(int X,int Y,string Value)
 {
-    if(MaxX>=X and MaxY>=Y){
-         Dbase->ActiveChangeChar(Value,0);
+    if(MaxX>=X and MaxY>=Y)
+    {
+        Dbase->ActiveChangeChar(Value,0);
         Db[X][Y]=Value;
     }
     else
@@ -71,7 +72,7 @@ void DB::SetEntryById(int X,int Y,string Value)
             int r = (X-MaxX);
             for(int i=0; i<r; i++)
                 CreateEntriesRow();
-                Dbase->ActiveChangeChar(Value,0);
+            Dbase->ActiveChangeChar(Value,0);
             Db[X][Y]=Value;
         }
     }
@@ -123,7 +124,8 @@ void DB::SaveDb()
     Dbase -> SaveTag("tag","!OPEN",1);
     for(int i=0; i<MaxY; i++)
     {
-        Dbase -> SaveTag("tg",Db[0][i],2);
+        if (Db[0][i].length()>0)
+            Dbase -> SaveTag("tg",Db[0][i],2);
     }
     Dbase -> SaveTag("tag","!CLOSE",1);
     Dbase -> SaveTag("body","!OPEN",1);
@@ -132,7 +134,8 @@ void DB::SaveDb()
         Dbase -> SaveTag("entry","!OPEN",2);
         for(int c=0; c<MaxY; c++)
         {
-            Dbase -> SaveTag(Db[0][c],Db[a][c],3);
+            if (Db[a][c].length()>0)
+                Dbase -> SaveTag(Db[0][c],Db[a][c],3);
         }
         Dbase -> SaveTag("entry","!CLOSE",2);
 
