@@ -3,20 +3,20 @@
 
 void DbSearch::SearchInDb(DB* Base, vector<string>& Summary)
 {
-  if(NameValue.length()>0)
-  {
-    for(int x=1; x<Base->GetMaxX()+1; x++)
+    if(NameValue.length()>0)
     {
-        for(int y=0; y<Base->GetMaxY(); y++)
+        for(int x=1; x<Base->GetMaxX()+1; x++)
         {
-            string Value = Base ->GetEntryById(x,y);
-            if((int)Value.find(NameValue)>-1)
+            for(int y=0; y<Base->GetMaxY(); y++)
             {
-                Summary.push_back(Value);
+                string Value = Base ->GetEntryById(x,y);
+                if((int)Value.find(NameValue)>-1)
+                {
+                    Summary.push_back(Value);
+                }
             }
         }
     }
-  }
 }
 void DbSearch::SetSearchValue(string NameValue)
 {
