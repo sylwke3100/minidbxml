@@ -3,14 +3,18 @@
 
 #include <vector>
 #include "XmlParser.h"
+#include "SessionsStorage.h"
+
 class DB
 {
 private:
     string PathName;
+    SessionsStorage *Session;
     XMLParser *Dbase;
     vector<vector <string> >Db;
     int MaxX;
     int MaxY;
+    int IsLoad;
 public:
     int PosX;
     int PosY;
@@ -26,5 +30,7 @@ public:
     void SaveDb();
     int GetMaxX();
     int GetMaxY();
+    bool IsLoaded();
+    ~DB();
 };
 #endif
