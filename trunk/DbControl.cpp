@@ -2,6 +2,7 @@
 #include "DbControl.h"
 #include "version.h"
 
+
 DB::DB(string PathDb)
 {
     Dbase = new XMLParser;
@@ -13,26 +14,47 @@ DB::DB(string PathDb)
         vector <string> Tmp;
         Dbase -> GetTagValues("tg",G);
         Db[0] = G;
-        vector <string>Ttmp;
+        vector <string>Ttmp,T;
+        int tru = false;
         Dbase -> GetTagValues("entry",Tmp);
-        Db.resize(Tmp.size()+1);
-        for(int z=0; z<Db[0].size(); z++)
-        {
-            Dbase->GetTagValues(Db[0][z],Ttmp);
-            for(int i=1; i<Tmp.size()+1; i++)
+        Dbase -> GetTagValues("Session",T);
+        Session = new SessionsStorage();
+        if (T.size()>0){
+            if (T[0].length()>0)
             {
-                Db[i].push_back(Ttmp[i-1]);
+                SessionsStorage S;
+                Session->ConvertToSession(T[0],S);
+                tru =Session->CheckSession(S);
             }
-            Ttmp.clear();
+                }
+        if (tru==0 or T[0].length()<0)
+        {
+            Db.resize(Tmp.size()+1);
+            for(int z=0; z<Db[0].size(); z++)
+            {
+                Dbase->GetTagValues(Db[0][z],Ttmp);
+                for(int i=1; i<Tmp.size()+1; i++)
+                {
+                    Db[i].push_back(Ttmp[i-1]);
+                }
+                Ttmp.clear();
+            }
+            MaxX = Tmp.size();
+            MaxY = Db[0].size();
+            PathName = PathDb;
+            IsLoad = 1;
+            Session->LockSession();
+            SaveDb();
         }
-        MaxX = Tmp.size();
-        MaxY = Db[0].size();
-        PathName = PathDb;
     }
+}
+bool DB::IsLoaded()
+{
+    return IsLoad;
 }
 string DB::GetEntryById(int X, int Y)
 {
-    if(MaxX>=X and MaxY>=Y)
+    if(MaxX>=X and MaxY>=Y and IsLoad == 1)
     {
         PosX =X;
         PosY =Y;
@@ -44,36 +66,42 @@ string DB::GetEntryById(int X, int Y)
 }
 void DB::SetById(int X,int Y,string Value)
 {
-    DbConnections C;
-    if(MaxX>=X and MaxY>=Y)
-        C.SearchConnection(Db[X][Y],*this,2,Value);
-    else
+    if(IsLoad==1)
     {
-        if(MaxX<X)
-        {
-            int r = (X-MaxX);
-            for(int i=0; i<r; i++)
-                CreateEntriesRow();
+        DbConnections C;
+        if(MaxX>=X and MaxY>=Y)
             C.SearchConnection(Db[X][Y],*this,2,Value);
+        else
+        {
+            if(MaxX<X)
+            {
+                int r = (X-MaxX);
+                for(int i=0; i<r; i++)
+                    CreateEntriesRow();
+                C.SearchConnection(Db[X][Y],*this,2,Value);
+            }
         }
     }
 }
 void DB::SetEntryById(int X,int Y,string Value)
 {
-    if(MaxX>=X and MaxY>=Y)
+    if(IsLoad==1)
     {
-        Dbase->ActiveChangeChar(Value,0);
-        Db[X][Y]=Value;
-    }
-    else
-    {
-        if(MaxX<X)
+        if(MaxX>=X and MaxY>=Y)
         {
-            int r = (X-MaxX);
-            for(int i=0; i<r; i++)
-                CreateEntriesRow();
             Dbase->ActiveChangeChar(Value,0);
             Db[X][Y]=Value;
+        }
+        else
+        {
+            if(MaxX<X)
+            {
+                int r = (X-MaxX);
+                for(int i=0; i<r; i++)
+                    CreateEntriesRow();
+                Dbase->ActiveChangeChar(Value,0);
+                Db[X][Y]=Value;
+            }
         }
     }
 }
@@ -96,23 +124,32 @@ void DB::CreateEntriesRow()
 }
 void DB::DeleteEntry(int X,int Y)
 {
-    Db[X][Y].clear();
+    if(IsLoad==1)
+    {
+        Db[X][Y].clear();
+    }
 }
 void DB::DeleteEntriesRow(int X)
 {
-    for(int i=0; i<MaxY; i++)
+    if(IsLoad==1)
     {
-        Db[X][i].clear();
+        for(int i=0; i<MaxY; i++)
+        {
+            Db[X][i].clear();
+        }
     }
 }
 void DB::CreateRow(string NameRow)
 {
-    Db[0].push_back(NameRow);
-    for(int i=1; i<MaxX+1; i++)
+    if(IsLoad==1)
     {
-        Db[i].push_back(" ");
+        Db[0].push_back(NameRow);
+        for(int i=1; i<MaxX+1; i++)
+        {
+            Db[i].push_back(" ");
+        }
+        MaxY++;
     }
-    MaxY++;
 }
 void DB::SaveDb()
 {
@@ -120,6 +157,14 @@ void DB::SaveDb()
     Dbase -> SaveTag("header","!OPEN",1);
     Dbase -> SaveTag("Program","MiniDBXML",2);
     Dbase -> SaveTag("Version",AutoVersion::_FULLVERSION_STRING,2);
+    if (Session->StatusSession()==0)
+        Dbase ->SaveTag("Session","",2);
+    else
+    {
+        ostringstream w;
+        w<< Session->GetSessionID();
+        Dbase ->SaveTag("Session",w.str(),2);
+    }
     Dbase -> SaveTag("header","!CLOSE",1);
     Dbase -> SaveTag("tag","!OPEN",1);
     for(int i=0; i<MaxY; i++)
@@ -150,3 +195,10 @@ string DB::GetPathName()
 {
     return PathName;
 }
+DB::~DB()
+{
+    Session->UnlockSession();
+    SaveDb();
+    delete Session;
+}
+
