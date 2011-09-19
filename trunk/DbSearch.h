@@ -8,5 +8,6 @@ private:
 public:
     void SearchInDb(DB* Base,vector<string>& Summary);
     void SetSearchValue(string NameValue);
+    void SearchInColumn(string NameColumn,DB* Base, vector<string>& Summary);
 };
 #endif
