@@ -9,6 +9,7 @@ DB::DB(string PathDb)
     Dbase -> LoadFile(PathDb);
     if(Dbase->IsLoadFile()==true)
     {
+        Pr = new Prefs("config.conf");
         Db.resize(1);
         vector <string> G;
         vector <string> Tmp;
@@ -43,8 +44,9 @@ DB::DB(string PathDb)
             MaxY = Db[0].size();
             PathName = PathDb;
             IsLoad = 1;
+            if(Pr->GetPrefs("Lock_Session")=="true"){
             Session->LockSession();
-            SaveDb();
+            SaveDb();}
         }
     }
 }
