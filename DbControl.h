@@ -4,14 +4,17 @@
 #include <vector>
 #include "XmlParser.h"
 #include "SessionsStorage.h"
+#include "Prefs.h"
 
 class DB
 {
 private:
     string PathName;
     SessionsStorage *Session;
+
     XMLParser *Dbase;
     vector<vector <string> >Db;
+    Prefs *Pr;
     int MaxX;
     int MaxY;
     int IsLoad;

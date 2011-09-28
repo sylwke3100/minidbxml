@@ -11,10 +11,9 @@ using namespace std;
 int main(int argc,char *argv[])
 {
     UiCommandParser* Text = new UiCommandParser();
-    if(argc>1)
-    {
+    Prefs* Pr = new Prefs("config.conf");
+    if(argc>1 && Pr->GetPrefs("Allow_Read_From_File")=="true")
         Text->ReadCommandFromFile(argv[1]);
-    }
     else
     {
         string str;
