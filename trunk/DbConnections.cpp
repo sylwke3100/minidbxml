@@ -31,6 +31,7 @@ string DbConnections::SearchConnection(string DbValue,DB& B,int Type,string Valu
                 SetBettwenConEntry(Value,d,e,p);
         }
     }
+    if (Type == 2) return "NO_TO_SET"; else
     return DbValue;
 }
 string DbConnections::GetNormalConnect(int X, int Y,DB B)

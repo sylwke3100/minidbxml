@@ -119,6 +119,25 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 i=y;
             }
         }
+        if(Command.substr(i,16)=="SearchByColumn('" && IsConnect==true)
+        {
+            i+=16;
+            if((int)Command.find("','",i)>0 && (int)Command.find("');",i)>0)
+            {
+               int s = (int)Command.find("','",i),d = (int)Command.find("');",i);
+               string a = Command.substr(i,s-i),b = Command.substr(s+3,d-(s+3));
+               vector <string> D;
+               DbSearch S;
+               S.SetSearchValue(b);
+               S.SearchInColumn(a,base,D);
+               for(int i =0;i<D.size();i++)
+               {
+                   Print(D[i]);
+                   Print("\n");
+               }
+               i=d+3;
+            }
+        }
         if(Command.substr(i,7)=="Save();" && IsConnect==true)
         {
             base ->SaveDb();
