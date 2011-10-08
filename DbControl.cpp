@@ -72,7 +72,8 @@ void DB::SetById(int X,int Y,string Value)
     {
         DbConnections C;
         if(MaxX>=X and MaxY>=Y)
-            C.SearchConnection(Db[X][Y],*this,2,Value);
+            if(C.SearchConnection(Db[X][Y],*this,2,Value)=="NO_TO_SET")
+                Db[X][Y]=Value;
         else
         {
             if(MaxX<X)
@@ -80,7 +81,8 @@ void DB::SetById(int X,int Y,string Value)
                 int r = (X-MaxX);
                 for(int i=0; i<r; i++)
                     CreateEntriesRow();
-                C.SearchConnection(Db[X][Y],*this,2,Value);
+                 if(C.SearchConnection(Db[X][Y],*this,2,Value)=="NO_TO_SET")
+                Db[X][Y]=Value;
             }
         }
     }
@@ -102,7 +104,7 @@ void DB::SetEntryById(int X,int Y,string Value)
                 for(int i=0; i<r; i++)
                     CreateEntriesRow();
                 Dbase->ActiveChangeChar(Value,0);
-                Db[X][Y]=Value;
+                Db[X][Y]=Value;;
             }
         }
     }
