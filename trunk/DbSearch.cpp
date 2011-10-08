@@ -29,9 +29,9 @@ void DbSearch::SearchInColumn(string NameColumn,DB* Base, vector<string>& Summar
         }
         if(Id>-1)
         {
-            for(int y=0;y<Base->GetMaxY()+1;y++)
+            for(int y=0;y<Base->GetMaxX()+1;y++)
             {
-                 string Value = Base ->GetEntryById(Id,y);
+                 string Value = Base ->GetEntryById(y,Id);
                 if((int)Value.find(NameValue)>-1)
                 {
                     Summary.push_back(Value);
