@@ -13,7 +13,7 @@ bool SessionsStorage::CheckSession(SessionsStorage& Session2)
 }
 int SessionsStorage::StatusSession()
 {
-   return IsLocked;
+    return IsLocked;
 }
 int SessionsStorage::GetSessionID()
 {
