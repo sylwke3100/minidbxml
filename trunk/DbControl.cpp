@@ -20,14 +20,15 @@ DB::DB(string PathDb)
         Dbase -> GetTagValues("entry",Tmp);
         Dbase -> GetTagValues("Session",T);
         Session = new SessionsStorage();
-        if (T.size()>0){
+        if (T.size()>0)
+        {
             if (T[0].length()>0)
             {
                 SessionsStorage S;
                 Session->ConvertToSession(T[0],S);
                 tru =Session->CheckSession(S);
             }
-                }
+        }
         if (tru==0 or T[0].length()<0)
         {
             Db.resize(Tmp.size()+1);
@@ -44,9 +45,11 @@ DB::DB(string PathDb)
             MaxY = Db[0].size();
             PathName = PathDb;
             IsLoad = 1;
-            if(Pr->GetPrefs("Lock_Session")=="true"){
-            Session->LockSession();
-            SaveDb();}
+            if(Pr->GetPrefs("Lock_Session")=="true")
+            {
+                Session->LockSession();
+                SaveDb();
+            }
         }
     }
 }
@@ -74,17 +77,17 @@ void DB::SetById(int X,int Y,string Value)
         if(MaxX>=X and MaxY>=Y)
             if(C.SearchConnection(Db[X][Y],*this,2,Value)=="NO_TO_SET")
                 Db[X][Y]=Value;
-        else
-        {
-            if(MaxX<X)
+            else
             {
-                int r = (X-MaxX);
-                for(int i=0; i<r; i++)
-                    CreateEntriesRow();
-                 if(C.SearchConnection(Db[X][Y],*this,2,Value)=="NO_TO_SET")
-                Db[X][Y]=Value;
+                if(MaxX<X)
+                {
+                    int r = (X-MaxX);
+                    for(int i=0; i<r; i++)
+                        CreateEntriesRow();
+                    if(C.SearchConnection(Db[X][Y],*this,2,Value)=="NO_TO_SET")
+                        Db[X][Y]=Value;
+                }
             }
-        }
     }
 }
 void DB::SetEntryById(int X,int Y,string Value)

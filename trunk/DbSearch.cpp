@@ -23,15 +23,19 @@ void DbSearch::SearchInColumn(string NameColumn,DB* Base, vector<string>& Summar
     if(NameValue.length()>0 && NameColumn.length()>0)
     {
         int Id = -1;
-         for(int x=0; x<Base->GetMaxX(); x++)
+        for(int x=0; x<Base->GetMaxX(); x++)
         {
-            if (Base->GetEntryById(x,0)==NameColumn){Id = x;break;}
+            if (Base->GetEntryById(x,0)==NameColumn)
+            {
+                Id = x;
+                break;
+            }
         }
         if(Id>-1)
         {
-            for(int y=0;y<Base->GetMaxX()+1;y++)
+            for(int y=0; y<Base->GetMaxX()+1; y++)
             {
-                 string Value = Base ->GetEntryById(y,Id);
+                string Value = Base ->GetEntryById(y,Id);
                 if((int)Value.find(NameValue)>-1)
                 {
                     Summary.push_back(Value);

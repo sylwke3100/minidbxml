@@ -14,11 +14,16 @@ class UiCommandParser
 private:
     DB * base;
     int IsConnect;
+    int Signal;
 public:
     void ParseCommand(string Command,int& Signal);
     void Print(string Text);
     void ReadCommandFromFile(string Path);
     void Info();
+    void SetSignal(int Singal);
+    void SetState(int State);
+    int GetSignal();
+    int CheckState();
     UiCommandParser();
 
 };

@@ -2,8 +2,22 @@
 UiCommandParser::UiCommandParser()
 {
     IsConnect = 0;
+}int UiCommandParser::CheckState()
+{
+    return IsConnect;
 }
-
+void UiCommandParser::SetState(int State)
+{
+    IsConnect = State;
+}
+void UiCommandParser::SetSignal(int Signal)
+{
+    this->Signal = Signal;
+}
+int UiCommandParser::GetSignal()
+{
+    return Signal;
+}
 void UiCommandParser::Info()
 {
     Print("Shell Command for MiniDBXML ");
@@ -12,19 +26,21 @@ void UiCommandParser::Info()
 }
 void UiCommandParser::ParseCommand(string Command,int& Signal)
 {
+    this->Signal = Signal;
     for(int i=0; i<Command.length(); i++)
     {
+
         if(Command.substr(i,7)=="Exit();")
         {
             delete base;
-            Signal = 1;
+            SetSignal(1);
         }
         if(Command.substr(i,8)=="Connect(")
         {
             i+=8;
             if((int)Command.find(");",i)>0)
             {
-                if (IsConnect==false)
+                if (CheckState()==false)
                 {
                     int poz = (int)Command.find(");",i);
                     base = new DB(Command.substr(i,(poz-(i))));
@@ -32,12 +48,12 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                     Print(Command.substr(i,(poz-(i))));
                     Print("\n");
                     i= poz;
-                    IsConnect = 1;
+                    SetState(1);
                 }
                 else Print("Please first disconnect\n");
             }
         }
-        if(Command.substr(i,8)=="GetById(" && IsConnect==true)
+        if(Command.substr(i,8)=="GetById(" && CheckState()==true)
         {
             i+=8;
             if((int)Command.find(",",i)>0 && (int)Command.find(");",i)>0)
@@ -51,7 +67,7 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 i=x;
             }
         }
-        if(Command.substr(i,12)=="ExportHTML('" && IsConnect==true)
+        if(Command.substr(i,12)=="ExportHTML('" && CheckState()==true)
         {
             i+=12;
             if((int)Command.find("','",i)>0 && (int)Command.find("');",i)>0)
@@ -63,7 +79,7 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 E.ExportToHTML(*base,Title);
             }
         }
-        if(Command.substr(i,8)=="DelById(" && IsConnect==true)
+        if(Command.substr(i,8)=="DelById(" && CheckState()==true)
         {
             i+=8;
             if((int)Command.find(",",i)>0 && (int)Command.find(");",i)>0)
@@ -77,7 +93,7 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 i=x;
             }
         }
-        if (Command.substr(i,8)=="Search('"&& IsConnect==true)
+        if (Command.substr(i,8)=="Search('"&& CheckState()==true)
         {
             i+=8;
             if((int)Command.find("');")>0)
@@ -94,7 +110,7 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 i=(int)Command.find("');")+3;
             }
         }
-        if (Command.substr(i,11)=="ExportCSV('"&& IsConnect==true)
+        if (Command.substr(i,11)=="ExportCSV('"&& CheckState()==true)
         {
             i+=11;
             if((int)Command.find("');")>0)
@@ -104,7 +120,7 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 E.ExportToCsv(*base);
             }
         }
-        if(Command.substr(i,8)=="SetById(" && IsConnect==true)
+        if(Command.substr(i,8)=="SetById(" && CheckState()==true)
         {
             i+=8;
             if((int)Command.find(",",i)>0 && (int)Command.find("');",i)>0 && (int)Command.find(",'",i)>0)
@@ -119,38 +135,38 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 i=y;
             }
         }
-        if(Command.substr(i,16)=="SearchByColumn('" && IsConnect==true)
+        if(Command.substr(i,16)=="SearchByColumn('" && CheckState()==true)
         {
             i+=16;
             if((int)Command.find("','",i)>0 && (int)Command.find("');",i)>0)
             {
-               int s = (int)Command.find("','",i),d = (int)Command.find("');",i);
-               string a = Command.substr(i,s-i),b = Command.substr(s+3,d-(s+3));
-               vector <string> D;
-               DbSearch S;
-               S.SetSearchValue(b);
-               S.SearchInColumn(a,base,D);
-               for(int i =0;i<D.size();i++)
-               {
-                   Print(D[i]);
-                   Print("\n");
-               }
-               i=d+3;
+                int s = (int)Command.find("','",i),d = (int)Command.find("');",i);
+                string a = Command.substr(i,s-i),b = Command.substr(s+3,d-(s+3));
+                vector <string> D;
+                DbSearch S;
+                S.SetSearchValue(b);
+                S.SearchInColumn(a,base,D);
+                for(int i =0; i<D.size(); i++)
+                {
+                    Print(D[i]);
+                    Print("\n");
+                }
+                i=d+3;
             }
         }
-        if(Command.substr(i,7)=="Save();" && IsConnect==true)
+        if(Command.substr(i,7)=="Save();" && CheckState()==true)
         {
             base ->SaveDb();
             i+=7;
         }
-        if(Command.substr(i,13)=="Disconnect();" && IsConnect==true)
+        if(Command.substr(i,13)=="Disconnect();" && CheckState()==true)
         {
             Print("Disconnect from database\n");
             delete base;
-            IsConnect = 0;
+           SetState(0);
             i=i+13;
         }
-
+        Signal = GetSignal();
     }
 }
 void UiCommandParser::Print(string Text)
