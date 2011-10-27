@@ -112,14 +112,6 @@ void DB::SetEntryById(int X,int Y,string Value)
         }
     }
 }
-int DB::GetMaxX()
-{
-    return MaxX;
-}
-int DB::GetMaxY()
-{
-    return MaxY;
-}
 void DB::CreateEntriesRow()
 {
     Db.resize(Db.size()+1);
