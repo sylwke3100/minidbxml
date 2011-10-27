@@ -1,0 +1,11 @@
+<map id="G" name="G">
+<area shape="rect" id="node11" href="$_db_control_8h.html" title="DbControl.h" alt="" coords="340,160,431,189"/>
+<area shape="rect" id="node39" href="$_db_search_8h.html" title="DbSearch.h" alt="" coords="292,83,383,112"/>
+<area shape="rect" id="node42" href="$_db_export_8h.html" title="DbExport.h" alt="" coords="153,83,241,112"/>
+<area shape="rect" id="node47" href="$version_8h.html" title="version.h" alt="" coords="829,83,904,112"/>
+<area shape="rect" id="node15" href="$_xml_parser_8h.html" title="XmlParser.h" alt="" coords="221,237,315,267"/>
+<area shape="rect" id="node23" href="$_sessions_storage_8h.html" title="SessionsStorage.h" alt="" coords="573,237,704,267"/>
+<area shape="rect" id="node30" href="$_db_pos_8h.html" title="DbPos.h" alt="" coords="477,237,549,267"/>
+<area shape="rect" id="node32" href="$_prefs_8h.html" title="Prefs.h" alt="" coords="389,237,453,267"/>
+<area shape="rect" id="node20" href="$_xml_parser_debug_8h.html" title="XmlParserDebug.h" alt="" coords="184,315,315,344"/>
+</map>

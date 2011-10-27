@@ -1,0 +1,16 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$_xml_parser_8h.html" title="XmlParser.h" alt="" coords="785,83,879,112"/>
+<area shape="rect" id="node36" href="$_xml_parser_debug_8cpp.html" title="XmlParserDebug.cpp" alt="" coords="903,83,1049,112"/>
+<area shape="rect" id="node5" href="$_db_control_8h.html" title="DbControl.h" alt="" coords="408,160,499,189"/>
+<area shape="rect" id="node21" href="$main_8cpp.html" title="main.cpp" alt="" coords="719,392,793,421"/>
+<area shape="rect" id="node34" href="$_xml_parser_8cpp.html" title="XmlParser.cpp" alt="" coords="869,160,976,189"/>
+<area shape="rect" id="node7" href="$_db_connections_8h.html" title="DbConnections.h" alt="" coords="143,237,265,267"/>
+<area shape="rect" id="node9" href="$_db_connections_8cpp.html" title="DbConnections.cpp" alt="" coords="136,315,272,344"/>
+<area shape="rect" id="node11" href="$_db_control_8cpp.html" title="DbControl.cpp" alt="" coords="5,315,112,344"/>
+<area shape="rect" id="node15" href="$_db_export_8h.html" title="DbExport.h" alt="" coords="368,237,456,267"/>
+<area shape="rect" id="node19" href="$_ui_command_parser_8h.html" title="UiCommandParser.h" alt="" coords="421,315,565,344"/>
+<area shape="rect" id="node25" href="$_db_search_8h.html" title="DbSearch.h" alt="" coords="563,237,653,267"/>
+<area shape="rect" id="node17" href="$_db_export_8cpp.html" title="DbExport.cpp" alt="" coords="296,315,397,344"/>
+<area shape="rect" id="node23" href="$_ui_command_parser_8cpp.html" title="UiCommandParser.cpp" alt="" coords="415,392,572,421"/>
+<area shape="rect" id="node27" href="$_db_search_8cpp.html" title="DbSearch.cpp" alt="" coords="589,315,693,344"/>
+</map>

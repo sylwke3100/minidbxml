@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$class_d_b.html" title="DB" alt="" coords="204,197,244,227"/>
+<area shape="rect" id="node4" href="$class_db_pos.html" title="DbPos" alt="" coords="5,101,67,131"/>
+<area shape="rect" id="node6" href="$class_x_m_l_parser.html" title="XMLParser" alt="" coords="91,101,176,131"/>
+<area shape="rect" id="node8" href="$class_x_m_l_parser_debug.html" title="XMLParserDebug" alt="" coords="71,5,196,35"/>
+<area shape="rect" id="node10" href="$class_sessions_storage.html" title="SessionsStorage" alt="" coords="200,101,320,131"/>
+<area shape="rect" id="node12" href="$class_prefs.html" title="Prefs" alt="" coords="344,101,397,131"/>
+</map>

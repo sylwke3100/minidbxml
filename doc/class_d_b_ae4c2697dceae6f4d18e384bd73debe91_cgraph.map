@@ -1,0 +1,15 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_sessions_storage.html#abf752e21dc1962e46c1ac6607820db56" title="SessionsStorage::CheckSession" alt="" coords="135,165,348,195"/>
+<area shape="rect" id="node7" href="$class_sessions_storage.html#a4734ae44274d25d3835309b3c3472143" title="SessionsStorage::ConvertToSession" alt="" coords="123,5,360,35"/>
+<area shape="rect" id="node11" href="$class_prefs.html#a9ffc64637ae170fb8a2d9d50f7b74728" title="Prefs::GetPrefs" alt="" coords="185,112,297,141"/>
+<area shape="rect" id="node13" href="$class_x_m_l_parser.html#a5f658fee07ba613167767033d3cea5c0" title="XMLParser::GetTagValues" alt="" coords="152,59,331,88"/>
+<area shape="rect" id="node17" href="$class_x_m_l_parser.html#afc0ec79f2e48405eb401edffe60ca213" title="XMLParser::IsLoadFile" alt="" coords="164,219,319,248"/>
+<area shape="rect" id="node19" href="$class_sessions_storage.html#a772ca2b66ebdfea0d85df9a4d4326d76" title="SessionsStorage::LockSession" alt="" coords="140,272,343,301"/>
+<area shape="rect" id="node21" href="$class_d_b.html#a8c36abeabe4dd2be5d0b25d9e4f9e5f2" title="DB::SaveDb" alt="" coords="193,325,289,355"/>
+<area shape="rect" id="node5" href="$class_sessions_storage.html#a08530658c63e2814e5bc561ec402babf" title="SessionsStorage::GetSessionID" alt="" coords="424,192,635,221"/>
+<area shape="rect" id="node9" href="$class_sessions_storage.html#af214832995a1a9055e0365107ee7fb37" title="SessionsStorage::SetSession" alt="" coords="432,5,627,35"/>
+<area shape="rect" id="node15" href="$class_x_m_l_parser_debug.html#a19a171c362d698e56b18c97f5fed3e74" title="XMLParserDebug::SetSignalToDebug" alt="" coords="408,59,651,88"/>
+<area shape="rect" id="node24" href="$class_x_m_l_parser.html#a1c545fe224df3927b98d4bacd2bedb09" title="XMLParser::SaveFile" alt="" coords="456,272,603,301"/>
+<area shape="rect" id="node26" href="$class_x_m_l_parser.html#a81e5bc9ac3a92724557f6da586b1fb85" title="XMLParser::SaveTag" alt="" coords="456,325,603,355"/>
+<area shape="rect" id="node28" href="$class_sessions_storage.html#a74ad5669aa6131388773135eda184d83" title="SessionsStorage::StatusSession" alt="" coords="423,379,636,408"/>
+</map>

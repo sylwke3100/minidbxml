@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_d_b.html#a72a7be76d56d9b5be4a1647941c1c1cc" title="DB::GetEntryById" alt="" coords="211,98,339,127"/>
+<area shape="rect" id="node12" href="$class_db_pos.html#a17df3484f0c0f0c718e8b22083768fec" title="DbPos::GetMaxX" alt="" coords="956,126,1081,155"/>
+<area shape="rect" id="node14" href="$class_db_pos.html#a53c832d5f4eb4ac5bb6bc070190d5a41" title="DbPos::GetMaxY" alt="" coords="956,179,1081,209"/>
+<area shape="rect" id="node5" href="$class_x_m_l_parser.html#aee88aba59c6c225e756ef7a0d384dfa8" title="XMLParser::ActiveChangeChar" alt="" coords="1133,101,1339,130"/>
+<area shape="rect" id="node7" href="$class_db_connections.html#a773a1fa08db70ec204d07858bc3bf1e8" title="DbConnections::SearchConnection" alt="" coords="387,175,613,205"/>
+<area shape="rect" id="node9" href="$class_db_connections.html#afc422cb91280f1907c6efcd5124e1441" title="DbConnections::BetweenConnect" alt="" coords="673,73,892,102"/>
+<area shape="rect" id="node18" href="$class_db_connections.html#a27a9fe69d9733b0a756389d58324a1ec" title="DbConnections::GetNormalConnect" alt="" coords="667,126,899,155"/>
+<area shape="rect" id="node23" href="$class_db_connections.html#ae91a724d7d70562e929451c151536e23" title="DbConnections::SetBettwenConEntry" alt="" coords="661,233,904,262"/>
+<area shape="rect" id="node32" href="$class_db_connections.html#a1c05909a77261d290701f99f42810734" title="DbConnections::SetNormalConEntry" alt="" coords="664,179,901,209"/>
+<area shape="rect" id="node16" href="$class_d_b.html#aa70848a7f1e410ab5efb1479a0625418" title="DB::GetPathName" alt="" coords="953,73,1084,102"/>
+<area shape="rect" id="node27" href="$class_d_b.html#a298b9d68c85aaa04ff900fa6e71e0b36" title="DB::SetEntryById" alt="" coords="956,233,1081,262"/>
+<area shape="rect" id="node30" href="$class_d_b.html#ad95f20c011eb594b9f3a44d86684231d" title="DB::CreateEntriesRow" alt="" coords="1159,233,1313,262"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_db_pos.html#a17df3484f0c0f0c718e8b22083768fec" title="DbPos::GetMaxX" alt="" coords="297,5,423,35"/>
+<area shape="rect" id="node5" href="$class_db_pos.html#a53c832d5f4eb4ac5bb6bc070190d5a41" title="DbPos::GetMaxY" alt="" coords="297,59,423,88"/>
+<area shape="rect" id="node7" href="$class_d_b.html#a298b9d68c85aaa04ff900fa6e71e0b36" title="DB::SetEntryById" alt="" coords="297,112,423,141"/>
+<area shape="rect" id="node9" href="$class_x_m_l_parser.html#aee88aba59c6c225e756ef7a0d384dfa8" title="XMLParser::ActiveChangeChar" alt="" coords="472,85,677,115"/>
+<area shape="rect" id="node11" href="$class_d_b.html#ad95f20c011eb594b9f3a44d86684231d" title="DB::CreateEntriesRow" alt="" coords="497,139,652,168"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$_db_search_8h.html" title="DbSearch.h" alt="" coords="352,83,443,112"/>
+<area shape="rect" id="node5" href="$_db_control_8h.html" title="DbControl.h" alt="" coords="352,160,443,189"/>
+<area shape="rect" id="node9" href="$_xml_parser_8h.html" title="XmlParser.h" alt="" coords="193,237,287,267"/>
+<area shape="rect" id="node19" href="$_sessions_storage_8h.html" title="SessionsStorage.h" alt="" coords="471,237,601,267"/>
+<area shape="rect" id="node28" href="$_db_pos_8h.html" title="DbPos.h" alt="" coords="625,237,697,267"/>
+<area shape="rect" id="node30" href="$_prefs_8h.html" title="Prefs.h" alt="" coords="365,237,429,267"/>
+<area shape="rect" id="node16" href="$_xml_parser_debug_8h.html" title="XmlParserDebug.h" alt="" coords="5,315,136,344"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$_ui_command_parser_8h.html" title="UiCommandParser.h" alt="" coords="307,83,451,112"/>
+<area shape="rect" id="node13" href="$_db_control_8h.html" title="DbControl.h" alt="" coords="340,237,431,267"/>
+<area shape="rect" id="node41" href="$_db_search_8h.html" title="DbSearch.h" alt="" coords="292,160,383,189"/>
+<area shape="rect" id="node44" href="$_db_export_8h.html" title="DbExport.h" alt="" coords="153,160,241,189"/>
+<area shape="rect" id="node49" href="$version_8h.html" title="version.h" alt="" coords="829,160,904,189"/>
+<area shape="rect" id="node17" href="$_xml_parser_8h.html" title="XmlParser.h" alt="" coords="221,315,315,344"/>
+<area shape="rect" id="node25" href="$_sessions_storage_8h.html" title="SessionsStorage.h" alt="" coords="573,315,704,344"/>
+<area shape="rect" id="node32" href="$_db_pos_8h.html" title="DbPos.h" alt="" coords="477,315,549,344"/>
+<area shape="rect" id="node34" href="$_prefs_8h.html" title="Prefs.h" alt="" coords="389,315,453,344"/>
+<area shape="rect" id="node22" href="$_xml_parser_debug_8h.html" title="XmlParserDebug.h" alt="" coords="184,392,315,421"/>
+</map>
