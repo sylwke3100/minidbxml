@@ -4,23 +4,21 @@
 #include <vector>
 #include "XmlParser.h"
 #include "SessionsStorage.h"
+#include "DbPos.h"
 #include "Prefs.h"
 
-class DB
+class DB: public DbPos
 {
+
 private:
+
     string PathName;
     SessionsStorage *Session;
-
     XMLParser *Dbase;
     vector<vector <string> >Db;
     Prefs *Pr;
-    int MaxX;
-    int MaxY;
     int IsLoad;
 public:
-    int PosX;
-    int PosY;
     DB(string PathDb);
     string GetPathName();
     string GetEntryById(int X, int Y);
@@ -31,8 +29,6 @@ public:
     void DeleteEntry(int X,int y);
     void DeleteEntriesRow(int X);
     void SaveDb();
-    int GetMaxX();
-    int GetMaxY();
     bool IsLoaded();
     ~DB();
 };

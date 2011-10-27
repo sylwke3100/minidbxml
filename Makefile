@@ -11,7 +11,7 @@ WINDRES=
 
 # Target: Debug
 
-OBJS_DEBUG=SessionsStorage.o DbControl.o DbConnections.o DbSearch.o Prefs.o DbExport.o UiCommandParser.o XmlParser.o XmlParserDebug.o main.o
+OBJS_DEBUG=SessionsStorage.o DbPos.o DbControl.o DbConnections.o DbSearch.o Prefs.o DbExport.o UiCommandParser.o XmlParser.o XmlParserDebug.o main.o
 
 Debug: minidbxml
 
@@ -23,6 +23,11 @@ SessionsStorage.o: SessionsStorage.cpp
 
 	echo [5%] Compiling: SessionsStorage.cpp
 	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c SessionsStorage.cpp -o SessionsStorage.o
+
+DbPos.o: DbPos.cpp
+	echo [7%] Compiling: DbPos.cpp
+	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c DbPos.cpp -o DbPos.o
+
 
 DbControl.o: DbControl.cpp
 	echo [10%] Compiling: DbControl.cpp
@@ -62,6 +67,8 @@ main.o: main.cpp
 SessionStorage.cpp: SessionStorage.h
 
 DbControl.cpp: DbControl.h version.h DbControl.h
+
+DbPos.cpp: DbPos.h
 
 DbControl.h: XmlParser.h
 
