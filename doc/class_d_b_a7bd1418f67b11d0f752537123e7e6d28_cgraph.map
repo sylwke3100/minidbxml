@@ -1,8 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$class_d_b.html#a8c36abeabe4dd2be5d0b25d9e4f9e5f2" title="DB::SaveDb" alt="" coords="192,85,288,115"/>
-<area shape="rect" id="node13" href="$class_sessions_storage.html#a52956a17b99fd83920745e2a07197473" title="SessionsStorage::UnlockSession" alt="" coords="132,139,348,168"/>
-<area shape="rect" id="node5" href="$class_sessions_storage.html#a08530658c63e2814e5bc561ec402babf" title="SessionsStorage::GetSessionID" alt="" coords="400,5,611,35"/>
-<area shape="rect" id="node7" href="$class_x_m_l_parser.html#a1c545fe224df3927b98d4bacd2bedb09" title="XMLParser::SaveFile" alt="" coords="432,59,579,88"/>
-<area shape="rect" id="node9" href="$class_x_m_l_parser.html#a81e5bc9ac3a92724557f6da586b1fb85" title="XMLParser::SaveTag" alt="" coords="432,112,579,141"/>
-<area shape="rect" id="node11" href="$class_sessions_storage.html#a74ad5669aa6131388773135eda184d83" title="SessionsStorage::StatusSession" alt="" coords="399,165,612,195"/>
-</map>
