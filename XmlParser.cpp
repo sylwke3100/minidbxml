@@ -7,6 +7,7 @@ void XMLParser::LoadFile(string FileName)
     if(File_o.is_open())
     {
 
+
         NameFile = FileName;
         while(!File_o.eof())
         {
@@ -74,6 +75,7 @@ void XMLParser::SaveTag(string NameTag,string NameValue,int Level)
     {
         P+=" ";
     }
+
 
     if(NameValue!="!OPEN" and NameValue!="!CLOSE")
         BuffSave+=P+"<"+NameTag+">"+NameValue+"</"+NameTag+">\n";
