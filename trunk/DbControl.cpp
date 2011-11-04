@@ -68,6 +68,7 @@ string DB::GetEntryById(int X, int Y)
         Dbase->ActiveChangeChar(tmp,1);
         return tmp;
     }
+    else return "";
 }
 void DB::SetById(int X,int Y,string Value)
 {
@@ -196,8 +197,12 @@ string DB::GetPathName()
 }
 DB::~DB()
 {
+     if(Pr->GetPrefs("Lock_Session")=="true")
+            {
     Session->UnlockSession();
+            }
     SaveDb();
+
     delete Session;
 }
 
