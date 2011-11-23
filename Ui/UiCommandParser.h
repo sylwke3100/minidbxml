@@ -4,10 +4,10 @@
 #include <string>
 #include <sstream>
 #include <fstream>
-#include "DbControl.h"
-#include "DbSearch.h"
-#include "DbExport.h"
-#include "version.h";
+#include "../DbLayer/DbControl.h"
+#include "../DbLayer/DbSearch.h"
+#include "../DbLayer/DbExport.h"
+#include "../version.h";
 using namespace std;
 class UiCommandParser
 {

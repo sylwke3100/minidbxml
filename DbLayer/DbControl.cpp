@@ -1,6 +1,6 @@
 #include "DbConnections.h"
 #include "DbControl.h"
-#include "version.h"
+#include "../version.h"
 
 
 DB::DB(string PathDb)

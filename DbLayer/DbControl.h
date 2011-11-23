@@ -2,10 +2,10 @@
 #define DB_CONTROL_H
 
 #include <vector>
-#include "XmlParser.h"
-#include "SessionsStorage.h"
+#include "../XmlParser/XmlParser.h"
+#include "../SessionsStorage.h"
 #include "DbPos.h"
-#include "Prefs.h"
+#include "../Prefs.h"
 
 class DB: public DbPos
 {
