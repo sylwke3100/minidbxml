@@ -11,90 +11,103 @@ WINDRES=
 
 # Target: Debug
 
-OBJS_DEBUG=SessionsStorage.o DbPos.o DbControl.o DbConnections.o DbSearch.o Prefs.o DbExport.o UiCommandParser.o XmlParser.o XmlParserDebug.o main.o
+OBJS_DEBUG=SessionsStorage.o ./DbLayer/DbPos.o ./DbLayer/DbControl.o ./DbLayer/DbConnections.o ./DbLayer/DbSearch.o Prefs.o ./DbLayer/DbExport.o ./Ui/UiCommandParser.o ./XmlParser/XmlParser.o ./XmlParser/XmlParserDebug.o main.o
 
 Debug: minidbxml
 
 minidbxml: $(OBJS_DEBUG)
-	echo [100%] Building console executable minidbxml
+	@echo [100%] Building console executable minidbxml
+	
 	g++  -o minidbxml $(OBJS_DEBUG)
 
-SessionsStorage.o: SessionsStorage.cpp
 
-	echo [5%] Compiling: SessionsStorage.cpp
+SessionsStorage.o: SessionsStorage.cpp
+	@echo [5%] Compiling: SessionsStorage.cpp
+	
 	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c SessionsStorage.cpp -o SessionsStorage.o
 
-DbPos.o: DbPos.cpp
-	echo [7%] Compiling: DbPos.cpp
-	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c DbPos.cpp -o DbPos.o
+./DbLayer/DbPos.o: ./DbLayer/DbPos.cpp
+	@echo [7%] Compiling: ./DbLayer/DbPos.cpp
+	
+	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./DbLayer/DbPos.cpp -o ./DbLayer/DbPos.o
 
 
-DbControl.o: DbControl.cpp
-	echo [10%] Compiling: DbControl.cpp
-	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c DbControl.cpp -o DbControl.o
+./DbLayer/DbControl.o: ./DbLayer/DbControl.cpp
+	@echo [10%] Compiling: ./DbLayer/DbControl.cpp
+	
+	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./DbLayer/DbControl.cpp -o ./DbLayer/DbControl.o
 
-DbConnections.o: DbConnections.cpp
-	echo [20%] Compiling: DbConnections.cpp
-	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c DbConnections.cpp -o DbConnections.o
+./DbLayer/DbConnections.o: ./DbLayer/DbConnections.cpp
+	@echo [20%] Compiling: ./DbLayer/DbConnections.cpp
+	
+	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./DbLayer/DbConnections.cpp -o ./DbLayer/DbConnections.o
 
-DbSearch.o: DbSearch.cpp
-	echo [30%] Compiling: DbSearch.cpp
-	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c DbSearch.cpp -o DbSearch.o
+./DbLayer/DbSearch.o: ./DbLayer/DbSearch.cpp
+	@echo [30%] Compiling: ./DbLayer/DbSearch.cpp
+	
+	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./DbLayer/DbSearch.cpp -o ./DbLayer/DbSearch.o
 
 Prefs.o: Prefs.cpp
-	echo [40%] Compiling: Prefs.cpp
+	@echo [40%] Compiling: Prefs.cpp
+	
 	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c Prefs.cpp -o Prefs.o
+./DbLayer/DbExport.o: ./DbLayer/DbExport.cpp
+	@echo [50%] Compiling: ./DbLayer/DbControl.cpp
+	
+	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./DbLayer/DbExport.cpp -o ./DbLayer/DbExport.o
+./Ui/UiCommandParser.o: ./Ui/UiCommandParser.cpp
+	@echo [60%] Compiling: ./Ui/UiCommandParser.cpp
+	
+	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./Ui/UiCommandParser.cpp -o ./Ui/UiCommandParser.o
 
-DbExport.o: DbExport.cpp
-	echo [50%] Compiling: DbControl.cpp
-	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c DbExport.cpp -o DbExport.o
-UiCommandParser.o: UiCommandParser.cpp
-	echo [60%] Compiling: UiCommandParser.cpp
-	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c UiCommandParser.cpp -o UiCommandParser.o
+./XmlParser/XmlParser.o: ./XmlParser/XmlParser.cpp
+	@echo [70%] Compiling: ./XmlParser/XmlParser.cpp
+	
+	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./XmlParser/XmlParser.cpp -o ./XmlParser/XmlParser.o
 
-XmlParser.o: XmlParser.cpp
-	echo [70%] Compiling: XmlParser.cpp
-	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c XmlParser.cpp -o XmlParser.o
-
-XmlParserDebug.o: XmlParserDebug.cpp
-	echo [80%] Compiling: XmlParserDebug.cpp
-	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c XmlParserDebug.cpp -o XmlParserDebug.o
+./XmlParser/XmlParserDebug.o: ./XmlParser/XmlParserDebug.cpp
+	
+	@echo [80%] Compiling: ./XmlParser/XmlParserDebug.cpp
+	
+	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./XmlParser/XmlParserDebug.cpp -o ./XmlParser/XmlParserDebug.o
 
 main.o: main.cpp
-	echo [90%] Compiling: main.cpp
+	
+	@echo [90%] Compiling: main.cpp
+	
 	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c main.cpp -o main.o
 
 SessionStorage.cpp: SessionStorage.h
 
-DbControl.cpp: DbControl.h version.h DbControl.h
+./DbLayer/DbControl.cpp: ./DbLayer/DbControl.h version.h ./DbLayer/DbControl.h
 
-DbPos.cpp: DbPos.h
+./DbLayer/DbPos.cpp: ./DbLayer/DbPos.h
 
-DbControl.h: XmlParser.h
+./DbLayer/DbControl.h: ./XmlParser/XmlParser.h
 
-XmlParser.h: XmlParserDebug.h
+./XmlParser/XmlParser.h: ./XmlParser/XmlParserDebug.h
 
-XmlParser.cpp: XmlParser.h
+./XmlParser/XmlParser.cpp: ./XmlParser/XmlParser.h
 
-main.cpp: DbControl.h XmlParser.h DbSearch.h UiCommandParser.h
+main.cpp:  ./XmlParser/XmlParser.h ./DbLayer/DbSearch.h ./Ui/UiCommandParser.h
 
-DbSearch.cpp: DbSearch.h
+./DbLayer/DbSearch.cpp: ./DbLayer/DbSearch.h
 
-DbSearch.h: DbControl.h
+./DbLayer/DbSearch.h: ./DbLayer/DbControl.h
 
 Prefs.cpp: Prefs.h
 
-XmlParserDebug.cpp: XmlParserDebug.h
+./XmlParser/XmlParserDebug.cpp: ./XmlParser/XmlParserDebug.h
 
-UiCommandParser.cpp: UiCommandParser.h
+./Ui/UiCommandParser.cpp: ./Ui/UiCommandParser.h
 
-UiCommandParser.h: DbControl.h
-
-
+./Ui/UiCommandParser.h: ./DbLayer/DbControl.h
 
 
 clean:
-	rm *.o
+	rm -r *.o 
+	rm -r ./Ui/*.o 
+	rm -r ./DbLayer/*.o 
+	rm -r ./XmlParser/*.o 
 	rm minidbxml
-
 

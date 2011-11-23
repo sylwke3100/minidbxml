@@ -2,7 +2,8 @@
 UiCommandParser::UiCommandParser()
 {
     IsConnect = 0;
-}int UiCommandParser::CheckState()
+}
+int UiCommandParser::CheckState()
 {
     return IsConnect;
 }
@@ -163,7 +164,7 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
         {
             Print("Disconnect from database\n");
             delete base;
-           SetState(0);
+            SetState(0);
             i=i+13;
         }
         Signal = GetSignal();

@@ -197,10 +197,10 @@ string DB::GetPathName()
 }
 DB::~DB()
 {
-     if(Pr->GetPrefs("Lock_Session")=="true")
-            {
-    Session->UnlockSession();
-            }
+    if(Pr->GetPrefs("Lock_Session")=="true")
+    {
+        Session->UnlockSession();
+    }
     SaveDb();
 
     delete Session;

@@ -18,11 +18,11 @@ void XMLParser::LoadFile(string FileName)
         File_o.close();
         vector <string> ap;
         GetTagValues("Version",ap);
-	if(ap.size()>0)
-       	 if(ap[0] == "0.0.7 - Alpha")
-        	{
-           	 ConvertStandard();
-        	}
+        if(ap.size()>0)
+            if(ap[0] == "0.0.7 - Alpha")
+            {
+                ConvertStandard();
+            }
     }
     else
     {

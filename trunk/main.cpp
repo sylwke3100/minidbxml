@@ -1,10 +1,10 @@
 #include <iostream>
 #include <cstdlib>
 #include <vector>
-#include "DbControl.h"
-#include "XmlParser.h"
-#include "DbSearch.h"
-#include "UiCommandParser.h"
+#include "./DbLayer/DbControl.h"
+#include "./XmlParser/XmlParser.h"
+#include "./DbLayer/DbSearch.h"
+#include "./Ui/UiCommandParser.h"
 using namespace std;
 
 
