@@ -11,11 +11,14 @@ DB::DB(string PathDb)
     {
         Pr = new Prefs("config.conf");
         Db.resize(1);
-        vector <string> G;
-        vector <string> Tmp;
+        vector <string> ap,G,Tmp,Ttmp,T;
+        Dbase->GetTagValues("Version",ap);
+        if(ap.size()>0)
+            if(ap[0] == "0.0.7 - Alpha")
+                Dbase->ConvertStandard();
+
         Dbase -> GetTagValues("tg",G);
         Db[0] = G;
-        vector <string>Ttmp,T;
         int tru = false;
         Dbase -> GetTagValues("entry",Tmp);
         Dbase -> GetTagValues("Session",T);
