@@ -6,8 +6,6 @@ void XMLParser::LoadFile(string FileName)
     File_o.open(FileName.c_str(),ios::in);
     if(File_o.is_open())
     {
-
-
         NameFile = FileName;
         while(!File_o.eof())
         {
@@ -16,13 +14,6 @@ void XMLParser::LoadFile(string FileName)
             BuffFile+=tmp;
         }
         File_o.close();
-        vector <string> ap;
-        GetTagValues("Version",ap);
-        if(ap.size()>0)
-            if(ap[0] == "0.0.7 - Alpha")
-            {
-                ConvertStandard();
-            }
     }
     else
     {
