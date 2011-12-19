@@ -156,40 +156,40 @@ void DB::CreateRow(string NameRow)
 }
 void DB::SaveDb()
 {
-    Dbase -> SaveTag("db","!OPEN",0);
-    Dbase -> SaveTag("header","!OPEN",1);
-    Dbase -> SaveTag("Program","MiniDBXML",2);
-    Dbase -> SaveTag("Version",AutoVersion::_FULLVERSION_STRING,2);
+    Dbase -> SaveTag("db","!OPEN");
+    Dbase -> SaveTag("header","!OPEN");
+    Dbase -> SaveTag("Program","MiniDBXML");
+    Dbase -> SaveTag("Version",AutoVersion::_FULLVERSION_STRING);
     if (Session->StatusSession()==0)
-        Dbase ->SaveTag("Session","",2);
+        Dbase ->SaveTag("Session","");
     else
     {
         ostringstream w;
         w<< Session->GetSessionID();
-        Dbase ->SaveTag("Session",w.str(),2);
+        Dbase ->SaveTag("Session",w.str());
     }
-    Dbase -> SaveTag("header","!CLOSE",1);
-    Dbase -> SaveTag("tag","!OPEN",1);
+    Dbase -> SaveTag("header","!CLOSE");
+    Dbase -> SaveTag("tag","!OPEN");
     for(int i=0; i<MaxY; i++)
     {
         if (Db[0][i].length()>0)
-            Dbase -> SaveTag("tg",Db[0][i],2);
+            Dbase -> SaveTag("tg",Db[0][i]);
     }
-    Dbase -> SaveTag("tag","!CLOSE",1);
-    Dbase -> SaveTag("body","!OPEN",1);
+    Dbase -> SaveTag("tag","!CLOSE");
+    Dbase -> SaveTag("body","!OPEN");
     for(int a=1; a<MaxX+1; a++)
     {
-        Dbase -> SaveTag("entry","!OPEN",2);
+        Dbase -> SaveTag("entry","!OPEN");
         for(int c=0; c<MaxY; c++)
         {
             if (Db[a][c].length()>0)
-                Dbase -> SaveTag(Db[0][c],Db[a][c],3);
+                Dbase -> SaveTag(Db[0][c],Db[a][c]);
         }
-        Dbase -> SaveTag("entry","!CLOSE",2);
+        Dbase -> SaveTag("entry","!CLOSE");
 
     }
-    Dbase -> SaveTag("body","!CLOSE",1);
-    Dbase -> SaveTag("db","!CLOSE",0);
+    Dbase -> SaveTag("body","!CLOSE");
+    Dbase -> SaveTag("db","!CLOSE");
     Dbase ->SaveFile();
 
 }
