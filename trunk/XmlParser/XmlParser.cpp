@@ -55,27 +55,21 @@ void XMLParser::SaveFile()
 {
     File_w.open(NameFile.c_str(),ios::out|ios::in|ios::trunc);
     File_w << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-    File_w<< BuffSave;
+    File_w<< Tags.ExportTags();
     File_w.close();
     BuffSave.clear();
 }
-void XMLParser::SaveTag(string NameTag,string NameValue,int Level)
+void XMLParser::SaveTag(string NameTag,string NameValue)
 {
-    string P;
-    for(int i=0; i<Level; i++)
-    {
-        P+=" ";
-    }
-
 
     if(NameValue!="!OPEN" and NameValue!="!CLOSE")
-        BuffSave+=P+"<"+NameTag+">"+NameValue+"</"+NameTag+">\n";
+        Tags.AddSimpleTag(NameTag,NameValue);
     else
     {
         if(NameValue=="!OPEN")
-            BuffSave+=P+"<"+NameTag+">\n";
+            Tags.AddOpenTag(NameTag);
         if(NameValue=="!CLOSE")
-            BuffSave+=P+"</"+NameTag+">\n";
+           Tags.AddCloseTag();
     }
 }
 void XMLParser::ActiveChangeChar(string& Value,int Type)

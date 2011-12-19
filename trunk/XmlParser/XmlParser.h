@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include "XmlParserDebug.h"
+#include "XmlParserTags.h"
 
 using namespace std;
 class XMLParser
@@ -16,6 +17,7 @@ private:
     string BuffSave;
     string NameFile;
     XMLParserDebug Errors;
+    XmlParserTags Tags;
 public:
     string GetBuffer();
     void GetTagValues(string Name,vector<string> &Values);
@@ -23,7 +25,7 @@ public:
     void ConvertStandard();
     void ActiveChangeChar(string& Value,int Type);
     void SaveFile();
-    void SaveTag(string NameTag,string NameValue,int Level);
+    void SaveTag(string NameTag,string NameValue);
     void GetErrors(string& Error);
     int IsLoadFile();
 

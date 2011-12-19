@@ -11,7 +11,7 @@ WINDRES=
 
 # Target: Debug
 
-OBJS_DEBUG=SessionsStorage.o ./DbLayer/DbPos.o ./DbLayer/DbControl.o ./DbLayer/DbConnections.o ./DbLayer/DbSearch.o Prefs.o ./DbLayer/DbExport.o ./Ui/UiCommandParser.o ./XmlParser/XmlParser.o ./XmlParser/XmlParserDebug.o main.o
+OBJS_DEBUG=SessionsStorage.o ./DbLayer/DbPos.o ./DbLayer/DbControl.o ./DbLayer/DbConnections.o ./DbLayer/DbSearch.o Prefs.o ./DbLayer/DbExport.o ./Ui/UiCommandParser.o ./XmlParser/XmlParser.o ./XmlParser/XmlParserTags.o ./XmlParser/XmlParserDebug.o main.o
 
 Debug: minidbxml
 
@@ -64,6 +64,12 @@ Prefs.o: Prefs.cpp
 	@echo [70%] Compiling: ./XmlParser/XmlParser.cpp
 	
 	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./XmlParser/XmlParser.cpp -o ./XmlParser/XmlParser.o
+
+./XmlParser/XmlParserTags.o: ./XmlParser/XmlParserTags.cpp
+	@echo [75%] Compiling: ./XmlParser/XmlParserTags.cpp
+	
+	g++ -O3 -O2 -O1   -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g  -fexpensive-optimizations -Os -O3 -O2 -O1 -O -g     -c ./XmlParser/XmlParserTags.cpp -o ./XmlParser/XmlParserTags.o
+
 
 ./XmlParser/XmlParserDebug.o: ./XmlParser/XmlParserDebug.cpp
 	
