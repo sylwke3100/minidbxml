@@ -16,9 +16,7 @@ void XMLParser::LoadFile(string FileName)
         File_o.close();
     }
     else
-    {
         Errors.SetSignalToDebug(1,FileName);
-    }
 }
 string XMLParser::GetBuffer()
 {
@@ -27,9 +25,7 @@ string XMLParser::GetBuffer()
 void XMLParser::GetTagValues(string Name,vector<string> &Values)
 {
     if(BuffFile.length()<=0)
-    {
         Errors.SetSignalToDebug(2,NameFile);
-    }
     else
     {
         int Istag = 0;
@@ -57,11 +53,9 @@ void XMLParser::SaveFile()
     File_w << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     File_w<< Tags.ExportTags();
     File_w.close();
-    BuffSave.clear();
 }
 void XMLParser::SaveTag(string NameTag,string NameValue)
 {
-
     if(NameValue!="!OPEN" and NameValue!="!CLOSE")
         Tags.AddSimpleTag(NameTag,NameValue);
     else
