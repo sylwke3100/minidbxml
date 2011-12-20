@@ -14,7 +14,6 @@ private:
     ifstream File_o;
     fstream File_w;
     string BuffFile;
-    string BuffSave;
     string NameFile;
     XMLParserDebug Errors;
     XmlParserTags Tags;
