@@ -7,7 +7,7 @@ DB::DB(string PathDb)
 {
     Dbase = new XMLParser;
     Dbase -> LoadFile(PathDb);
-    if(Dbase->IsLoadFile()==true)
+    if(Dbase->IsLoadFile()==1)
     {
         Pr = new Prefs("config.conf");
         Db.resize(1);
@@ -55,10 +55,11 @@ DB::DB(string PathDb)
             }
         }
     }
+    else IsLoad =0;
 }
 bool DB::IsLoaded()
 {
-    return IsLoad;
+    return Dbase->IsLoadFile();
 }
 string DB::GetEntryById(int X, int Y)
 {

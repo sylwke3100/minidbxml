@@ -45,11 +45,16 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 {
                     int poz = (int)Command.find(");",i);
                     base = new DB(Command.substr(i,(poz-(i))));
-                    Print("Connected to base: ");
-                    Print(Command.substr(i,(poz-(i))));
-                    Print("\n");
-                    i= poz;
-                    SetState(1);
+                    if(base->IsLoaded()==1)
+                    {
+                        Print("Connected to base: ");
+                        Print(Command.substr(i,(poz-(i))));
+                        Print("\n");
+                        i= poz;
+                        SetState(1);
+                    }
+                    else
+                        Print("Error read db\n");
                 }
                 else Print("Please first disconnect\n");
             }
@@ -103,9 +108,9 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 vector <string> Values;
                 S.SetSearchValue(Command.substr(i,(int)Command.find("');")-i));
                 S.SearchInDb(base,Values);
-                for(int i=0; i<Values.size(); i++)
+                for(int o=0; o<Values.size(); o++)
                 {
-                    Print(Values[i]);
+                    Print(Values[o]);
                     Print("\n");
                 }
                 i=(int)Command.find("');")+3;
@@ -147,9 +152,9 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
                 DbSearch S;
                 S.SetSearchValue(b);
                 S.SearchInColumn(a,base,D);
-                for(int i =0; i<D.size(); i++)
+                for(int o=0; o<D.size(); o++)
                 {
-                    Print(D[i]);
+                    Print(D[o]);
                     Print("\n");
                 }
                 i=d+3;

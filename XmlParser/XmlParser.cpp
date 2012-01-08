@@ -16,7 +16,10 @@ void XMLParser::LoadFile(string FileName)
         File_o.close();
     }
     else
+    {
         Errors.SetSignalToDebug(1,FileName);
+        BuffFile.clear();
+    }
 }
 string XMLParser::GetBuffer()
 {
@@ -111,8 +114,8 @@ void XMLParser::ActiveChangeChar(string& Value,int Type)
 }
 int XMLParser::IsLoadFile()
 {
-    if(BuffFile.length()>0) return 1;
-    else return 0;
+    if(BuffFile.length()==0) return 0;
+    else return 1;
 }
 void XMLParser::GetErrors(string& Error)
 {
