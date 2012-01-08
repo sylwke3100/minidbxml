@@ -3,7 +3,7 @@
 SessionsStorage::SessionsStorage()
 {
     srand(time(0));
-    Session = (rand ()%10000000000)+1;
+    Session = (rand ()%1000000000)+1;
 }
 bool SessionsStorage::CheckSession(SessionsStorage& Session2)
 {

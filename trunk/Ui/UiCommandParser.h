@@ -7,7 +7,7 @@
 #include "../DbLayer/DbControl.h"
 #include "../DbLayer/DbSearch.h"
 #include "../DbLayer/DbExport.h"
-#include "../version.h";
+#include "../version.h"
 using namespace std;
 class UiCommandParser
 {
