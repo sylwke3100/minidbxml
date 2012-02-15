@@ -116,12 +116,13 @@ clean:
 	rm -r ./XmlParser/*.o 
 	rm minidbxml
 fast:
-	@echo [0% ] Preparing to compilation
-	mkdir -p ./fast-mode/bin
-	mkdir -p ./fast-mode/obj
-	cd ./fast-mode
-	@echo [10% ] Compiling Layer: XmlParser
-	@@g++ -c ./../XmlParser/*.cpp -o ./obj/*.o
+    @echo [0% ] Preparing to compilation
+    mkdir -p ./fast-mode/bin
+    mkdir -p ./fast-mode/obj
+    cd ./fast-mode
+    @echo [10% ] Compiling Layer: XmlParser
+    @@g++ -c ./../../XmlParser/*.cpp -o ./obj/*.o
+    @@g++  -o minidbxml $(OBJS_DEBUG)
 	
 
 	
