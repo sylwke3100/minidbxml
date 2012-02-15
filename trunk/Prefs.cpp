@@ -37,7 +37,7 @@ string Prefs::GetPrefs(string Name)
         if(StoragePrefs[i][0]==Name)
             return StoragePrefs[i][1];
     }
-    return " ";
+    return "[NONE]";
 }
 void  Prefs::SetPrefs(string Name,string Value)
 {

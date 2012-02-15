@@ -115,6 +115,10 @@ void DB::SetEntryById(int X,int Y,string Value)
                 Db[X][Y]=Value;;
             }
         }
+        if (Pr->GetPrefs("Autosave")=="true")
+        {
+            SaveDb();
+        }
     }
 }
 void DB::CreateEntriesRow()
@@ -129,9 +133,7 @@ void DB::CreateEntriesRow()
 void DB::DeleteEntry(int X,int Y)
 {
     if(IsLoad==1)
-    {
         Db[X][Y].clear();
-    }
 }
 void DB::DeleteEntriesRow(int X)
 {
@@ -202,9 +204,7 @@ string DB::GetPathName()
 DB::~DB()
 {
     if(Pr->GetPrefs("Lock_Session")=="true")
-    {
         Session->UnlockSession();
-    }
     SaveDb();
 
     delete Session;

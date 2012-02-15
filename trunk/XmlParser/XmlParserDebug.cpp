@@ -3,15 +3,21 @@
 #define IS_EMPTY
 void XMLParserDebug::SetSignalToDebug(int Id,string Text)
 {
-    if(Id==1)
+    switch(Id)
+    {
+    case 1:
         ErrorString +="No file exists: "+Text+"\n";
-    if(Id==2)
+        break;
+    case 2:
         ErrorString +="File is Empty:  "+Text+"\n";
-    if(Id==3)
+        break;
+    case 3:
         ErrorString +="No found \""+Text+"\" tag in xml file\n";
-    if (Id==4)
+        break;
+    case 4:
         ErrorString +="Detect Tag'"+Text+"'\n";
-
+        break;
+    }
 }
 void XMLParserDebug::GetSignalDebug(string& Value)
 {

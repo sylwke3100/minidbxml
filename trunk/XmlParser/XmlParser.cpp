@@ -3,6 +3,7 @@
 using namespace std;
 void XMLParser::LoadFile(string FileName)
 {
+/**<  Load file with XML code*/
     File_o.open(FileName.c_str(),ios::in);
     if(File_o.is_open())
     {

@@ -5,9 +5,7 @@ DbExport::DbExport(string FileName)
     Path = FileName;
     File.open(Path.c_str(),ios::out|ios::in|ios::trunc);
     if (File.is_open()==true)
-    {
         IsOpen=true;
-    }
 }
 void DbExport::ExportToCsv(DB &B)
 {
@@ -35,20 +33,14 @@ void DbExport::ExportToHTML(DB &B,string Title)
         for(int z=0; z<B.GetMaxX(); z++)
         {
             File<<"<tr>";
-            if(z==0 )
-            {
+            if(z==0)
                 File<<"<td>*  </td>\n";
-            }
             else
-            {
                 File<<"<td>"<<z<<"</td>\n";
-            }
             for(int i=0; i<B.GetMaxY(); i++)
             {
                 if(z==0)
-                {
                     File<<"<th>"<<B.GetEntryById(z,i)<<"</th>\n";
-                }
                 else
                     File<<"<td>"<<B.GetEntryById(z,i)<<"</td>\n";
             }

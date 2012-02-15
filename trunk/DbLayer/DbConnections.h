@@ -11,6 +11,7 @@ class DbConnections
 {
 public:
     int StateConnect ;
+
     string SearchConnection(string DbValue,DB& B,int Type,string Value);
     string GetNormalConnect(int X, int Y,DB B);
     string BetweenConnect(string Path,int X,int Y, DB B);
