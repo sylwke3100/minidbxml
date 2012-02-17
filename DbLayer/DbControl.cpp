@@ -5,11 +5,14 @@
 
 DB::DB(string PathDb)
 {
+    Pr = new Prefs("config.conf");
+    if(Pr->GetPrefs("Default_Path")!="[NONE]")
+        PathDb = Pr->GetPrefs("Default_Path")+PathDb;
     Dbase = new XMLParser;
     Dbase -> LoadFile(PathDb);
     if(Dbase->IsLoadFile()==1)
     {
-        Pr = new Prefs("config.conf");
+
         Db.resize(1);
         vector <string> ap,G,Tmp,Ttmp,T;
         Dbase->GetTagValues("Version",ap);
