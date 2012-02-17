@@ -6,8 +6,8 @@
 DB::DB(string PathDb)
 {
     Pr = new Prefs("config.conf");
-    if(Pr->GetPrefs("Default_Path")!="[NONE]")
-        PathDb = Pr->GetPrefs("Default_Path")+PathDb;
+    if(Pr->GetPrefs("DefaultPath")!="[NONE]")
+        PathDb = Pr->GetPrefs("DefaultPath")+PathDb;
     Dbase = new XMLParser;
     Dbase -> LoadFile(PathDb);
     if(Dbase->IsLoadFile()==1)
