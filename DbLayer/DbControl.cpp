@@ -81,23 +81,30 @@ void DB::SetById(int X,int Y,string Value)
 {
     if(IsLoad==1)
     {
+        cout<<"1"<<endl;
         DbConnections C;
         if(MaxX>=X and MaxY>=Y)
-            if(C.SearchConnection(Db[X][Y],*this,2,Value)=="NO_TO_SET")
+        {
+
+             cout<<"2"<<endl;
                 Db[X][Y]=Value;
+                cout<<Db[X][Y]<<endl;
+        }
             else
             {
+                 cout<<"3"<<endl;
                 if(MaxX<X)
                 {
+                     cout<<"4"<<endl;
                     int r = (X-MaxX);
                     for(int i=0; i<r; i++)
                         CreateEntriesRow();
-                    if(C.SearchConnection(Db[X][Y],*this,2,Value)=="NO_TO_SET")
+                    if(C.SearchConnection(Value,*this,2,Value)=="NO_TO_SET")
                         Db[X][Y]=Value;
-                }
+                }}
             }
     }
-}
+
 void DB::SetEntryById(int X,int Y,string Value)
 {
     if(IsLoad==1)

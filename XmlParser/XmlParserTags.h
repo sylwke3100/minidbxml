@@ -13,7 +13,9 @@ public:
     void AddSimpleTag(string Name,string ValueTag);
     void AddOpenTag(string Name);
     void AddCloseTag();
+    void Clear();
     string ExportTags();
+
 protected:
 
 private:
