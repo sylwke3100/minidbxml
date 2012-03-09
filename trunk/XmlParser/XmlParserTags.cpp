@@ -40,3 +40,9 @@ string XmlParserTags::ExportTags()
     }
     return Buff;
 }
+void XmlParserTags::Clear()
+{
+    Value.clear();
+    Tags.clear();
+    Type.clear();
+}
