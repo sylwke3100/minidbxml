@@ -27,6 +27,6 @@ public:
     void SaveTag(string NameTag,string NameValue);
     void GetErrors(string& Error);
     int IsLoadFile();
-
+    void ClearTags();
 };
 #endif

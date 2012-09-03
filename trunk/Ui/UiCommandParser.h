@@ -16,6 +16,7 @@ private:
     int IsConnect;
     int Signal;
 public:
+    vector<string> PrepareToParse(string CommandLine);
     void ParseCommand(string Command,int& Signal);
     void Print(string Text);
     void ReadCommandFromFile(string Path);
