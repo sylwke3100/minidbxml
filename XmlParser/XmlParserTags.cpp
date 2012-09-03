@@ -24,7 +24,15 @@ void XmlParserTags::AddCloseTag()
         OpenedTag.clear();
     }
 }
-
+void XmlParserTags::Clear()
+{
+    for (int i=Tags.size(); i>0; i--)
+    {
+        Tags.pop_back();
+        Type.pop_back();
+        Value.pop_back();
+    }
+}
 string XmlParserTags::ExportTags()
 {
     string Buff;
@@ -39,10 +47,4 @@ string XmlParserTags::ExportTags()
             Buff+="</"+Tags[i]+">\n";
     }
     return Buff;
-}
-void XmlParserTags::Clear()
-{
-    Value.clear();
-    Tags.clear();
-    Type.clear();
 }

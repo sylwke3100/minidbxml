@@ -57,7 +57,6 @@ void XMLParser::SaveFile()
     File_w << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     File_w<< Tags.ExportTags();
     File_w.close();
-    Tags.Clear();
 }
 void XMLParser::SaveTag(string NameTag,string NameValue)
 {
@@ -70,6 +69,10 @@ void XMLParser::SaveTag(string NameTag,string NameValue)
         if(NameValue=="!CLOSE")
            Tags.AddCloseTag();
     }
+}
+void XMLParser::ClearTags()
+{
+    Tags.Clear();
 }
 void XMLParser::ActiveChangeChar(string& Value,int Type)
 {

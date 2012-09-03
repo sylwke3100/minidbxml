@@ -25,6 +25,23 @@ void UiCommandParser::Info()
     Print(AutoVersion::_FULLVERSION_STRING);
     Print(" \n\n>>");
 }
+vector<string> UiCommandParser::PrepareToParse(string CommandLine)
+{
+    vector<string> Data;
+    int Last = 0;
+    for (int i = 0;i<CommandLine.length();i++)
+    {
+        if(CommandLine.substr(i,i+1)==" "){
+            Data.push_back(CommandLine.substr(Last,Last+(i-Last)));
+            Last = Last+(i-Last);
+        }
+        if(i==CommandLine.length()-1){
+            Data.push_back(CommandLine.substr(Last,Last+(i-Last)));
+            Last = Last+(i-Last);
+        }
+    }
+    return Data;
+}
 void UiCommandParser::ParseCommand(string Command,int& Signal)
 {
     this->Signal = Signal;

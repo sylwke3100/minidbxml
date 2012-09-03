@@ -13,9 +13,8 @@ public:
     void AddSimpleTag(string Name,string ValueTag);
     void AddOpenTag(string Name);
     void AddCloseTag();
-    void Clear();
     string ExportTags();
-
+    void Clear();
 protected:
 
 private:
@@ -23,7 +22,6 @@ private:
     vector <string> Tags;
     vector <string> Type;
     vector <string> Value;
-
 };
 
 #endif // XMLPARSERTAGS_H
