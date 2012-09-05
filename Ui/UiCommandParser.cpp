@@ -29,15 +29,18 @@ vector<string> UiCommandParser::PrepareToParse(string CommandLine)
 {
     vector<string> Data;
     int Last = 0;
-    for (int i = 0;i<CommandLine.length();i++)
+    for (int i =0; i<CommandLine.length();i++)
     {
-        if(CommandLine.substr(i,i+1)==" "){
-            Data.push_back(CommandLine.substr(Last,Last+(i-Last)));
-            Last = Last+(i-Last);
+        if((int)CommandLine.find(" ",i)!=-1)
+        {
+            int pos =(int)CommandLine.find(" ",i);
+            Data.push_back(CommandLine.substr(Last,pos-Last));
+            i = pos+1;
+            Last = pos+1;
         }
-        if(i==CommandLine.length()-1){
-            Data.push_back(CommandLine.substr(Last,Last+(i-Last)));
-            Last = Last+(i-Last);
+        if (CommandLine.length()==i+1)
+        {
+            Data.push_back(CommandLine.substr(Last,CommandLine.length()-1));
         }
     }
     return Data;

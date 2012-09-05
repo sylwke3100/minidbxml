@@ -3,7 +3,7 @@
 using namespace std;
 void XMLParser::LoadFile(string FileName)
 {
-/**<  Load file with XML code*/
+    /**<  Load file with XML code*/
     File_o.open(FileName.c_str(),ios::in);
     if(File_o.is_open())
     {
@@ -67,7 +67,7 @@ void XMLParser::SaveTag(string NameTag,string NameValue)
         if(NameValue=="!OPEN")
             Tags.AddOpenTag(NameTag);
         if(NameValue=="!CLOSE")
-           Tags.AddCloseTag();
+            Tags.AddCloseTag();
     }
 }
 void XMLParser::ClearTags()
