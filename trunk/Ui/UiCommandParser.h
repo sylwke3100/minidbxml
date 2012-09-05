@@ -1,5 +1,6 @@
 #ifndef UICOMMANDPARSER_H
 #define UICOMMANDPARSER_H
+#include <stdio.h>
 #include <iostream>
 #include <string>
 #include <sstream>
