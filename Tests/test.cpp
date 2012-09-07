@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
     UiCommandParser P;
-    TestValue Test(P.PrepareToParse("command abc dsa www"));
+    TestValue Test(P.PrepareToParse("command cmd cmdddd"));
     Test.runTest();
 
 }

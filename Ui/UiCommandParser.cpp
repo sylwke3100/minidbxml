@@ -29,7 +29,7 @@ vector<string> UiCommandParser::PrepareToParse(string CommandLine)
 {
     vector<string> Data;
     int Last = 0;
-    for (int i =0; i<CommandLine.length();i++)
+    for (int i =0; i<CommandLine.length(); i++)
     {
         if((int)CommandLine.find(" ",i)!=-1)
         {
@@ -40,7 +40,7 @@ vector<string> UiCommandParser::PrepareToParse(string CommandLine)
         }
         if (CommandLine.length()==i+1)
         {
-            Data.push_back(CommandLine.substr(Last,CommandLine.length()-1));
+            Data.push_back(CommandLine.substr(Last,i+1));
         }
     }
     return Data;
@@ -48,6 +48,31 @@ vector<string> UiCommandParser::PrepareToParse(string CommandLine)
 void UiCommandParser::ParseCommand(string Command,int& Signal)
 {
     this->Signal = Signal;
+    vector <string> Line = this->PrepareToParse(Command);
+    if (Line[0] == "exit")
+    {
+        delete base;
+        SetSignal(1);
+    }
+    if(Line[0] == "connect" && CheckState()==false)
+    {
+        base = new DB(Line[1]);
+        if(base->IsLoaded()==true)
+        {
+            Print("Connected to base: ");
+            Print(Line[1]);
+            Print("\n");
+            SetState(1);
+        }
+        else
+            Print("Error read db\n");
+    }
+    if(Line[0] == "disconnect" && CheckState()==true)
+    {
+        Print("Disconnect from database\n");
+        delete base;
+        SetState(0);
+    }
     for(int i=0; i<Command.length(); i++)
     {
 
