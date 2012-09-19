@@ -1,4 +1,6 @@
 #include "UiCommandParser.h"
+#include "UiCommandStatus.h"
+
 UiCommandParser::UiCommandParser()
 {
     IsConnect = 0;
@@ -52,7 +54,7 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
     if (Line[0] == "exit")
     {
         delete base;
-        SetSignal(1);
+        SetSignal(SIGNAL_EXIT);
     }
     if(Line[0] == "connect" && CheckState()==false)
     {
@@ -73,6 +75,7 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
         delete base;
         SetState(0);
     }
+
     for(int i=0; i<Command.length(); i++)
     {
 
