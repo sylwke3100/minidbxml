@@ -9,10 +9,20 @@ TestValue::~TestValue()
 {
     //delete Values;
 }
-void TestValue::runTest()
+void TestValue::runTests(int type)
 {
-    checkSize();
-    checkNoEmptyValues();
+    switch(type){
+        case 1:
+        checkSize();
+        break;
+        case 2:
+        checkNoEmptyValues();
+        break;
+        case 3:
+        checkSize();
+        checkNoEmptyValues();
+        break;
+    }
 }
 void TestValue::checkSize()
 {

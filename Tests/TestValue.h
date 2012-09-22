@@ -5,6 +5,9 @@
 #include <cstdlib>
 #include <vector>
 #include <string>
+#define checksize 1
+#define checkempty 2
+#define all 3
 using namespace std;
 
 
@@ -13,7 +16,7 @@ class TestValue
 {
 public:
     TestValue(vector <string> Vect);
-    void runTest();
+    void runTests(int type);
     void checkSize();
     void checkNoEmptyValues();
     virtual ~TestValue();

@@ -75,7 +75,25 @@ void UiCommandParser::ParseCommand(string Command,int& Signal)
         delete base;
         SetState(0);
     }
-
+    if (Line[0] == "getcolumn" && CheckState()==true)
+    {
+        int t =0;
+        for(int i=0;i<base->GetMaxX();i++)
+        {
+            if(base->GetEntryById(i,0)==Line[1]) t=1;
+            cout<<"ok"<<endl;
+        }
+        if(t==1)
+        {
+            vector<string>V;
+            DbSearch A;
+            A.SearchInColumn(Line[1],base,V);
+            for(int i=0;i<V.size();i++){
+                Print(V[i]);
+                Print("\n");
+            }
+        }
+    }
     for(int i=0; i<Command.length(); i++)
     {
 
