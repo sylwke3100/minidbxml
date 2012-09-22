@@ -8,6 +8,6 @@ int main()
 {
     UiCommandParser P;
     TestValue Test(P.PrepareToParse("command cmd cmdddd"));
-    Test.runTest();
+    Test.runTests(3);
 
 }
